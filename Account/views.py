@@ -3,19 +3,30 @@ from django.contrib import messages
 from Users.models import Users
 from django.contrib.auth import login,logout,authenticate
 from .forms import *
+from random import choices
+from string import ascii_letters
+
 
 def register_page(request,type):
     if type not in ['derakhti','taksathi']:
         return redirect('Account:login_page')
 
     if request.method == "POST":
-        print(request.POST)
         form = AccountRegisterForms(request.POST)
         if form.is_valid():
             form.save()
             user = Users.objects.filter(username=form.cleaned_data['username']).first()
             user.set_password(request.POST['password'])
             user.role = type
+            user.save()
+            def create():
+                identifierـcode = "$" + "".join([choices(list(ascii_letters))[0] for _ in range(10)])
+                user_check = Users.objects.filter(identifierـcode=identifierـcode).first()
+                if user_check is not None:
+                    create()
+                else:
+                    return identifierـcode
+            user.identifierـcode = create()
             user.save()
             login(request,user)
 
@@ -24,6 +35,7 @@ def register_page(request,type):
 
             elif user.role == 'derakhti':
                 return redirect('Derakhti:derakhti_page')
+
 
 
             else:

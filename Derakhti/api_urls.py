@@ -8,6 +8,7 @@ urlpatterns = [
     path('cards-add/',api_views.cards_add.as_view(),name='cards_add'),
     path('profile-update/',api_views.profile_update.as_view(),name='profile_update'),
     path('place-user-buy/',api_views.place_user_buy.as_view(),name='place_user_buy'),
+    path('place-user-reservation/',api_views.place_user_reservation.as_view(),name='place_user_reservation'),
     path('check-identifier-code/',api_views.check_identifierـcode.as_view(),name='check_identifierـcode'),
     path('check-accses/',api_views.check_accses.as_view(),name='check_accses'),
     path('select-points/',api_views.select_points.as_view(),name='select_points'),
@@ -20,6 +21,8 @@ urlpatterns = [
     path('places-list/',api_views.places_list.as_view(),name='places_list'),
     path('places-list-filter/',api_views.places_list_filter.as_view(),name='places_list_filter'),
     path('user-info/',api_views.user_info.as_view(),name='user_info'),
+    path('deposit-request/',api_views.deposit_request.as_view(),name='deposit_request'),
+    path('product-canel/',api_views.product_canel.as_view(),name='product_canel'),
 
 
     path('carts/carts-add/', api_views.carts_add.as_view(), name='carts_add'),

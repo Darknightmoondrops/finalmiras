@@ -33,7 +33,15 @@
                         <img class="slide-imgditils" src="{{ product.image.url }}" alt="...">
                     </div>
                     <div class="carousel-item fade">
-                        <img class="slide-imgditils" src="{% static 'home/img/pic-30.png' %}" alt="...">
+                        {% if product.image1 %}
+                            <img class="slide-imgditils" src="{{ product.image1.url }}" alt="...">
+                        {% endif %}
+                        {% if product.image2 %}
+                            <img class="slide-imgditils" src="{{ product.image2.url }}" alt="...">
+                        {% endif %}
+                        {% if product.image3 %}
+                            <img class="slide-imgditils" src="{{ product.image3.url }}" alt="...">
+                        {% endif %}
                     </div>
 
                     <div class="pre-btnditails" onclick="addSlides(-1)">

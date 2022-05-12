@@ -15,48 +15,14 @@ class MainUser(models.Model):
 
 
 
-
-
-    def RL_aLL(self):
-        result = []
-        m = MainUser.objects.filter(payment_status=True,Owner__id=self.Owner.id).all()
-
-        if m is not None:
-            for k in m:
-                R = Rusers.objects.filter(main__user_id=k.user.id).first()
-                if R is not None:
-                    active_right = Rusers.objects.filter(main__Owner_id=R.main.user.id,main__payment_status=True).count()
-                else:
-                    active_right = None
-                L = Lusers.objects.filter(main__user_id=k.user.id).first()
-                if L is not None:
-                    active_left = Lusers.objects.filter(main__Owner_id=L.main.user.id,main__payment_status=True).count()
-                else:
-                    active_left = None
-
-                if R is not None and L is None:
-                    result.append({f'{k.user.id}': {f'R': {'admin': R.main.admin.username, 'owner': R.main.Owner.username, f'user': k.user.username,'active_right': active_right},f'L': None}})
-
-                elif L is not None and R is None:
-                    result.append({f'{k.user.id}': {f'R': None,f'L': {'admin': L.main.admin.username, 'owner': L.main.Owner.username, f'user': k.user.username,'active_left': active_left}}})
-
-                else:
-                    result.append({f'{k.user.id}': {f'R': {'admin': R.main.admin.username, 'owner': R.main.Owner.username, f'user': k.user.username,'active_right': active_right},f'L': {'admin': L.main.admin.username, 'owner': L.main.Owner.username, f'user': k.user.username,'active_left': active_left}}})
-
-            return result
-        else:
-            return None
-
-
-class Rusers(models.Model):
-    main = models.ForeignKey(MainUser,on_delete=models.CASCADE,verbose_name='Main')
-    user = models.ForeignKey(Users,on_delete=models.CASCADE,verbose_name='User')
+class DepositRequest(models.Model):
+    user = models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,verbose_name='User')
+    status = models.BooleanField(default=False,verbose_name='Status')
+    price = models.IntegerField(verbose_name='Price')
+    date = models.DateTimeField(auto_now_add=True,verbose_name='Date')
 
 
 
-class Lusers(models.Model):
-    main = models.ForeignKey(MainUser, on_delete=models.CASCADE, verbose_name='Main')
-    user = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='User')
 
 
 
@@ -185,6 +151,7 @@ class DerakhtiProductsOrders(models.Model):
     shopper = models.ForeignKey(Users, on_delete=models.CASCADE,blank=True,null=True,verbose_name='shopper')
     title = models.CharField(blank=True,null=True,max_length=999, verbose_name='Title')
     description = models.TextField(blank=True,null=True,verbose_name='Description')
+    price_drsd = models.IntegerField(blank=True, null=True, verbose_name='price_drsd')
     price = models.IntegerField(blank=True, null=True, verbose_name='Price')
     product = models.ForeignKey(DerakhtiProducts,on_delete=models.CASCADE,blank=False, null=False, verbose_name='Product ')
     payment_date = models.DateTimeField(auto_now_add=True, verbose_name='Payment Date')
@@ -195,3 +162,13 @@ class DerakhtiProductsOrders(models.Model):
             return self.product.image.url
         else:
             return None
+
+
+class CanelProduct(models.Model):
+    product = models.ForeignKey(DerakhtiProducts,on_delete=models.CASCADE,verbose_name='Product')
+    price = models.IntegerField(default=0,verbose_name='Price')
+    user = models.ForeignKey(Users,on_delete=models.CASCADE,verbose_name='User')
+    mobile1 = models.CharField(blank=True,null=True,max_length=999,verbose_name='mobile1')
+    mobile2 = models.CharField(blank=True,null=True,max_length=999,verbose_name='mobile2')
+
+

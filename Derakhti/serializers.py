@@ -82,9 +82,18 @@ class UsersSerializers(serializers.ModelSerializer):
 class MainUserSerializers(serializers.ModelSerializer):
     user = serializers.CharField(required=False)
     r_or_l = serializers.BooleanField(required=False)
-    RL_aLL = serializers.ReadOnlyField()
+    places = serializers.IntegerField(required=True)
     class Meta:
         model = MainUser
+        fields = '__all__'
+
+
+
+
+
+class DepositRequestSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = DepositRequest
         fields = '__all__'
 
 

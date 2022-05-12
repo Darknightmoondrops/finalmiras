@@ -46,6 +46,10 @@ class Users(AbstractUser):
     postalـcode = models.CharField(max_length=999,verbose_name='Postal code')
     status = models.BooleanField(default=False,verbose_name='Status')
     Book_or_buy_goods = models.BooleanField(default=False,verbose_name='Book or buy goods')
+    identifierـcode = models.CharField(max_length=999,blank=True,null=True,verbose_name='Identifier code')
+    walletـbalance = models.IntegerField(default=0,blank=True,null=True,verbose_name='Wallet balance')
+    commission = models.IntegerField(default=0,blank=True,null=True,verbose_name='Commission')
+    benـkala = models.IntegerField(default=0,blank=True,null=True,verbose_name='Ben Kala')
     REQUIRED_FIELDS = ['first_name', 'last_name','national_code','role']
 
     def __str__(self):

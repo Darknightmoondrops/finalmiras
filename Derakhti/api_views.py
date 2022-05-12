@@ -8,6 +8,8 @@ from random import choices
 from string import ascii_lowercase,ascii_letters
 from django.shortcuts import get_object_or_404
 from extensions.derakhti.amount_purchased import amount_purchased
+import datetime
+
 
 class contracts_add(generics.CreateAPIView):
     serializer_class = ContractsSerializers
@@ -75,11 +77,13 @@ class place_user_buy(generics.CreateAPIView):
             user_token = str(self.request.headers['Authorization']).split('Token')[1].strip()
             token_info = Token.objects.filter(key=user_token).first()
             sub_categories_number = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id,payment_status=True).count()
-            if sub_categories_number != 12:
-                user = Users.objects.filter(id=token_info.user.id).first()
-                owner_check = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id).first()
-                mainU = MainUser.objects.filter(user_id=token_info.user.id).first()
 
+            user = Users.objects.filter(id=token_info.user.id).first()
+            owner_check = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id).first()
+            mainU = MainUser.objects.filter(user_id=token_info.user.id,payment_status=True).first()
+            mainU_check = MainUser.objects.filter(user_id=token_info.user.id,payment_status=False).first()
+
+            if mainU_check is None:
                 if mainU is not None:
                     return Response({'message': 'کاربر قبلا  جایگاه انتخاب کرده است'})
 
@@ -87,80 +91,478 @@ class place_user_buy(generics.CreateAPIView):
                     return Response({'Owner': 'وجود ندارد'})
                 else: pass
 
-                mainU = MainUser.objects.filter(Owner=data.validated_data['Owner'].id).first()
+                mainR = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id,payment_status=True,r_or_l=True).first()
+                mainL = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id,payment_status=True,r_or_l=False).first()
+
+                if mainR is not None and data.validated_data['r_or_l'] == True:
+                    return Response({'message': 'راست کاربر پر است'})
+                elif mainL is not None and data.validated_data['r_or_l'] == False:
+                    return Response({'message': 'چپ کاربر پر است'})
+                else: pass
+
+                mainU = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id).first()
                 if data.validated_data['places'] == 1 and amount_purchased(token_info.user.id) >= 10005000:
                     data.save()
+                    data.instance.user_id = token_info.user.id
+                    data.instance.place = 1
+                    data.instance.r_or_l = data.validated_data['r_or_l']
+                    data.save()
+
+                    mainU = MainUser.objects.filter(user_id=token_info.user.id).first()
+                    mainU.payment_status = True
+                    mainU.save()
+                    #
+                    # main_check = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id,payment_status=True).count()
+                    # if main_check == 1:
+                    #     user = Users.objects.filter(id=data.validated_data['Owner'].id).first()
+                    #     user.commission += 120000
+                    #     user.save()
 
 
 
                 elif  data.validated_data['r_or_l']  == True or  data.validated_data['r_or_l']  == False and data.validated_data['places'] in [2,3]:
                     if amount_purchased(token_info.user.id) >= 20010000 and data.validated_data['places'] == 2:
                         data.save()
+                        data.instance.user_id = token_info.user.id
                         data.instance.place = 2
-                        if data.validated_data['r_or_l']:
-                            Lusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
-                        else:
-                            Lusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
                         data.instance.r_or_l = data.validated_data['r_or_l']
                         data.save()
+
+                        mainU = MainUser.objects.filter(user_id=token_info.user.id).first()
+                        mainU.payment_status = True
+                        mainU.save()
+
+                        main_check = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id,payment_status=True).count()
+                        if main_check == 1:
+                            user = Users.objects.filter(id=data.validated_data['Owner'].id).first()
+                            user.commission += 120000
+                            user.save()
 
 
 
                     elif amount_purchased(token_info.user.id) >= 30015000 and data.validated_data['places'] == 3:
                         data.save()
+                        data.instance.user_id = token_info.user.id
                         data.instance.place = 3
-                        Lusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
-                        Rusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
                         data.instance.r_or_l = data.validated_data['r_or_l']
                         data.save()
+
+                        mainU = MainUser.objects.filter(user_id=token_info.user.id).first()
+                        mainU.payment_status = True
+                        mainU.save()
+
+                        main_check = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id,payment_status=True).count()
+                        user = Users.objects.filter(id=data.validated_data['Owner'].id).first()
+                        if main_check == 1:
+                            user.commission += 120000
+                            user.save()
+
+                        def Anjam(id):
+                            count = 2
+                            check = Users.objects.filter(id=id).first()
+                            main_user = MainUser.objects.filter(user_id=id).first()
+                            user = Users.objects.filter(id=main_user.Owner.id).first()
+                            if user.status == True:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                if count == 6:
+                                    user.commission += 252000
+                                    user.benـkala += 252000
+                                    user.save()
+                                else:
+                                    user.commission += 504000
+                                    user.save()
+                            else: pass
+                            main = MainUser.objects.filter(user_id=user.id).first()
+                            if main is not None:
+                                if count == 6:
+                                    count -= 5
+                                count+=1
+                                Anjam(main.Owner.id)
+
+                        mainR = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id,payment_status=True,r_or_l=True).first()
+                        mainL = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id,payment_status=True,r_or_l=False).first()
+
+
+                        if mainR.places == 3 and mainL.places == 3:
+                            main_user = MainUser.objects.filter(user_id=mainR.Owner.id).first()
+                            check = Users.objects.filter(id=mainR.Owner.id).first()
+                            user = Users.objects.filter(id=main_user.user.id).first()
+
+                            if user.status == True :
+                                user = Users.objects.filter(id=main_user.user.id).first()
+                                user.commission += 504000
+                                user.save()
+                            else: pass
+
+                            main = MainUser.objects.filter(user_id=user.id).first()
+                            if main is not None:
+                                Anjam(main.user.id)
 
                     else:
                         return Response({'message': 'موجودی شما کافی نیست '})
 
                 elif amount_purchased(token_info.user.id) >= 70035000 and data.validated_data['places'] == 7:
                     data.save()
+                    data.instance.user_id = token_info.user.id
                     data.instance.places = 7
-                    L1 = Lusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
-                    R1 = Rusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
+                    data.instance.r_or_l = data.validated_data['r_or_l']
+                    data.save()
+                    mainU = MainUser.objects.filter(user_id=token_info.user.id).first()
+                    mainU.payment_status = True
+                    mainU.save()
+
+                    main_check = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id,payment_status=True).count()
+                    if main_check == 1:
+                        user = Users.objects.filter(id=data.validated_data['Owner'].id).first()
+                        user.commission +=  120000
+                        user.save()
+
+                    def Anjam(id):
+                        count = 2
+                        check = Users.objects.filter(id=id).first()
+                        main_user = MainUser.objects.filter(user_id=id).first()
+                        user = Users.objects.filter(id=main_user.Owner.id).first()
+                        if user.status == True:
+                            if count == 1:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += 504000
+                                user.save()
+                            elif count == 2:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += 504000 * 2
+                                user.save()
+                            elif count == 3:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += (504000 * 4) - 252000
+                                user.benـkala += 252000
+                                user.save()
+                            elif count == 4:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += (504000 * 8) - 252000
+                                user.benـkala += 252000
+                                user.save()
+                            elif count == 5:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += (504000 * 16) - 756000
+                                user.benـkala += 756000
+                                user.save()
+                            elif count == 6:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += (504000 * 32)-1260000
+                                user.benـkala += 1260000
+                                user.save()
 
 
-                    L2 = Lusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
-                    R2 = Rusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
+                        else:
+                            pass
 
-                    L3 = Lusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
-                    R3 = Rusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
+                        main = MainUser.objects.filter(user_id=user.id).first()
+                        if main is not None:
+                            if count == 7:
+                                count -= 6
+                            else: pass
+                            count += 1
+                            Anjam(main.Owner.id)
 
-                    L4= Lusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
 
-                    Lusers.objects.create(main_id=mainU.id, user_id=token_info.user.id)
+                    mainR = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id, payment_status=True,r_or_l=True).first()
+                    mainL = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id, payment_status=True,r_or_l=False).first()
 
+                    if mainR.places == 7 and mainL.places == 7:
+                        main_user = MainUser.objects.filter(user_id=mainR.Owner.id).first()
+                        check = Users.objects.filter(id=mainR.Owner.id).first()
+                        user = Users.objects.filter(id=main_user.user.id).first()
+
+                        if user.status == True:
+                            user = Users.objects.filter(id=main_user.user.id).first()
+                            user.commission += 504000
+                            user.save()
+                        else:
+                            pass
+
+                        main = MainUser.objects.filter(user_id=user.id).first()
+                        if main is not None:
+                            Anjam(main.user.id)
+
+
+                else:
+                    return Response({'message': 'موجودی شما کافی نیست '})
+            else:
+
+                # Rezerv
+
+                if mainU is not None:
+                    return Response({'message': 'کاربر قبلا  جایگاه انتخاب کرده است'})
+
+                if owner_check is None:
+                    return Response({'Owner': 'وجود ندارد'})
+                else:
+                    pass
+
+                mainR = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id, payment_status=True,r_or_l=True).first()
+                mainL = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id, payment_status=True,r_or_l=False).first()
+
+                if mainR is not None and data.validated_data['r_or_l'] == True:
+                    return Response({'message': 'راست کاربر پر است'})
+                elif mainL is not None and data.validated_data['r_or_l'] == False:
+                    return Response({'message': 'چپ کاربر پر است'})
+                else:
+                    pass
+
+                mainU = MainUser.objects.filter(Owner_id=mainU_check.Owner.id).first()
+                if data.validated_data['places'] == 1 and amount_purchased(token_info.user.id) >= 10005000:
+                    mainU_check.payment_status = True
+                    mainU_check.save()
+
+                    #
+                    # main_check = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id,payment_status=True).count()
+                    # if main_check == 1:
+                    #     user = Users.objects.filter(id=data.validated_data['Owner'].id).first()
+                    #     user.commission += 120000
+                    #     user.save()
+
+
+
+                elif data.validated_data['r_or_l'] == True or data.validated_data['r_or_l'] == False and data.validated_data['places'] == 2:
+                    if amount_purchased(token_info.user.id) >= 20010000 and data.validated_data['places'] == 2:
+                        mainU_check.payment_status = True
+                        mainU_check.save()
+
+
+
+                        main_check = MainUser.objects.filter(Owner_id=mainU_check.Owner.id,payment_status=True).count()
+                        if main_check == 1:
+                            user = Users.objects.filter(id=mainU_check.Owner.id).first()
+                            user.commission += 120000
+                            user.save()
+
+
+
+                    elif amount_purchased(token_info.user.id) >= 30015000 and data.validated_data['places'] == 3:
+                        mainU_check.payment_status = True
+                        mainU_check.save()
+
+
+
+                        main_check = MainUser.objects.filter(Owner_id=mainU_check.Owner.id,payment_status=True).count()
+                        user = Users.objects.filter(id=mainU_check.Owner.id).first()
+
+                        if main_check == 1:
+                            user.commission += 120000
+                            user.save()
+
+                        def Anjam(id):
+                            count = 2
+                            check = Users.objects.filter(id=id).first()
+                            main_user = MainUser.objects.filter(user_id=id).first()
+                            user = Users.objects.filter(id=main_user.Owner.id).first()
+                            if user.status == True:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                if count == 6:
+                                    user.commission += 252000
+                                    user.benـkala += 252000
+                                    user.save()
+                                else:
+                                    user.commission += 504000
+                                    user.save()
+                            else:
+                                pass
+                            main = MainUser.objects.filter(user_id=user.id).first()
+                            if main is not None:
+                                if count == 6:
+                                    count -= 5
+                                count += 1
+                                Anjam(main.Owner.id)
+
+                        mainR = MainUser.objects.filter(Owner_id=mainU_check.Owner.id, payment_status=True,r_or_l=True).first()
+                        mainL = MainUser.objects.filter(Owner_id=mainU_check.Owner.id, payment_status=True,r_or_l=False).first()
+
+                        if mainR.places == 3 and mainL.places == 3:
+                            main_user = MainUser.objects.filter(user_id=mainR.Owner.id).first()
+                            check = Users.objects.filter(id=mainR.Owner.id).first()
+                            user = Users.objects.filter(id=main_user.user.id).first()
+
+                            if user.status == True:
+                                user = Users.objects.filter(id=main_user.user.id).first()
+                                user.commission += 504000
+                                user.save()
+                            else:
+                                pass
+
+                            main = MainUser.objects.filter(user_id=user.id).first()
+                            if main is not None:
+                                Anjam(main.user.id)
+
+                    else:
+                        return Response({'message': 'موجودی شما کافی نیست '})
+
+                elif amount_purchased(token_info.user.id) >= 70035000 and data.validated_data['places'] == 7:
+                    mainU_check.payment_status = True
+                    mainU_check.save()
+
+
+                    main_check = MainUser.objects.filter(Owner_id=mainU_check.Owner.id,payment_status=True).count()
+                    if main_check == 1:
+                        user = Users.objects.filter(id=mainU_check.Owner.id).first()
+                        user.commission += 120000
+                        user.save()
+
+                    def Anjam(id):
+                        count = 2
+                        check = Users.objects.filter(id=id).first()
+                        main_user = MainUser.objects.filter(user_id=id).first()
+                        user = Users.objects.filter(id=main_user.Owner.id).first()
+                        if user.status == True:
+                            if count == 1:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += 504000
+                                user.save()
+                            elif count == 2:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += 504000 * 2
+                                user.save()
+                            elif count == 3:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += (504000 * 4) - 252000
+                                user.benـkala += 252000
+                                user.save()
+                            elif count == 4:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += (504000 * 8) - 252000
+                                user.benـkala += 252000
+                                user.save()
+                            elif count == 5:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += (504000 * 16) - 756000
+                                user.benـkala += 756000
+                                user.save()
+                            elif count == 6:
+                                user = Users.objects.filter(id=main_user.Owner.id).first()
+                                user.commission += (504000 * 32) - 1260000
+                                user.benـkala += 1260000
+                                user.save()
+
+
+                        else:
+                            pass
+
+                        main = MainUser.objects.filter(user_id=user.id).first()
+                        if main is not None:
+                            if count == 7:
+                                count -= 6
+                            else:
+                                pass
+                            count += 1
+                            Anjam(main.Owner.id)
+
+                    mainR = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id, payment_status=True,r_or_l=True).first()
+                    mainL = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id, payment_status=True,r_or_l=False).first()
+
+                    if mainR.places == 7 and mainL.places == 7:
+                        main_user = MainUser.objects.filter(user_id=mainR.Owner.id).first()
+                        check = Users.objects.filter(id=mainR.Owner.id).first()
+                        user = Users.objects.filter(id=main_user.user.id).first()
+
+                        if user.status == True:
+                            user = Users.objects.filter(id=main_user.user.id).first()
+                            user.commission += 504000
+                            user.save()
+                        else:
+                            pass
+
+                        main = MainUser.objects.filter(user_id=user.id).first()
+                        if main is not None:
+                            Anjam(main.user.id)
+
+
+                else:
+                    return Response({'message': 'موجودی شما کافی نیست '})
+
+
+            return Response({'message': 'جایگاه خریداری شد'})
+        else:
+            return Response({'message': 'Owner جایگاه خالی ندارد'})
+
+
+
+
+class place_user_reservation(generics.CreateAPIView):
+    serializer_class = MainUserSerializers
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        data = MainUserSerializers(data=request.data)
+        if data.is_valid():
+            user_token = str(self.request.headers['Authorization']).split('Token')[1].strip()
+            token_info = Token.objects.filter(key=user_token).first()
+
+            user = Users.objects.filter(id=token_info.user.id).first()
+            owner_check = MainUser.objects.filter(Owner_id=data.validated_data['Owner'].id).first()
+            mainU = MainUser.objects.filter(user_id=token_info.user.id,payment_status=False).first()
+
+            if mainU is not None:
+                return Response({'message': 'کاربر قبلا  جایگاه انتخاب کرده است'})
+
+            if owner_check is None:
+                return Response({'Owner': 'وجود ندارد'})
+            else: pass
+
+            mainU = MainUser.objects.filter(Owner=data.validated_data['Owner'].id).first()
+            if data.validated_data['places'] == 1:
+                data.save()
+                data.instance.place = 1
+                data.instance.r_or_l = data.validated_data['r_or_l']
+                data.save()
+
+
+
+            elif  data.validated_data['r_or_l']  == True or  data.validated_data['r_or_l']  == False and data.validated_data['places'] in [2,3]:
+                if data.validated_data['places'] == 2:
+                    data.save()
+                    data.instance.place = 2
+                    data.instance.r_or_l = data.validated_data['r_or_l']
+                    data.save()
+
+
+
+                elif data.validated_data['places'] == 3:
+                    data.save()
+                    data.instance.place = 3
                     data.instance.r_or_l = data.validated_data['r_or_l']
                     data.save()
 
                 else:
                     return Response({'message': 'موجودی شما کافی نیست '})
 
-
-
-                identifierـcode = "$" + "".join([choices(list(ascii_letters))[0] for _ in range(10)])
-                mainU_check = MainUser.objects.filter(identifierـcode=identifierـcode).first()
-                if mainU_check is not None:
-                    identifierـcode = "$" + "".join([choices(list(ascii_letters))[0] for _ in range(10)])
-                else: pass
-                data.instance.user_id = token_info.user.id
-                data.instance.identifierـcode = identifierـcode
+            elif data.validated_data['places'] == 7:
                 data.save()
-                mainU = MainUser.objects.filter(user_id=token_info.user.id).first()
-                mainU.payment_status = True
-                mainU.save()
+                data.instance.places = 7
+                data.instance.r_or_l = data.validated_data['r_or_l']
+                data.save()
 
-                return Response({'message': 'جایگاه خریداری شد'})
             else:
-                return Response({'message': 'Owner جایگاه خالی ندارد'})
+                return Response({'message': 'موجودی شما کافی نیست '})
 
 
+
+            # identifierـcode = "$" + "".join([choices(list(ascii_letters))[0] for _ in range(10)])
+            # mainU_check = MainUser.objects.filter(identifierـcode=identifierـcode).first()
+            # if mainU_check is not None:
+            #     identifierـcode = "$" + "".join([choices(list(ascii_letters))[0] for _ in range(10)])
+            # else: pass
+            # data.instance.user_id = token_info.user.id
+            # data.instance.identifierـcode = identifierـcode
+            # data.save()
+            mainU = MainUser.objects.filter(user_id=token_info.user.id).first()
+            mainU.payment_status = False
+            mainU.save()
+
+            return Response({'message': 'جایگاه خریداری شد'})
         else:
-            return Response(data.errors)
+            return Response({'message': 'Owner جایگاه خالی ندارد'})
+
+
+
 
 
 
@@ -173,9 +575,9 @@ class check_identifierـcode(generics.ListAPIView):
 
     def get_queryset(self):
         identifierـcode = self.request.query_params.get('code',False)
-        mainU = MainUser.objects.filter(identifierـcode=identifierـcode).first()
-        if mainU is not None:
-            return Response({'message': mainU.id})
+        user = Users.objects.filter(identifierـcode=identifierـcode).first()
+        if user is not None:
+            return Response({'message': user.id})
         else:
             return Response({'message': 'کاربر وجود ندارد'})
 
@@ -246,9 +648,9 @@ class place_active_right_number(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
-        user_token = str(self.request.headers['Authorization']).split('Token')[1].strip()
-        token_info = Token.objects.filter(key=user_token).first()
-        r_user = Rusers.objects.filter(main_id=token_info.user.id,main__payment_status=True,main__r_or_l=True).count()
+        id = self.request.query_params.get('id',False)
+        user = Users.objects.filter(id=id).frist()
+        r_user = MainUser.objects.filter(Owner_id=user.id,payment_status=True,main__r_or_l=True).count()
         return Response({'number': r_user})
 
 
@@ -257,9 +659,9 @@ class place_active_left_number(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
-        user_token = str(self.request.headers['Authorization']).split('Token')[1].strip()
-        token_info = Token.objects.filter(key=user_token).first()
-        l_user = Lusers.objects.filter(main_id=token_info.user.id,main__payment_status=True,main__r_or_l=False).count()
+        id = self.request.query_params.get('id',False)
+        user = Users.objects.filter(id=id).frist()
+        l_user = MainUser.objects.filter(Owner=user.id,payment_status=True,main__r_or_l=False).count()
         return Response({'number': l_user})
 
 
@@ -268,9 +670,9 @@ class place_reservation_right_number(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
-        user_token = str(self.request.headers['Authorization']).split('Token')[1].strip()
-        token_info = Token.objects.filter(key=user_token).first()
-        r_user = Rusers.objects.filter(main_id=token_info.user.id,main__payment_status=False,main__r_or_l=False).count()
+        id = self.request.query_params.get('id',False)
+        user = Users.objects.filter(id=id).frist()
+        r_user = MainUser.objects.filter(Owner_id=user.id,payment_status=False,main__r_or_l=True).count()
         return Response({'number': r_user})
 
 
@@ -279,9 +681,9 @@ class place_reservation_left_number(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
-        user_token = str(self.request.headers['Authorization']).split('Token')[1].strip()
-        token_info = Token.objects.filter(key=user_token).first()
-        l_user = Lusers.objects.filter(main_id=token_info.user.id,main__payment_status=False,main__r_or_l=False).count()
+        id = self.request.query_params.get('id',False)
+        user = Users.objects.filter(id=id).frist()
+        l_user = MainUser.objects.filter(Owner_id=user.id,payment_status=False,main__r_or_l=False).count()
         return Response({'number': l_user})
 
 
@@ -304,29 +706,23 @@ class places_list(generics.ListAPIView):
         token_info = Token.objects.filter(key=user_token).first()
         places = MainUser.objects.filter(Owner_id=token_info.user.id, payment_status=True).all()
         main = MainUser.objects.filter(user_id=token_info.user.id, payment_status=True).first()
-        result = []
-        result.append({'main': {'Owner': main.Owner.username,'user': main.user.username,'places': main.places,'r_or_l': main.r_or_l }})
-        count = 0
-        for p in places:
-            result.append({'Owner': p.Owner.username,'user': p.user.username,'places': p.places,'r_or_l': p.r_or_l})
-            count += 1
-
-        if count != 15:
-            while count < 15:
-                result.append({'Owner': None,'user': None,'places': None,'r_or_l': None })
+        if main:
+            result = []
+            result.append({'main': {'Owner': main.Owner.username,'user': main.user.username,'places': main.places,'r_or_l': main.r_or_l,'payment_status': main.payment_status }})
+            count = 0
+            for p in places:
+                result.append({'Owner': p.Owner.username,'user': p.user.username,'places': p.places,'r_or_l': p.r_or_l,'payment_status': p.payment_status})
                 count += 1
 
-        return Response(result)
+            if count != 15:
+                while count < 15:
+                    result.append({'Owner': None,'user': None,'places': None,'r_or_l': None,'payment_status': None})
+                    count += 1
 
-        #user = MainUser.objects.filter(Owner_id=token_info.user.id, payment_status=True).first()
-        # R = Rusers.objects.filter(user_id=token_info.user.id,main__payment_status=True).all()
-        # L = Lusers.objects.filter(user_id=token_info.user.id,main__payment_status=True).all()
-        #
-        # if user is not None:
-        #     return Response({'info': {'main': {'owner': Owner.Owner.username,'user': user.Owner.username},'R': [{'Owner': r.main.Owner.username,'user': r.user.username} for r in R]} ,'L': [{'Owner': l.main.Owner.username,'user': l.user.username} for l in L], })
-        #
-        # else:
-        #     return Response({'info': {'main': {'owner': Owner.Owner.username, 'user': Owner.user.username},'R': [{'Owner': r.main.Owner.username, 'user': r.user.username} for r in R]},'L': [{'Owner': l.main.Owner.username, 'user': l.user.username} for l in L], })
+            return Response(result)
+        else:
+            return Response({'result': None})
+
 
 
 class places_list_filter(generics.ListAPIView):
@@ -334,14 +730,22 @@ class places_list_filter(generics.ListAPIView):
 
     def get(self, request, *args, **kwargs):
         username = self.request.query_params.get('username',False)
-        result = []
-        m = MainUser.objects.filter(payment_status=True,user__username=username).first()
-        R = Rusers.objects.filter(user_id=m.user.id).all()
-        L = Lusers.objects.filter(user_id=m.user.id).all()
-        active_right = Rusers.objects.filter(main__Owner_id=m.user.id, main__payment_status=True).count()
-        active_left = Lusers.objects.filter(main__Owner_id=m.user.id, main__payment_status=True).count()
-        result.append( [{'R': {f'info': [{f'{r.id}': 'id','admin': r.main.admin.username,'owner': r.main.Owner.username,f'user': m.user.username,'active_right': active_right} for r in R]}},{'L' : {f'info': [{f'{l.id}': 'id','admin': l.main.admin.username,'owner': l.main.Owner.username,f'user': m.user.username,'active_right': active_right} for l in L]}}] )
-        return Response(result)
+        user_token = str(self.request.headers['Authorization']).split('Token')[1].strip()
+        token_info = Token.objects.filter(key=user_token).first()
+        places = MainUser.objects.filter(Owner__username=username, payment_status=True).all()
+        main = MainUser.objects.filter(user__username=username, payment_status=True).first()
+        if main:
+            result = []
+            result.append({'main': {'Owner': main.Owner.username,'user': main.user.username,'places': main.places,'r_or_l': main.r_or_l,'payment_status': main.payment_status}})
+            count = 0
+            for p in places:
+                result.append({'Owner': p.Owner.username,'user': p.user.username,'places': p.places,'r_or_l': p.r_or_l,'payment_status': p.payment_status})
+                count += 1
+
+            return Response(result)
+        else:
+            return Response({'result': None})
+
 
 
 
@@ -356,13 +760,97 @@ class user_info(generics.ListAPIView):
         token_info = Token.objects.filter(key=user_token).first()
         user = Users.objects.filter(id=token_info.user.id).first()
         card = Cards.objects.filter(user_id=token_info.user.id).first()
+        walletـbalance  = [ p.price_drsd for p in DerakhtiProductsOrders.objects.filter(payment_status=True,shopper_id=token_info.user.id).all()]
         if card is not None:
-            return Response({'info': {'first_name': card.first_name,'last_name': card.last_name,'accountـnumber': card.accountـnumber,'shaba_number': card.shaba_number,'user_status': user.status,'mobile1': user.mobile1}})
+            return Response({'info': {'first_name': card.first_name,'last_name': card.last_name,'accountـnumber': card.accountـnumber,'shaba_number': card.shaba_number,'user_status': user.status,'mobile1': user.mobile1,'vocher': user.benـkala,'porsant': user.commission,'status': user.status}})
         else:
             return Response({'info': 'empty'})
 
 
 
+
+class deposit_request(generics.ListAPIView):
+    serializer_class = DepositRequestSerializers
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        price = self.request.query_params.get('price',False)
+        if price or price < 1:
+            user_token = str(self.request.headers['Authorization']).split('Token')[1].strip()
+            token_info = Token.objects.filter(key=user_token).first()
+            user = Users.objects.filter(id=token_info.user.id).first()
+
+            depositrequest = DepositRequest.objects.filter(user_id=user.id,status=True).first()
+            if depositrequest is not None:
+
+                date_now = str(depositrequest.date).split(' ')[0].replace('-', ',')
+                date_spilt = date_now.split(',')
+                date = datetime.date(int(date_spilt[0]), int(date_spilt[1]), int(date_spilt[2]))
+                x = datetime.timedelta(7)
+                haft = str(date - x).split('-')
+                haft2 = datetime.date(int(haft[0]), int(haft[1]), int(haft[2]))
+
+                if haft2 < date:
+                    user.commission -= int(price)
+                    user.save()
+                    dp = DepositRequest.objects.create(user_id=user.id, price=price)
+                    return Response({'message': 'درخواست واریز ثبت شد'})
+
+            else:
+                depositrequest = DepositRequest.objects.filter(user_id=user.id, status=False).first()
+                if depositrequest is None:
+                    user.commission -= int(price)
+                    user.save()
+                    dp = DepositRequest.objects.create(user_id=user.id, price=price)
+                    return Response({'message': 'درخواست واریز ثبت شد'})
+                else:
+                    return Response({'message': 'قبلا درخواست دادید'})
+
+        else:
+            return Response({'price': 'وارد نشده'})
+
+
+class product_canel(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        id = self.request.query_params.get('id',False)
+        user_token = str(self.request.headers['Authorization']).split('Token')[1].strip()
+        token_info = Token.objects.filter(key=user_token).first()
+        product = DerakhtiProductsOrders.objects.filter(shopper_id=token_info.user.id,product_id=id,payment_status=True).first()
+        if product is not None:
+            date_now = str(product.payment_date).split(' ')[0].replace('-', ',')
+            date_spilt = date_now.split(',')
+            date = datetime.date(int(date_spilt[0]), int(date_spilt[1]), int(date_spilt[2]))
+            x = datetime.timedelta(7)
+            haft = str(date - x).split('-')
+            haft2 = datetime.date(int(haft[0]),int(haft[1]),int(haft[2]))
+
+
+            date_now = str(product.payment_date).split(' ')[0].replace('-', ',')
+            date_spilt = date_now.split(',')
+            date = datetime.date(int(date_spilt[0]), int(date_spilt[1]), int(date_spilt[2]))
+            x = datetime.timedelta(180)
+            mah = str(date - x).split('-')
+            mah2 = datetime.date(int(haft[0]),int(haft[1]),int(haft[2]))
+
+            user = Users.objects.filter(id=token_info.user.id).first()
+
+
+
+            if haft2 < date:
+                cancel = CanelProduct.objects.create(user_id=product.shopper.id,product_id=product.id,price=product.price_drsd,mobile1=product.shopper.mobile1,mobile2=product.shopper.mobile2)
+                product.delete()
+                return Response({'message': 'درخواست کنسلی ثبت شد'})
+
+            elif mah2 < date:
+                cancel = CanelProduct.objects.create(user_id=product.shopper.id,product_id=product.id,price=product.price_drsd,mobile1=product.shopper.mobile1,mobile2=product.shopper.mobile2)
+                product.delete()
+                return Response({'message': 'درخواست کنسلی ثبت شد'})
+            else:
+                return Response({'message': 'نمیتونید کنسل کنید باید ۶ ماه بگذره'})
+        else:
+            return Response({'message': 'موجود نیست'})
 
 
 
