@@ -1,0 +1,2034 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:700");
+.top-navbar {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    direction: ltr;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+p {
+    color: #707070;
+}
+
+.admin-prof {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    direction: ltr;
+}
+
+.admin-prof img {
+    width: 80px;
+    height: 80px;
+    display: block;
+    border-radius: 50%;
+    margin: auto;
+    margin-right: 10px;
+}
+
+.search-profile {
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    direction: ltr;
+    float: left;
+}
+
+.admin-prof-name {
+    display: flex;
+    justify-content: center;
+    direction: rtl;
+    margin: auto;
+    margin-left: 0;
+}
+
+.admin-prof-name p {
+    margin-right: 5px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    height: 100px;
+}
+
+.container .search {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background: #F26A4F;
+    border-radius: 50%;
+    transition: all 1s;
+    z-index: 4;
+}
+
+.container .search:hover {
+    cursor: pointer;
+}
+
+.container .search::before {
+    content: "";
+    position: absolute;
+    margin: auto;
+    top: 22px;
+    right: 0;
+    bottom: 0;
+    left: 22px;
+    width: 12px;
+    height: 2px;
+    background: white;
+    transform: rotate(45deg);
+    transition: all 0.5s;
+}
+
+.container .search::after {
+    content: "";
+    position: absolute;
+    margin: auto;
+    top: -5px;
+    right: 0;
+    bottom: 0;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid white;
+    transition: all 0.5s;
+}
+
+.container input {
+    font-family: "Inconsolata", monospace;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: none;
+    background: #F26A4F;
+    color: white;
+    text-shadow: 0 0 10px #F26A4F;
+    padding: 0 80px 0 20px;
+    border-radius: 30px;
+    transition: all 1s;
+    opacity: 0;
+    z-index: 5;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+}
+
+.container input:hover {
+    cursor: pointer;
+}
+
+.container input:focus {
+    width: 300px;
+    opacity: 1;
+    cursor: text;
+}
+
+.container input:focus~.search {
+    right: -250px;
+    background: #151515;
+    z-index: 6;
+}
+
+.container input:focus~.search::before {
+    top: 0;
+    left: 0;
+    width: 25px;
+}
+
+.container input:focus~.search::after {
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 2px;
+    border: none;
+    background: white;
+    border-radius: 0%;
+    transform: rotate(-45deg);
+}
+
+.container input::placeholder {
+    color: white;
+    opacity: 0.5;
+    font-weight: bolder;
+}
+
+.all-panels {
+    width: 100%;
+    display: flex;
+}
+
+.list-filters {
+    width: 35%;
+}
+
+.search-list {
+    width: 35%;
+}
+
+.filter-part4-btn-input {
+    height: 58px !important;
+    top: 25% !important;
+    left: 40px !important;
+}
+
+.panel {
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 10;
+    background-color: white;
+    margin-top: 4px;
+}
+
+.filter-part2 {
+    width: 100% !important;
+}
+
+.panels-icon {
+    background-image: url(../icons/icon-41.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: auto;
+    margin-left: 45px;
+}
+
+.edit-prof-icon {
+    background-image: url(../../../Derakhti/asset/icons//icons8-edit-48.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 32px 15px;
+}
+
+.product-list-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-list-view-40.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 32px 15px;
+}
+
+.sale-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-sell-50.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 32px 15px;
+}
+
+.sale-icon {
+    background-image: url(../../../Derakhti/asset/icons//icons8-sell-50.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 32px 15px;
+}
+
+.product-add-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-add-property-50.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 32px 15px;
+}
+
+.services-conducted-icon {
+    background-image: url(../icons/icon-53.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 32px 15px;
+}
+
+.accounting-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-accounting-66.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 32px 15px;
+}
+
+.ticketing-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-two-tickets-50.png);
+    width: 61px;
+    background-repeat: round;
+    height: 54px;
+    display: block;
+    margin: 25px 8px;
+}
+
+.users-icon {
+    background-image: url(../icons/icon-48.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 32px 15px;
+}
+
+.customer-satisfaction-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-customer-review-64.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 32px 15px;
+}
+
+.users-chat-icon {
+    background-image: url(../icons/icon-47.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 32px 15px;
+}
+
+.panels {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #F9F9F9;
+    font-size: 30px;
+}
+
+.panels p {
+    width: 50%;
+    height: 60px;
+    display: block;
+    margin: auto;
+    color: #fff;
+}
+
+.panels-details {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100px;
+    cursor: pointer;
+}
+
+.panels-details:hover {
+    background-color: rgba(131, 131, 131, 0.589);
+}
+
+.panels-details p {
+    font-size: 20px;
+    text-align: right;
+    width: 65%;
+    height: 40px;
+    margin-top: 33px;
+}
+
+.panel-details {
+    width: 70%;
+    margin: 40px auto;
+}
+
+.seller-account {
+    width: 100%;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: auto;
+}
+
+.add-products {
+    width: 100%;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: auto;
+}
+
+.seller-account-title {
+    border-right: 6px solid #F26A4F;
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
+}
+
+.seller-account-title p {
+    display: block;
+    padding: 0;
+    font-size: 27px;
+}
+
+.acc-inputs {
+    width: 100%;
+    display: block;
+}
+
+.acc-inputs input,
+select {
+    width: 80%;
+    font-size: 25px;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+    border: 1px solid #707070;
+    margin-top: 4%;
+    height: 52px;
+    padding-right: 25px;
+}
+
+.acc-btn {
+    display: block;
+    margin: auto;
+    margin-top: 4%;
+}
+
+.acc-btn button {
+    cursor: pointer;
+    width: 270px;
+    height: 60px;
+    display: block;
+    margin: auto;
+    margin-right: 10%;
+    border-radius: 10px;
+    border: 1px;
+    background-color: #F26A4F;
+    font-size: 30px;
+    color: white;
+}
+
+.add-icons {
+    width: 37%;
+    display: flex;
+    justify-content: space-evenly;
+    /* margin: auto; */
+}
+
+.add-icon {
+    width: 140px;
+    height: 140px;
+    display: block;
+    margin: auto;
+    background-image: url(../icons/icon-50.png);
+    border-radius: 15px;
+}
+
+.property {
+    width: 80%;
+    display: block;
+    margin: auto;
+    margin-top: 3%;
+}
+
+.property-select {
+    position: relative;
+    min-width: 80%;
+}
+
+.property-select svg {
+    position: absolute;
+    left: 7%;
+    top: calc(50% - 3px);
+    width: 10px;
+    height: 6px;
+    stroke-width: 2px;
+    stroke: #000000;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.property-select select {
+    -webkit-appearance: none;
+    padding: 7px 40px 7px 12px;
+    width: 100%;
+    border: 1px solid #707070;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 1px 3px -2px #9098a9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease;
+    height: 52px;
+}
+
+.property-select select:required:invalid {
+    color: #5a667f;
+}
+
+.property-select select option {
+    color: #223254;
+}
+
+.property-select select option[value=""][disabled] {
+    display: none;
+}
+
+.property-select select:focus {
+    outline: none;
+    border-color: #F26A4F;
+    box-shadow: 0 0 0 2px #F26A4F;
+}
+
+.property-select select:hover+svg {
+    stroke: #F26A4F;
+}
+
+.add-btn {
+    display: block;
+    margin: auto;
+    margin-top: 4%;
+}
+
+.add-btn button {
+    width: 80%;
+    height: 60px;
+    display: block;
+    margin: auto;
+    margin-right: 10%;
+    border-radius: 10px;
+    border: 1px;
+    background-color: #2ACB34;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+.list-products {
+    width: 100%;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: auto;
+}
+
+.list-products-header {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    margin-top: 3%;
+}
+
+.search-list {
+    position: relative;
+}
+
+.top-table {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+    border-bottom: 5px solid #707070;
+    margin: auto;
+    margin-top: 2%;
+}
+
+.top-table2 {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+    border-bottom: 5px solid #707070;
+    margin: auto;
+    margin-top: 2%;
+}
+
+.mid-table {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: auto;
+    margin-top: 2%;
+}
+
+.mid-table-img {
+    width: 70px;
+    height: 70px;
+    display: block;
+}
+
+.mid-table-img img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.edit-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-edit-488.png);
+    width: 40px;
+    height: 39px;
+    background-repeat: round;
+    display: block;
+    cursor: pointer;
+}
+
+.trash-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-delete-24.png);
+    width: 40px;
+    height: 40px;
+    display: block;
+    background-repeat: no-repeat;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.edit-icons {
+    width: 90px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.accounting-page {
+    width: 100%;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: auto;
+}
+
+.top-table-acc {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    border-bottom: 5px solid #707070;
+    margin: auto;
+    margin-top: 3%;
+}
+
+.mid-table-acc {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+    margin-top: 2%;
+}
+
+.mid-table-acc-bot {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+    margin-top: 2%;
+}
+
+.mid-table-acc-bot p {
+    text-align: center;
+    width: 150px;
+}
+
+.mid-table-acc p {
+    text-align: center;
+    width: 260px;
+}
+
+.complaint-page {
+    width: 100%;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: auto;
+}
+
+.handling {
+    width: 220px;
+    height: 55px;
+    background-color: #2ACB34;
+    border: 1px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 27px;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 18%;
+}
+
+.complaint-div-img {
+    width: 135px;
+    height: 135px;
+    display: block;
+}
+
+.complaint-img {
+    width: 135px;
+    height: 135px;
+    display: block;
+    border-radius: 50%;
+}
+
+.complaint-box {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: auto;
+    margin-top: 5%;
+    border-bottom: 4px solid #707070;
+}
+
+.complaint-vote div {
+    text-align: center;
+    color: #ffd700;
+    font-size: 25px;
+}
+
+.text-user-msg p {
+    color: black;
+}
+
+.download-complaintbox {
+    display: none;
+    width: 220px;
+    height: 55px;
+    background-color: #FEDFD4;
+    border: 1px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 3%;
+}
+
+.name-complaintbox {
+    font-size: 20px;
+}
+
+.top-complaintbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-box {
+    width: 100%;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: auto;
+}
+
+.delete-btn {
+    width: 160px;
+    height: 55px;
+    display: block;
+    text-align: center;
+    color: #fff;
+    background-color: #F26A4F;
+    font-size: 25px;
+    border-radius: 20px;
+    border: 1px;
+    cursor: pointer;
+}
+
+.response-btn {
+    width: 160px;
+    height: 55px;
+    display: block;
+    text-align: center;
+    color: #fff;
+    background-color: #2ACB34;
+    font-size: 25px;
+    border-radius: 20px;
+    border: 1px;
+    cursor: pointer;
+}
+
+.btns {
+    width: 350px;
+    height: 56px;
+    display: flex;
+    justify-content: space-evenly;
+    float: left;
+    margin-top: 2%;
+}
+
+.comments-box {
+    width: 80%;
+    display: block;
+    margin: auto;
+}
+
+.comment-detail-box {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: auto;
+    margin-top: 5%;
+    border-bottom: 4px solid #707070;
+}
+
+.comment-box-img {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    display: block;
+    margin-top: 27px;
+}
+
+.clientele-page {
+    width: 100%;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: auto;
+}
+
+.client-icon {
+    background-image: url(../icons/icon-51.png);
+    width: 30px;
+    height: 45px;
+    display: block;
+    cursor: pointer;
+}
+
+.mid-table-cli {
+    display: flex;
+    justify-content: space-evenly;
+    width: 96%;
+    margin: auto;
+    margin-top: 2%;
+    margin-right: 85px;
+}
+
+.yes-btn {
+    width: 570px;
+    height: 100px;
+    border: 1px;
+    border-radius: 20px;
+    background-color: #2ACB34;
+    display: block;
+    color: #fff;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.no-btn {
+    width: 570px;
+    height: 100px;
+    border: 1px;
+    border-radius: 20px;
+    background-color: #F26A4F;
+    display: block;
+    color: #fff;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.question-btn {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.qu-on {
+    background-color: white;
+    width: 1600px;
+    position: fixed;
+    height: 800px;
+    right: 18%;
+    top: 15%;
+    z-index: 15;
+    border-radius: 30px;
+}
+
+.qu-off {
+    background-color: white;
+    width: 1600px;
+    position: fixed;
+    height: 800px;
+    right: -150%;
+    top: 15%;
+    z-index: 15;
+    border-radius: 30px;
+}
+
+.qu-two-on {
+    background-color: white;
+    width: 1600px;
+    position: fixed;
+    height: 800px;
+    right: 18%;
+    top: 15%;
+    z-index: 15;
+    border-radius: 30px;
+}
+
+.qu-two-off {
+    background-color: white;
+    width: 1600px;
+    position: fixed;
+    height: 800px;
+    right: -150%;
+    top: 15%;
+    z-index: 15;
+    border-radius: 30px;
+}
+
+.question-box p {
+    font-size: 50px;
+    text-align: center;
+    display: block;
+}
+
+.question-box-two p {
+    font-size: 50px;
+    text-align: center;
+    display: block;
+}
+
+.trash-icon-big {
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin: auto;
+    background-image: url(../icons/icon-58.png);
+    margin-top: 3%;
+}
+
+.close-icon-big {
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin: auto;
+    background-image: url(../icons/icon-58.png);
+    margin-top: 3%;
+    background-repeat: no-repeat;
+}
+
+.close-icon {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background-image: url(../icons/icon-29.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 20px;
+    /* margin-right: 45px; */
+    cursor: pointer;
+}
+
+.panel-page {
+    display: none;
+    padding-bottom: 30px;
+}
+
+.border {
+    border-right: 13px solid #F26A4F;
+}
+
+.trash-forosh-icon {
+    background-image: url(../icons/icon-56.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 26px;
+    height: 26px;
+    display: block;
+}
+
+.edit-forosh-icon {
+    background-image: url(../icons/icon-57.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 26px;
+    height: 26px;
+    display: block;
+}
+
+.sherakat-icon {
+    background-image: url(../img/main-logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 150px;
+    height: auto;
+    display: block;
+}
+
+.admin-angle-icon {
+    background-image: url(../icons/icon-51.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: auto;
+    margin-left: 40px;
+}
+
+.admin-top-bar-all-img {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    float: right;
+    background-color: #F9F9F9;
+    direction: rtl;
+}
+
+.filter-part4-btn {
+    top: 20%;
+    left: 40px;
+}
+
+.forosh-card {
+    width: 90%;
+    height: auto;
+    display: block;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    padding-top: 20px;
+    padding-bottom: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: auto;
+    border-radius: 20px;
+    margin-top: 30px;
+}
+
+.all-service-card {
+    width: 90%;
+    height: auto;
+    display: block;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    padding-top: 20px;
+    padding-bottom: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: auto;
+    border-radius: 20px;
+    margin-top: 30px;
+}
+
+.fc-img {
+    width: 70px;
+    height: 70px;
+    display: block;
+    border-radius: 50%;
+    margin-top: -15px;
+    margin-left: 7%;
+}
+
+.fc {
+    display: flex;
+    justify-content: space-between;
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+.fc-text1 {
+    text-align: right;
+    color: #686868;
+}
+
+.fc-text2 {
+    text-align: center;
+    color: #686868;
+}
+
+.fc-r6 {
+    width: 65px;
+    direction: rtl;
+    float: left;
+    margin-left: 11%;
+}
+
+
+/* ------------------Chart Style------------ */
+
+.chart-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-chart-64.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 32px 15px;
+}
+
+#myChart {
+    width: 100%;
+    font-size: 26px;
+}
+
+.chart-text-style {
+    font-size: 26px;
+}
+
+.chart-main {
+    display: block !important;
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 10%;
+    width: 90%;
+}
+
+.chart-stye {
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-right: 9%;
+    width: 90%;
+    margin: auto;
+}
+
+.chart-heder {
+    /* width: 80%;
+    display: flex; */
+    margin: auto;
+}
+
+.chart-filter {
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.chart-serch {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    margin-top: 3%;
+    padding-top: 5%;
+}
+
+.filter-part22 {
+    margin: auto !important;
+    width: 50% !important;
+}
+
+.chart-txt {
+    margin: auto !important;
+    font-size: 24px;
+    color: #707070;
+    width: 50%;
+    text-align: center !important;
+    display: block;
+}
+
+.chart-serch-div {
+    width: 100% !important;
+}
+
+.chart-serch-inp {
+    width: 90% !important;
+}
+
+.chart-serch-inp2 {
+    width: 100% !important;
+}
+
+.chart-bottom {
+    display: flex;
+    width: 60%;
+    margin: auto;
+}
+
+.chart-div {
+    align-items: center;
+    direction: rtl;
+    display: flex;
+    width: 33%;
+}
+
+.chart-div p {
+    font-size: 20px;
+    width: auto;
+    margin-left: 20px;
+}
+
+.chart-color {
+    border-radius: 2px;
+    width: 40px;
+    height: 40px;
+}
+
+.color-red {
+    background-color: #EC6666;
+}
+
+.color-blue {
+    background-color: #147AD6;
+}
+
+.color-light-blue {
+    background-color: #79D2DE;
+}
+
+.filter-part2-btn {
+    margin-top: 0;
+}
+
+.all-forosh-tablet {
+    display: none;
+}
+
+
+/********** hesabdari ***************/
+
+.accounting-page-tablet {
+    display: none;
+}
+
+.tl-t-ac {
+    font-size: 25px;
+    width: 90%;
+    display: block;
+    color: #F26A4F;
+    margin: auto;
+    text-align: right;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.taraz-card {
+    width: 90%;
+    height: auto;
+    display: block;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.tc {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.tc-text-one {
+    direction: rtl;
+    color: #686868;
+    text-align: right;
+}
+
+.tc-text-two {
+    direction: rtl;
+    text-align: center;
+    color: #686868;
+}
+
+@media screen and (max-width: 768px) {
+    .chart-txt {
+        /* margin: auto !important; */
+        font-size: 11px;
+        color: #707070;
+        width: 75%;
+        display: block;
+    }
+    .accounting-page-tablet {
+        display: block;
+    }
+    .tc {
+        font-size: 12px;
+    }
+    .tl-t-ac {
+        font-size: 20px;
+    }
+    .all-forosh-tablet {
+        display: block;
+    }
+    .ordering-img {
+        top: 28% !important;
+    }
+    .filter-part4-btn-input {
+        height: 45px !important;
+    }
+    .all-service-info-tables {
+        display: none;
+    }
+    .filter-part4-btn {
+        top: 21%;
+        left: 22px;
+    }
+    .filter-part2 {
+        height: 45px;
+    }
+    .filter-part4-btn {
+        width: 25px;
+        margin-left: 20px;
+        height: 25px;
+    }
+    .filter-part2-btn {
+        line-height: 45px;
+    }
+    .all-service-computer {
+        display: none;
+    }
+    .search-list {
+        width: 60%;
+    }
+    .list-filters {
+        width: 38%;
+    }
+    .filter-part2-btn {
+        font-size: 11px;
+    }
+    .panels-details p {
+        display: none;
+    }
+    .admin-angle-icon {
+        display: none;
+    }
+    .seller-account-title p {
+        direction: rtl;
+    }
+    .edit-prof-icon {
+        margin: auto;
+        width: 50px;
+        height: 50px;
+    }
+    .sale-icon {
+        margin: auto;
+        width: 50px;
+        height: 50px;
+    }
+    .stores-icon {
+        margin: auto;
+        width: 50px;
+        height: 50px;
+    }
+    .services-conducted-icon {
+        margin: auto;
+        width: 50px;
+        height: 50px;
+    }
+    .accounting-icon {
+        margin: auto;
+        width: 50px;
+        height: 50px;
+    }
+    .customer-satisfaction-icon {
+        margin: auto;
+        width: 50px;
+        height: 50px;
+    }
+    .users-chat-icon {
+        margin: auto;
+        width: 50px;
+        height: 50px;
+    }
+    .chart-icon {
+        margin: auto;
+        width: 50px;
+        height: 50px;
+    }
+    .top-table {
+        display: none;
+    }
+    .admin-top-bar-all-img {
+        background-color: #fff;
+    }
+    .acc-inputs input {
+        font-size: 17px;
+    }
+    .admin-top-bar-all-img {
+        width: 35%;
+    }
+    .acc-btn button {
+        width: 130px;
+        height: 30px;
+        font-size: 18px;
+    }
+    .seller-account-title {
+        height: 37px;
+    }
+    .seller-account-title p {
+        font-size: 20px;
+    }
+    .panels-details {
+        height: 77px;
+    }
+    .top-table-acc p {
+        width: 65px;
+        text-align: center;
+        font-size: 15px;
+    }
+    .mid-table-acc-bot p {
+        width: 65px !important;
+        font-size: 11px;
+    }
+    .mid-table-acc p {
+        width: 130px;
+        text-align: center;
+        font-size: 11px;
+    }
+    .top-table-acc {
+        border-bottom: 3px solid #707070;
+    }
+    .all-forosh {
+        display: none;
+    }
+    .complaint-img {
+        width: 60px;
+        height: 60px;
+    }
+    .complaint-vote div {
+        font-size: 7px;
+    }
+    .name-complaintbox {
+        font-size: 9px;
+    }
+    .handling {
+        width: 75px;
+        height: 30px;
+        font-size: 10px;
+        margin-top: 79%;
+    }
+    .text-user-msg p {
+        font-size: 10px;
+        direction: rtl;
+        text-align: justify;
+        width: 143%;
+    }
+    .container {
+        left: 64px;
+    }
+    .search-profile {
+        margin-left: 14%;
+    }
+    .accounting-page-pc {
+        display: none;
+    }
+}
+
+@media (min-width: 300px) and (max-width: 450px) {
+    .chart-txt {
+        /* margin: auto !important; */
+        font-size: 11px;
+        color: #707070;
+        width: 75%;
+        display: block;
+    }
+    .name-complaintbox p {
+        font-size: 9px;
+    }
+    .handling {
+        width: 65px;
+        height: 23px;
+    }
+    .teket-div p {
+        direction: rtl;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .teket-div p {
+        direction: rtl;
+    }
+    .accounting-page-tablet {
+        display: block;
+    }
+    .accounting-page-pc {
+        display: none;
+    }
+    .all-forosh-tablet {
+        display: block;
+    }
+    .all-service-info-tables {
+        display: none;
+    }
+    .all-service-computer {
+        display: none;
+    }
+    .panels-details p {
+        display: none;
+    }
+    .admin-angle-icon {
+        display: none;
+    }
+    .acc-inputs input {
+        font-size: 20px;
+    }
+    .acc-btn button {
+        width: 160px;
+        height: 40px;
+        font-size: 20px;
+    }
+    .seller-account-title p {
+        direction: rtl;
+    }
+    .edit-prof-icon {
+        margin: auto;
+    }
+    .sale-icon {
+        margin: auto;
+    }
+    .stores-icon {
+        margin: auto;
+    }
+    .services-conducted-icon {
+        margin: auto;
+    }
+    .accounting-icon {
+        margin: auto;
+    }
+    .customer-satisfaction-icon {
+        margin: auto;
+    }
+    .users-chat-icon {
+        margin: auto;
+    }
+    .chart-icon {
+        margin: auto;
+    }
+    .top-table {
+        display: none;
+    }
+    .filter-part2 {
+        font-size: 15px;
+        height: 45px;
+    }
+    .filter-part2-btn {
+        height: 45px;
+        line-height: 45px;
+    }
+    .search-list {
+        width: 55%;
+    }
+    .filter-part4-btn-input {
+        height: 45px !important;
+    }
+    .filter-part4-btn {
+        top: 22%;
+        left: 15px;
+    }
+    .filter-part4-btn {
+        width: 25px;
+    }
+    .filter-part4-btn {
+        width: 25px;
+        height: 25px;
+    }
+    .hesab p {
+        width: 250px;
+        text-align: center;
+    }
+    .taraz p {
+        width: 250px;
+        text-align: center;
+    }
+    .top-table-acc {
+        font-size: 15px;
+    }
+    .mid-table-acc p {
+        font-size: 13px;
+    }
+    .ordering-img {
+        width: 20px;
+        height: 20px;
+        top: 33%;
+        left: 4%;
+    }
+    .filter-part4-btn-input::placeholder {
+        font-size: 17px;
+    }
+    .filter-part4-btn {
+        left: 20px !important;
+    }
+    .top-table-acc p {
+        width: 150px;
+        text-align: center;
+    }
+    .mid-table-acc p {
+        width: 150px;
+    }
+    .download-complaintbox {
+        width: 115px;
+        height: 38px;
+        font-size: 10px;
+    }
+    .complaint-vote div {
+        font-size: 15px;
+        margin-top: 9px;
+    }
+    .name-complaintbox {
+        font-size: 15px;
+    }
+    .name-complaintbox p {
+        direction: rtl;
+        width: 120px !important;
+    }
+    .text-user-msg p {
+        font-size: 13px;
+        direction: rtl;
+        text-align: justify;
+    }
+    .complaint-img {
+        width: 90px;
+        height: 90px;
+    }
+    .handling {
+        width: 123px;
+        height: 37px;
+        font-size: 15px;
+    }
+    .name-complaintbox p {
+        width: 100px;
+        font-size: 15px;
+        margin-top: 9px;
+    }
+    .admin-prof {
+        margin-left: 30px;
+    }
+    .panel {
+        width: 15%;
+    }
+    .admin-top-bar-all-img {
+        background-color: #fff;
+    }
+    .all-forosh {
+        display: none;
+    }
+    .fc-r6 {
+        margin-left: 18%;
+    }
+    .fc-img {
+        margin-left: 15%;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1345px) {
+    .panels-details p {
+        font-size: 17px;
+    }
+}
+
+.teket-div {
+    direction: rtl;
+    margin: auto;
+    width: 80%;
+    height: auto;
+    justify-content: center;
+    display: block;
+    margin-bottom: 100px;
+}
+
+.form-div {
+    width: 90%;
+    margin: auto !;
+    margin-top: 10px;
+    display: flex;
+    direction: rtl;
+    align-items: center;
+    background-color: azure;
+}
+
+.teket-p {
+    margin-right: 0;
+}
+
+.form-box {
+    width: 100%;
+    margin: auto !;
+    margin-top: 10px;
+    display: flex;
+    direction: rtl;
+    align-items: center;
+}
+
+.input {
+    width: 90%;
+    height: 35px;
+    border: 1px solid #707070;
+    border-radius: 7px;
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+.textarea-input {
+    width: 90%;
+    height: 150px;
+    border: 1px solid #707070;
+    border-radius: 7px;
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+.send-teket {
+    border-radius: 6px;
+    width: 40%;
+    cursor: pointer;
+    height: 40px;
+    background-color: rgb(47, 61, 215);
+    color: white;
+    font-size: 1rem;
+    border: none;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#snackbar {
+    width: 20%;
+    height: 60px;
+    /* color: #fff; */
+    text-align: center;
+    border-radius: 10px;
+    padding-top: 20px;
+    position: fixed;
+    z-index: 15;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+.sucsses {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    /* background-color: #2ACB34;
+    border: 5px solid green    ; */
+}
+
+.error {
+    /* background-color: rgb(235, 26, 3); */
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+#add-img {
+    cursor: pointer;
+}
+
+
+/* *********************** chart filter *************************/
+
+.filter-part2 {
+    background-color: #EFEFEF;
+    position: relative;
+    border-radius: 30px;
+    width: 20%;
+    height: 60px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.filter-part22 {
+    margin: auto !important;
+    width: 50% !important;
+}
+
+.filter-part2-dropdown {
+    display: none;
+    width: 200px;
+    height: auto;
+    position: absolute;
+    border-radius: 17px;
+    z-index: 1;
+    padding-top: 29px;
+    background-color: #efefef;
+    left: -56%;
+    top: 55px;
+}
+
+.filter-dropdown-txt {
+    display: block;
+    font-size: 22px;
+    text-align: center;
+    line-height: 46px;
+}
+
+.filter-part2:hover .filter-part2-dropdown {
+    display: block;
+}
+
+.filter-dropdown-txt:hover {
+    background-color: #afafaf;
+}
+
+.teket-tr :hover {
+    cursor: pointer;
+    background-color: #707070;
+}
+
+
+/* body{
+    direction: rtl;
+    background-color: azure;
+
+    
+} */
+
+#main-div {
+    margin: 10px 0px;
+    width: 100% !important;
+    height: 500px !important;
+    justify-content: center;
+    /* display: none; */
+    border-radius: 10px;
+    overflow-y: scroll;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.top-page {
+    width: 90%;
+    height: auto;
+    display: flex;
+    border-bottom: 1px solid #707070;
+    margin: auto;
+}
+
+.top-page-box {
+    width: 45%;
+    margin: auto;
+    text-align: end;
+}
+
+.ui-received-chat {
+    direction: ltr;
+    /* width: 60%; */
+    display: flex;
+    margin-top: 25px;
+    /* margin-right: auto; */
+}
+
+.chat-profile {
+    width: 65px;
+    height: 60px;
+    border-radius: 40%;
+    background-image: url(../../../Derakhti/asset/icons/icons8-support-64.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.chat-sender-profile {
+    width: 50px;
+    height: 60px;
+    border-radius: 40%;
+    background-image: url(../../../Derakhti/asset/icons/icon-21.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.chat-text-box {
+    background-color: rgba(21, 93, 235, 0.801);
+    width: 80%;
+    /* height: 200px; */
+    margin-left: 15px;
+    border-radius: 52px;
+    margin-top: 25px;
+    margin: auto;
+}
+
+.ui-send-chat {
+    direction: rtl;
+    /* width: 60%; */
+    display: flex;
+    margin-top: 25px;
+}
+
+.chat-send-text-box {
+    margin-top: 25px;
+    background-color: rgba(246, 38, 1, 0.801);
+    width: 80%;
+    height: auto;
+    margin: auto;
+    /* margin-left: 15px; */
+    border-radius: 52px;
+}
+
+.send-text {
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    display: flex;
+    /* width: 80%; */
+    align-items: center;
+    margin: auto;
+    border-radius: 20px;
+}
+
+.send-text-inp {
+    width: 88%;
+    height: 35px;
+    padding-right: 10px;
+    border-radius: 20px;
+}
+
+.send-icon {
+    width: 100%;
+    height: 38px;
+    background-image: url(../icons/icons8-email-send-48.png);
+    background-repeat: no-repeat;
+    transform: rotate(225deg);
+    background-size: contain;
+}
+
+.send-file {
+    visibility: hidden;
+}
+
+.chat-p {
+    color: white;
+    margin: 15px 35px;
+    width: max-content;
+}
+
+.top-page p {
+    font-weight: bold;
+}
+
+.chat-box {
+    margin: auto;
+    margin-bottom: 30px;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.message-date {
+    display: flex;
+    flex-direction: row-reverse;
+    /* margin: auto; */
+    margin: 15px 35px;
+    font-size: 10px;
+    color: black;
+}
+
+.message-date2 {
+    display: flex;
+    flex-direction: row-reverse;
+    /* margin: auto; */
+    margin: 15px 35px;
+    font-size: 10px;
+    color: black;
+}
+
+.link-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-link-24.png);
+    background-repeat: no-repeat;
+    width: 40px;
+    margin: auto;
+    margin-right: 7px;
+    height: 40px;
+    margin-top: 10px;
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+.upload-inp {
+    width: 10%;
+    border: none;
+    cursor: pointer;
+    height: 35px;
+    background-color: white;
+    /* margin-top: 20px; */
+}
+
+@media screen and (max-width:682px) {
+    .ui-received-chat {
+        direction: ltr;
+        width: 100%;
+        display: flex;
+        margin-top: 25px;
+        margin-right: auto;
+    }
+    .ui-send-chat {
+        direction: rtl;
+        width: 100%;
+        display: flex;
+        margin-top: 25px;
+    }
+    .chat-box {
+        width: 90%;
+        margin: auto;
+    }
+    .send-text {
+        box-shadow: 0 0 0 2px rgb(255 255 255), 0.3em 0.3em 1em rgb(0 0 0 / 30%);
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin: auto;
+    }
+    .upload-inp {
+        width: 18%;
+        background-color: azure;
+        border: none;
+        cursor: pointer;
+    }
+    .send-text-inp {
+        width: 70%;
+        height: 35px;
+        padding-right: 10px;
+        border-radius: 20px;
+    }
+    .link-icon {
+        /* background-image: url(../icons/icons8-link-24.png); */
+        background-repeat: no-repeat;
+        width: 40px;
+        margin: auto;
+        margin-right: 18px;
+        height: 40px;
+        margin-top: 12px;
+        transform: rotate(90deg);
+        cursor: pointer;
+    }
+}
+
+.single-user {
+    border: 1px solid;
+    width: 300px;
+    height: 50px;
+}
+
+#parent-div {
+    display: none;
+}
+
+.teket-header-div {
+    display: flex;
+    align-items: center;
+}
+
+.teket-header-div p {
+    margin-right: 0px;
+    font-size: 14px;
+}
+
+.teket-header-content {
+    font-size: 12px !important;
+}
+
+.services-panel-title p {
+    direction: rtl !important;
+}

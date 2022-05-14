@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--styles-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+    
+    <link rel="stylesheet" href="{% static 'taksathi_panel/asset/style/shoping-bag.css' %}" />
+    <link rel="stylesheet" href="{% static 'taksathi_panel/asset/style/new_style.css' %}" />
+
+    <link rel="stylesheet" href="./asset/style/table-teket.css">
+
+    <link rel="stylesheet" href="./asset/plugins/fontawesome/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <!--/styles-->
+    <title>wellcome to C2|Home</title>
+</head>
+
+<body>
+    <!--header-->
+
+
+    <!--header-->
+    <div dir="rtl">
+        <h2 class="shopping-bag-title">سبد خرید</h2>
+        <div class="all-factors">
+            <div class="factor">
+                <p class="factor-title">پیش فاکتور</p>
+                <div id="scroll-bar" class="scroll-bar">
+
+
+                </div>
+            </div>
+            <div class="short-offer">
+                <div class="short-factor">
+                    <p class="factor-title">خلاصه فاکتور</p>
+                    <div class="all-kidd-price">
+                        <div class="kidd-price">
+                            <p class="kidd-price-title">مبلغ کل:</p>
+                            <div class="price-detail">
+                                <p>T</p>
+                                <p id="all-price"></p>
+                            </div>
+                        </div>
+            
+                    </div>
+      
+                </div>
+          
+            </div>
+        </div>
+  
+        <button type="submit" class="payment-btn">پرداخت سفارش</button>
+    </div>
+    <!-- footer -->
+
+    <!-- footer -->
+    <script>
+        
+function getdata(){
+    console.log('lll');
+    $.ajax({
+        url:'http://127.0.0.1:8000/api/carts/carts-list',
+        headers: {'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'},
+        success:(res)=>{
+            console.log(res,'res');
+            $('#scroll-bar').append(`
+            
+            <div class="factor-product">
+                        <img class="factor-product-img" src="./asset/img/pic-29.png" alt="">
+                        <div class="factor-product-detail">
+                            <a href="#">${res.results[0].title}</a>
+                            <p>${res.results[0].description} </p>
+
+                        </div>
+
+                        <div class="price-number">
+                            <p class="price-product">${res.results[0].price}</p>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>`)
+                    $('#all-price').html(res.results[0].price)
+        },
+        error:(err)=>{
+            console.log(err,'err');
+        }
+    })
+}
+getdata()
+    </script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

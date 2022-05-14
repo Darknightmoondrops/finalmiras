@@ -1,0 +1,479 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--styles-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'taksathi_panel/asset/style/new_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'taksathi_panel/asset/style/user_panel_style.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'taksathi_panel/asset/plugins/fontawesome/css/all.min.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <!--/styles-->
+    <title>Taksathi User Panel</title>
+</head>
+
+<body>
+    <!--header-->
+
+
+    <!--header-->
+
+
+    <div class="main-content-userpanel">
+        <div class="panel">
+            <div class="panels">
+                <p>پنل کاربری</p>
+                <div class="panels-icon"></div>
+            </div>
+            <div class="panels-details" onclick="SelectPanel(1)">
+                <div class="edit-prof-icon"></div>
+                <p>ویرایش حساب کاربری</p>
+            </div>
+            <div class="panels-details" onclick="SelectPanel(2)">
+                <div class="ticketing-icon"></div>
+                <p> تیکتینگ</p>
+            </div>
+            <div id="p-order">
+                <div id="product-order" class="panels-details" onclick="SelectPanel(3)">
+                    <div id="" class="order-history-icon"></div>
+                    <p>سابقه سفارش </p>
+                </div>
+            </div>
+
+            <div class="panels-details" onclick="SelectPanel(4)">
+                <div class="comments-icon"></div>
+                <p>نظرات</p>
+            </div>
+            <div class="panels-details" onclick="exit(1)">
+                <div class="exit-icon"></div>
+                <p>خروج</p>
+            </div>
+        </div>
+
+        <div class="panel-details">
+            <div class="panels-two">
+                <p>پنل کاربری</p>
+            </div>
+            <div id="edit-acount" class="user-panel-tab panel-page">
+                <h3 class="user-panel-title">ویرایش حساب کاربری</h3>
+                <input id="ph-num1" class="user-panel-input" type="text" placeholder="شماره تماس1">
+                <input id="ph-num2" class="user-panel-input" type="text" placeholder="شماره تماس2   ">
+                <input id="pass" class="user-panel-input" type="text" placeholder="رمز عبور ">
+                <button id="edit-acount-btn" type="button" class="user-panel-btn">ویرایش</button>
+            </div>
+
+            <div id="edit-acount" class="user-panel-tab panel-page">
+                <div class="teket-div">
+                    <h2>سیستم پشتیبانی</h2>
+                    <p class="teket-p">موضوع تیکت</p>
+                    <input id="title-tiket" class="input" type="text" name="" id="" placeholder="موضوع تیکت را وارد کنید ">
+                    <p class="teket-p">پیام</p>
+                    <textarea id="text-tiket" class="textarea-input" type="password" name="" id="" placeholder=" متن پیام را وارد کنید"></textarea>
+                    <div class="form-div">
+                        <div class="form-box">
+                            <input itemid="teket-file" type="file" name="" id="add-teket-file">
+                            <button id="send-ticket" type="submit" class="send-teket"> ارسال تیکت </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="snackbar" class=""></div>
+
+
+            <div id="order-history" class="order-history panel-page">
+                <h3 class="user-panel-title">سابقه سفارش</h3>
+                <div class="page-number" dir="ltr">
+                    <span id="page1" class="page1 page"></span>
+                    <span id="page2" class="page2 page"></span>
+                    <span id="page3" class="page2 page"></span>
+                </div>
+            </div>
+
+            <div id="comments" class="comments panel-page">
+                <h3 class="user-panel-title"> نظرات</h3>
+
+
+            </div>
+
+            <script>
+                function message(type, msg) {
+                    var succ = type
+                    var messageText = msg
+                    var snackbar = document.getElementById('snackbar')
+
+                    if (succ == "sucsses") {
+                        snackbar.innerText = messageText
+                        snackbar.className += " sucsses"
+                        setTimeout(function() {
+                            snackbar.innerText = " "
+                            snackbar.classList.remove("sucsses")
+                        }, 3000);
+                    }
+
+                    if (succ == "error") {
+                        snackbar.innerText = msg
+                        snackbar.className += " error"
+                        setTimeout(function() {
+                            snackbar.innerText = " "
+                            snackbar.classList.remove("error")
+                        }, 3000);
+                    }
+
+                    // setTimeout(function(){ snackbar.classList.remove("error")}, 3000);
+                }
+
+
+
+
+                $('#edit-acount-btn').click(function() {
+                    let phNum1 = $('#ph-num1').val()
+                    let phNum2 = $('#ph-num2').val()
+                    let pass = $('#pass').val()
+
+
+                    $.ajax({
+                        url: 'http://127.0.0.1:8000/api/derakhti/user/user-edit-profile/',
+                        type: "put",
+                        headers: {
+                            'Authorization': 'Token f887194d539a9507147827df0b166c256ae09378'
+                        },
+                        data: {
+                            mobile1: phNum1,
+                            password: pass
+
+                        },
+                        success: (res) => {
+
+                            if (phNum1 == '' && pass == '' || phNum1 == '' || pass == '') {
+                                message('error', 'پرکردن این فیلد اجباری است')
+
+
+                                return
+                            } else {
+                                message('sucsses', res.message)
+                            }
+
+
+                        },
+                        error: (err) => {
+
+                        }
+                    })
+
+                })
+
+                // $('#p-order').click(function() {
+                var orderUrl = "http://127.0.0.1:8000/api/derakhti/products/products-orders-list/"
+
+                function orderProducts(orderUrl) {
+                    $.ajax({
+                        url: orderUrl,
+                        // type:"post",
+                        headers: {
+                            'Authorization': 'Token f887194d539a9507147827df0b166c256ae09378'
+                        },
+                        // data:{
+
+                        //     },
+                        success: (res) => {
+
+                            $('#order-history').html(``)
+                            $('#order-history').append(`
+                                <div class="user-history-mainbox">
+                                    <div class="user-history-box">
+                                        <div class=" user-history-box-right">
+                                            <div class="user-history-box-right-div">
+                                                <img src="./asset/img/pic-29.png" class="user-history-img">
+                                                <img src="./asset/img/pic-32.png" class="user-history-img">
+                                                <img src="./asset/img/pic-13.png" class="user-history-img">    
+                                            </div>
+                                        <h3 class="user-history-text"> ${res.results[0].title}</h3>}
+                                        </div>
+                                        <div class="  user-history-box-left">
+                                            <div class="user-history-lefticon"></div>
+                                            <div class="user-history-text-div">
+                                                <h3 class="user-history-text">dl-sadd13f </h3>
+                                                <h3 class="user-history-text">${res.results[0].price}</h3>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="div-line"></div>
+                                </div>
+                                `)
+                            var nextUrl;
+                            var backUrl;
+                            if (res.previous == null && res.next == null) {
+                                $('#page1').html(``);
+                                $('#page2').html('1');
+                                $('#page1').html(``);
+                            }
+                            if (res.previous == null && res.next !== null) {
+                                nextUrl = res.next;
+                                $('#page1').html(``);
+                                $('#page2').html('1');
+                                $('#page3').html('2');
+                            }
+                            if (res.previous !== null && res.next !== null) {
+                                nextUrl = res.next;
+                                backUrl = res.previous;
+                                let nUrls = new URL(res.next)
+                                let nUrlNums = nUrls.searchParams.get("page");
+                                let currentpages = Number(nUrlNums) - 1;
+                                let prevPageNums = Number(nUrlNums) - 2;
+                                $('#page1').html(`${prevPageNums}`);
+                                $('#page2').html(`${currentpages}`);
+                                $('#page3').html(`${nUrlNums}`);
+                            }
+                            if (res.previous !== null && res.next == null) {
+                                if (res.previous == "http://127.0.0.1:8000/api/derakhti/products/products-orders-list/") {
+                                    backUrl = res.previous;
+                                    $('#page1').html(`1`);
+                                    $('#page2').html('2');
+                                    $('#page3').html('');
+                                }
+                                if (res.previous !== "http://127.0.0.1:8000/api/derakhti/products/products-orders-list/") {
+                                    backUrl = res.previous;
+                                    let nUrlss = new URL(res.previous)
+                                    let nUrlNumss = nUrlss.searchParams.get("page");
+                                    let currentpagess = Number(nUrlNumss) + 1;
+                                    $('#page1').html(`${nUrlNumss}`);
+                                    $('#page2').html(`${currentpagess}`);
+                                    $('#page3').html(``);
+                                }
+                            }
+                            $('#page1').on(('click'), function() {
+                                orderProducts(backUrl)
+                            })
+                            $('#page3').on(('click'), function() {
+                                orderProducts(nextUrl)
+                            })
+                        },
+                        error: (err) => {
+
+                        }
+                    })
+
+                }
+                orderProducts(orderUrl)
+
+                function getdata() {
+                    $.ajax({
+                        url: 'http://127.0.0.1:8000/api/products/products-comments-list/?id=5',
+                        success: (res) => {
+
+                            $('#comments').append(`
+                                    <div class="user-history-mainbox">
+                                        <div class="user-history-box">
+                                            <div class=" user-history-box-right4">
+                                                <img src="./asset/img/pic-29.png" class="user-comments-img" />
+                                                <div class="user-comments-text">
+                                                    <h2> ${res.results[0].product}</h2>
+                                                    <p class="user-comments-text-p">
+                                                        ${res.results[0].comment}
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                            <div class="user-history-lefticon3"></div>
+
+                                            <div class="  user-history-box-left4">
+                                                <div>
+                                                    <p>${res.results[0].date}</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="div-line"></div>
+                                    </div>
+
+                                `)
+
+                        },
+                        error: (err) => {
+
+                        }
+                    })
+                }
+                getdata()
+
+                var created
+
+                $('#add-teket-file').change(function(e) {
+
+                    if (e.target.files && e.target.files.length > 0) {
+
+                        tiketFile = e.target.files[0]
+
+
+                    }
+                })
+
+                $('#send-ticket').click(async function() {
+                    var tiketTitle = $('#title-tiket').val()
+
+                    await $.ajax({
+                        url: 'http://127.0.0.1:8000/api/derakhti/tikets/tikets-new/',
+                        type: 'post',
+                        headers: {
+                            'Authorization': 'Token d127c16f6948fa52b491c66056c8a4bdc8fd2dc7'
+                        },
+                        data: {
+                            title: tiketTitle,
+                            support: 5,
+                        },
+                        success: (res) => {
+
+                            created = res.created
+
+
+
+                        },
+                        error: (err) => {
+
+                        }
+                    })
+                    var ticketText = $('#text-tiket').val()
+                        // var tiketFile = $('#teket-file').val()
+                    created = Number(created)
+                    let formData = new FormData()
+                    formData.append('tiket', 2)
+                    formData.append('user', 6)
+                    formData.append('support', 5)
+                    formData.append('text', ticketText)
+                    formData.append('is_support', true)
+                    formData.append('file', tiketFile)
+
+
+                    $.ajax({
+                        url: 'http://127.0.0.1:8000/api/derakhti/tikets/tikets-add/',
+                        type: 'post',
+                        headers: {
+                            'Authorization': 'Token d127c16f6948fa52b491c66056c8a4bdc8fd2dc7'
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: (res) => {
+
+                            if (ticketText == '' && tiketTitle == '' || tiketTitle == '' || ticketText == '') {
+                                message('error', 'متن پیام را وارد کنید')
+                                return
+                            }
+
+                            if (res.message == 'با موفقیت اضافه شد') {
+                                message('sucsses', res.message)
+                            }
+
+                        },
+                        error: (err) => {
+
+                            message('error', res.message)
+
+                        }
+                    })
+                })
+            </script>
+
+            <!-- <div id="order" class="user-panel-history ">
+                        <h3 class="user-panel-title">  سفارش 1</h3>
+                        <div class="user-history-mainbox">
+                            <div class="user-history-box">
+                                <div class=" user-history-box-right">
+                                    <img src="./asset/img/pic-29.png" class="user-order-img"/>
+                                    <div class="user-order-maintext">
+                                        <h2> بانکه ادویه</h2>
+                                        <div class="user-order-div">
+                                            <div class="user-order-color  "></div>
+                                            <p class="user-order-text">بزرگ</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="  user-history-box-left">
+                                    <div class="user-order-maintext">
+                                        <p>990,000</p>
+                                        <div class="user-score-leftdiv"> <p class="user-score-leftdiv-p"> 2</p></div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="div-line"></div>
+                        </div>
+                        <div class="user-history-mainbox">
+                            <div class="user-history-box">
+                                <div class=" user-history-box-right">
+                                    <img src="./asset/img/pic-29.png" class="user-order-img"/>
+                                    <div class="user-order-maintext">
+                                        <h2> بانکه ادویه</h2>
+                                        <div class="user-order-div">
+                                            <div class="user-order-color  "></div>
+                                            <p class="user-order-text">بزرگ</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="  user-history-box-left">
+                                    <div class="user-order-maintext">
+                                        <p>990,000</p>
+                                        <div class="user-score-leftdiv"> <p class="user-score-leftdiv-p"> 2</p></div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="div-line"></div>
+                        </div>
+                        <div class="user-history-mainbox">
+                            <div class="user-history-box">
+                                <div class=" user-history-box-right">
+                                    <img src="./asset/img/pic-29.png" class="user-order-img"/>
+                                    <div class="user-order-maintext">
+                                        <h2> بانکه ادویه</h2>
+                                        <div class="user-order-div">
+                                            <div class="user-order-color  "></div>
+                                            <p class="user-order-text">بزرگ</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="  user-history-box-left">
+                                    <div class="user-order-maintext">
+                                        <p>990,000</p>
+                                        <div class="user-score-leftdiv"> <p class="user-score-leftdiv-p"> 2</p></div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+            </div> -->
+        </div>
+    </div>
+    <!-- <div style="display: none;" class="background"> -->
+    <div id="qu-two-on" class="question-box-two qu-two-on">
+        <div class="close-icon" onclick="exit(2)"></div>
+        <div class="close-icon-big"></div>
+        <p>آیا مطمئن هستید میخواهید خارج شوید</p>
+        <div class="question-btn">
+            <button class="yes-btn" type="submit"><a href="{% url 'Account:logout_page' %}" style="color: #f0f0f0" >بله</a></button>
+            <button class="no-btn" type="submit" onclick="exit(2)">خیر</button>
+        </div>
+    </div>
+
+    <!-- </div> -->
+    <script src="{% static 'taksathi_panel/js/user-panel.js' %}"></script>
+    <script src="{% static 'taksathi_panel/js/index.js' %}"></script>
+    <script src={% static 'taksathi_panel/js/fixed.js' %}></script>
+
+</body>
+
+
+</html>

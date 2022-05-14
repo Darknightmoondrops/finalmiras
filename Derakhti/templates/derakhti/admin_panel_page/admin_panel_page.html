@@ -1,0 +1,1521 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--styles-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./asset/style/new_style.css" />
+    <link rel="stylesheet" href="./asset/style/products.css" />
+    <link rel="stylesheet" href="./taksathi_panel/asset/style/admin-panel.css" />
+    <link rel="stylesheet" href="{% static 'taksathi_panel/asset/style/admin-panel.css' %}" />
+    <link rel="stylesheet" href="{% static 'taksathi_panel/asset/style/new_style.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static 'taksathi_panel/asset/style/chart-pro.css' %}" /> -->
+
+    <link rel="stylesheet" href="./asset/style/admin-panel.css">
+    <link rel="stylesheet" href="./asset/plugins/fontawesome/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <!--/styles-->
+    <title>Taksthi Admin Panel</title>
+</head>
+
+<body>
+    <!--header-->
+    <section id="">
+        <!--  MENU -->
+        <!----------------------------------search--------------------------------->
+        <div onclick="" id="search-box" class="">
+            <button onclick="myFunction2()" id="search-btn-close" class="search-btn-close">x</button>
+            <div class="main-div">
+                <input type="search" class="search-input" placeholder="جستجو" />
+                <button class="search-btn"><img style="width:20px; height: 20px;" src="./asset/icons/icon-19.png" alt=""></button>
+            </div>
+        </div>
+        <!-- ------------------------------------------------------------------------>
+
+        <div class="top-navbar">
+            <div class="search-profile">
+                <div class="admin-prof">
+
+                    <img src="./asset/img/pic-50.png" alt="">
+                    <div class="admin-prof-name">
+                        <p>سلام</p>
+                        <p>مهران</p>
+                    </div>
+
+                </div>
+
+                <div class="container">
+                    <input type="text" placeholder="Search...">
+                    <div class="search"></div>
+                </div>
+
+            </div>
+            <div class="admin-top-bar-all-img">
+                <div class="sherakat-icon"></div>
+                <div class="admin-angle-icon"></div>
+            </div>
+        </div>
+        <!--  MENU -->
+
+    </section>
+
+    <!--header-->
+
+
+    <!--script-->
+    <div class="all-panels">
+        <div class="panel">
+
+            <div class="panels-details" onclick="SelectPanel(1)">
+                <div class="edit-prof-icon"></div>
+                <p>ویرایش حساب کاربری</p>
+            </div>
+
+            <div class="panels-details" onclick="SelectPanel(2)">
+                <div class="sale-icon"></div>
+                <p>فروش</p>
+            </div>
+            <div class="panels-details" onclick="SelectPanel(3)">
+                <div class="product-add-icon"></div>
+                <p>افزودن محصول</p>
+            </div>
+            <div class="panels-details" onclick="SelectPanel(4)">
+                <div class="product-list-icon"></div>
+                <p>لیست محصول</p>
+            </div>
+
+            <div class="panels-details" onclick="SelectPanel(5)">
+                <div class="customer-satisfaction-icon"></div>
+                <p>دیدگاه ها </p>
+            </div>
+            <div class="panels-details" onclick="SelectPanel(6)">
+                <div class="ticketing-icon"></div>
+                <p> تیکتینگ</p>
+            </div>
+            <div class="panels-details" onclick="SelectPanel(7)">
+                <div class="chart-icon"></div>
+                <p> انتخاب نمودار</p>
+            </div>
+        </div>
+        <div class="panel-details">
+            <div class="panel-page seller-account">
+                <div class="seller-account-title">
+                    <p>حساب کاربری</p>
+                </div>
+
+                <div class="acc-inputs">
+                    <div><input id="ph-num1" type="text" placeholder="شماره تماس"></div>
+                </div>
+                <div class="acc-inputs">
+                    <div><input id="pass" type="number" placeholder="رمز عبور جدید"></div>
+                </div>
+                <div id="edit-acount-btn" class="acc-btn"><button type="submit">ویرایش</button></div>
+            </div>
+            <div id="snackbar" class=""></div>
+
+            <div class="panel-page clientele-page">
+                <div class="seller-account-title">
+                    <p>فروش</p>
+                </div>
+
+                <!-- ============================= -->
+
+
+                <div id="p-sell2" class="all-forosh-tablet">
+
+
+
+                </div>
+
+
+                <div id="p-sell1" class="all-service-info-tables">
+                    <div class="top-table">
+
+                        <div>
+                            <p>تصویر</p>
+                        </div>
+                        <div>
+                            <p>نام محصول</p>
+                        </div>
+                        <div>
+                            <p>کد محصول</p>
+                        </div>
+                        <div>
+                            <p>قیمت</p>
+                        </div>
+                        <div>
+                            <p>تاریخ</p>
+                        </div>
+
+                    </div>
+                    <!-- <div class="mid-table">
+
+                        <div class="mid-table-img">
+                            <img src="./asset/img/pic-47.png" alt="">
+                        </div>
+                        <div>
+                            <p>صندلی چوبی</p>
+                        </div>
+                        <div>
+                            <p>c2-23rq34</p>
+                        </div>
+                        <div>
+                            <p>990,000</p>
+                        </div>
+                        <div>
+                            <p>1400/09/12</p>
+                        </div>
+
+                    </div> -->
+
+                </div>
+                <div class="page-number" dir="ltr">
+                    <span id="page11" class="page1 page"></span>
+                    <span id="page22" class="page2 page"></span>
+                    <span id="page33" class="page2 page"></span>
+                </div>
+            </div>
+
+            <div class="panel-page add-products">
+                <div class="seller-account-title">
+                    <p>افزودن محصول</p>
+                </div>
+                <div class="add-details">
+                    <input type="file" id="upload" />
+
+                    <!-- <input type='file' hidden /> -->
+                    </br><img id="myImg" src="#" alt="your image" height=200 width=100>
+
+                    <!-- <label for= 'upload' id="add-img">
+
+                    <div>
+                        <p>افزودن تصویر </p>
+                    </div>
+                    <div class="add-icons">
+                        <div class="add-icon"></div>
+                    </div>
+                  </label> -->
+                    <div class="acc-inputs">
+                        <div><input id="product-name" class="services-inp" type="text" placeholder="نام محصول"></div>
+                    </div>
+                    <div class="acc-inputs">
+                        <div><input id="product-descriptions" class="services-inp" type="text" placeholder="توضیحات محصول"></div>
+                    </div>
+                    <div class="acc-inputs">
+                        <select id="main-categorys" class="services-inp" name="node-advance-tree" id="node-part">
+                            <option class="services-inp" value="arian">دسته بندی</option>  
+                        </select>
+                    </div>
+                    <div class="acc-inputs">
+                        <select id="product-subordinate1" class="services-inp" name="node-advance-tree" id="node-part">
+                            <option class="services-inp" value="arian">زیردسته1 </option>  
+                        </select>
+                    </div>
+                    <div class="acc-inputs">
+                        <select id="product-subordinate2" class="services-inp" name="node-advance-tree" id="node-part">
+                            <option class="services-inp" value="arian">زیردسته2 </option>  
+                        </select>
+                    </div>
+                    <div class="acc-inputs">
+                        <div><input id="product-compounds" class="services-inp" type="text" placeholder="ترکیبات محصول"></div>
+                    </div>
+                    <div class="acc-inputs">
+                        <div><input id="product-volume" class="services-inp" type="number" placeholder="حجم محصول"></div>
+                    </div>
+                    <div class="acc-inputs">
+                        <div><input id="product-price" class="services-inp" type="number" placeholder="قیمت "></div>
+                    </div>
+                    <div class="acc-inputs">
+                        <div><input id="product-product-license-issuer" class="services-inp" type="number" placeholder="صادرکننده پروانه "></div>
+                    </div>
+
+                    <div id="add-btn" class="add-btn"><button type="submit">افزودن</button></div>
+                </div>
+
+            </div>
+
+
+            <div class="panel-page list-products">
+                <div class="seller-account-title">
+                    <p>لیست محصول</p>
+                </div>
+
+
+
+                <div class="all-forosh-tablet" id="list-mahsol-tablet">
+
+                    <!-- <div class="all-service-card">
+                        <div class="fc fc-r1">
+                            <p class="fc-text1">نام </p>
+                            <img class="fc-img" src="./asset/img/pic-26.png" alt="">
+                        </div>
+                        <div class="fc fc-r2">
+                            <p class="fc-text1">کد خدمت </p>
+                            <p class="fc-text2">224sdfd4</p>
+                        </div>
+
+                        <div class="fc fc-r4">
+                            <p class="fc-text1">تاریخ</p>
+                            <p class="fc-text2">1400/12/01</p>
+                        </div>
+
+                        <div class="fc fc-r6">
+                            <div class="trash-forosh-icon"></div>
+                            <div class="edit-forosh-icon"></div>
+                        </div>
+                    </div> -->
+
+                </div>
+
+
+                <div class="all-service-info-tables">
+                    <div class="top-table" id="list-mahsol">
+
+                        <div>
+                            <p>تصویر</p>
+                        </div>
+                        <div>
+                            <p>نام محصول</p>
+                        </div>
+                        <div>
+                            <p>کد محصول</p>
+                        </div>
+                        <div>
+                            <p>قیمت</p>
+                        </div>
+                        <div>
+                            <p>تاریخ</p>
+                        </div>
+                        <div>
+                            <p>ویرایش</p>
+                        </div>
+                    </div>
+
+                    <!-- <div class="mid-table">
+
+                        <div class="mid-table-img">
+                            <img src="./asset/img/pic-47.png" alt="">
+                        </div>
+                        <div>
+                            <p>صندلی چوبی</p>
+                        </div>
+                        <div>
+                            <p>c2-23rq34</p>
+                        </div>
+                        <div>
+                            <p>990,000</p>
+                        </div>
+                        <div>
+                            <p>1400/09/12</p>
+                        </div>
+                        <div>
+                            <div class="edit-icons">
+                                <div class="edit-icon"></div>
+                                <div class="trash-icon" onclick="trash(1)"></div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+                <div class="page-number" dir="ltr">
+                    <span id="page1" class="page1 page"></span>
+                    <span id="page2" class="page2 page"></span>
+                    <span id="page3" class="page2 page"></span>
+                </div>
+
+
+            </div>
+
+
+
+
+            <div id="p-comment" class="panel-page complaint-page">
+                <div class="seller-account-title">
+                    <p> دیدگاه ها</p>
+                </div>
+
+
+            </div>
+
+            <div class="panel-page complaint-page">
+
+                <h2>پشتیبانی </h2>
+
+                <table id="teket-tabel">
+                    <tr>
+                        <th>تاریخ</th>
+                        <th>عنوان</th>
+                        <th>وضعیت تیکت</th>
+                    </tr>
+                </table>
+
+                <!-- <div class="main-div"></div> -->
+                <div id="parent-div">
+                    <div class="top-page">
+                        <button id="close-iconn" class="upload-inp"><div class="close-icon"></div></button>
+                        <div class="top-page-box">
+                            <div class="teket-header-div">
+                                <p>موضوع</p>
+                                <p id="t-h-p1" class="teket-header-content">پیگیری محصول</p>
+                            </div>
+                            <div class="teket-header-div">
+                                <p>تیکت</p>
+                                <p id="t-h-p2" class="teket-header-content">پیگیری محصول</p>
+                            </div>
+                            <div class="teket-header-div">
+                                <p>زمان ایجاد</p>
+                                <p id="t-h-p4" class="teket-header-content">پیگیری محصول</p>
+                            </div>
+
+
+                        </div>
+                        <div class="top-page-box">
+                            <div class="teket-header-div">
+                                <p>وضعیت تیکت</p>
+                                <p id="t-h-p3" class="teket-header-content">پیگیری محصول</p>
+                            </div>
+
+                            <div class="teket-header-div">
+                                <p>آخرین بروزرسانی</p>
+                                <p id="t-h-p5" class="teket-header-content">پیگیری محصول</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="main-div" class="main-div">
+
+                        <div id="chat-box" class="chat-box">
+
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="send-text">
+                        <input class="send-text-inp" type="text" name="" id="tekek-txt" placeholder="متن پیام را وارد کنید">
+                        <div class="upload-inp">
+                            <input type="file" id="add-teket-file" hidden/>
+                            <label for="add-teket-file">
+                                <div class="link-icon"></div>
+                            </label>
+                        </div>
+                        <button id="send-message" class="upload-inp"><div class="send-icon"></div></button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel-page clientele-page">
+
+                <div class="list-products-header chart-main">
+                    <div class="services-panel-title">
+                        <p> انتخاب نمودار</p>
+                    </div>
+
+
+                    <div class="chart-heder">
+                        <div class="list-filters chart-filter">
+                            <div class="filter-part2 filter-part22 filter">
+                                <span class="filter-part2-btn"> بازه زمانی<img src="./asset/icons/icon-28.png" alt=""></span>
+                                <div class="filter-part2-dropdown">
+                                    <span id="daily" class="filter-dropdown-txt">روزانه</span>
+                                    <span id="Weekly" class="filter-dropdown-txt">هفتگی</span>
+                                    <span id="monthly" class="filter-dropdown-txt"> ماهانه</span>
+                                    <span id="yearly" class="filter-dropdown-txt">سالانه</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="chart-stye">
+                            <div class="services-panel-title">
+                                <p> نمودار فروش محصول</p>
+                            </div>
+                            <p class="chart-txt">نمودار ارائه خدمات در 6 ماه گذشته در 6 ماهه دوم سال</p>
+                            <canvas id="myChart" style="width:100%;"></canvas>
+                            <div class="chart-bottom">
+                                <div class="chart-div">
+                                    <p>فروش</p>
+                                    <div class="chart-color color-red"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            var mainCateId, subCateId1, subCateId2, teketId, vImg, uu, userId
+            var teketUrl = 'http://127.0.0.1:8000/api/admin-panel/tikets/tikets-list/'
+            var mUrl = 'http://127.0.0.1:8000/api/admin-panel/products/products-main_categories/'
+            var subUrl1 = 'http://127.0.0.1:8000/api/admin-panel/products/products-sub_categories1/'
+            var subUrl2 = 'http://127.0.0.1:8000/api/admin-panel/products/products-sub_categories2/'
+            var filterUrl = 'http://127.0.0.1:8000/api/admin-panel/tikets/tikets-filter/?id='
+            var filterUpdateUrl = 'http://127.0.0.1:8000/apiadmin-panel/tikets/tikets-update-status'
+
+
+
+            function getTeket(teketUrl) {
+                $.ajax({
+                    url: teketUrl,
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+                    success: (res) => {
+
+                        teketId = res.results[0].id
+                            // var mamad = res.results[0].title
+                            // mamad
+
+
+
+                        if (res.results[0].status) {
+                            // $('#teket-tabel').html('')
+                            $('#teket-tabel').append(`
+                                    <tr class="teket-tr single-user"  data-status="${res.results[0].status}"  data-date="${res.results[0].jdate}"  data-title="${res.results[0].title}"  data-id="${res.results[0].id}">
+                                    <td>${res.results[0].jdate}</td>
+                                    <td> ${res.results[0].title}</td>
+                                    <td> بسته</td>              
+                                    </tr>
+                                    `)
+                        } else {
+                            $('#teket-tabel').append(`
+                                    <tr id="dd" class="teket-tr single-user" data-status="${res.results[0].status}"  data-date="${res.results[0].jdate}"  data-title="${res.results[0].title}"  data-id="${res.results[0].id}">
+                                    <td>${res.results[0].jdate}</td>
+                                    <td> ${res.results[0].title}</td>
+                                    <td> باز</td>
+                                    </tr>
+                                    `)
+                        }
+
+                        var ii = []
+                        var nUrl
+                            // ---
+                        $.ajax({
+                                url: filterUpdateUrl,
+                                headers: {
+                                    'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                                },
+                                success: (res) => {
+
+
+
+                                },
+                                error: (err) => {
+
+                                }
+                            })
+                            // ---
+
+                        $('tr').click(function tekFilter(nu) {
+                                teketId = $(this).attr('data-id')
+                                uu = $(this).attr('data-id')
+                                titleTeket = $(this).attr('data-title')
+                                let statusTeket = $(this).attr('data-status')
+
+
+                                let teketS = ''
+                                dateTeket = $(this).attr('data-date')
+                                if (statusTeket == "true") {
+                                    $('#t-h-p3').text("بسته")
+
+                                }
+                                if (statusTeket == "false") {
+                                    $('#t-h-p3').text("باز")
+
+
+                                }
+
+
+
+                                $('#t-h-p4').text(dateTeket)
+                                $('#t-h-p1').text(titleTeket)
+                                $('#t-h-p2').text(teketId)
+
+
+                                var cc = nu.nu
+
+                                $.ajax({
+                                    url: cc ? cc : filterUrl + uu,
+                                    headers: {
+                                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                                    },
+                                    success: (res) => {
+                                        nUrl = res.next
+
+
+                                        // }
+                                        ii.push(res.results[0])
+
+                                        $('#chat-box').html('')
+
+                                        ii.map(item => {
+                                            teketId = item.tiket
+                                            userId = item.user
+
+
+                                            if (item.is_support == false) {
+                                                $('#chat-box').append(`
+                                    <div class="ui-received-chat">
+                                        <div class="chat-profile" ></div>
+                                        <div class="chat-text-box">
+                                            <p class="chat-p">${item.text}</p>
+                                            <p class="message-date">${item.jdate}</p>
+
+                                        </div>
+                                    </div>`)
+
+                                            } else {
+                                                $('#chat-box').append(`
+                                    <div class="ui-send-chat">
+                                        <div class="chat-sender-profile" ></div>
+                                        <div class="chat-send-text-box">
+                                            <p class="chat-p">${item.text}</p>
+                                            <p class="message-date2">${item.jdate}</p>
+
+                                        </div>
+                                    </div>`)
+
+                                            }
+
+
+
+                                        })
+                                        $('#parent-div').css("display", "block")
+                                        $('#teket-tabel').css("display", "none")
+
+                                        $('#close-iconn').click(function() {
+                                            $('#parent-div').css("display", "none")
+                                            $('#teket-tabel').css("display", "block")
+                                            while (ii.length > 0) {
+                                                ii.pop()
+
+                                            }
+                                        })
+
+                                        if (nUrl !== '') {
+                                            let nu = nUrl
+
+                                            tekFilter(nu = {
+                                                nu
+                                            })
+                                        }
+                                    },
+                                    error: (err) => {
+
+                                    }
+                                })
+
+
+                            })
+                            // ---
+                        if (res.next) {
+                            let nextUrl = res.next
+                            getTeket(nextUrl)
+                        }
+                        // $('tr').click(function() {
+
+                        //     tekFilter(nu)
+
+                        // })
+                    },
+                    error: (err) => {
+
+                    }
+                })
+            }
+            getTeket(teketUrl)
+                // setInterval(function() {
+                //     $('#teket-tabel').html('')
+                //     getTeket(teketUrl)
+
+            // }, 10000)
+
+            $('#add-teket-file').change(function(e) {
+
+                if (e.target.files && e.target.files.length > 0) {
+
+                    tiketFile = e.target.files[0]
+
+
+                }
+            })
+
+
+            $('#send-message').click(function() {
+                var ticketText = $('#tekek-txt').val()
+                let created
+
+
+
+                // var tiketFile  = $('#teket-file').val()
+
+                let formData = new FormData()
+                formData.append('tiket', teketId)
+                formData.append('user', userId)
+                formData.append('support', 5)
+                formData.append('text', ticketText)
+                formData.append('is_support', true)
+                formData.append('file', tiketFile)
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/admin-panel/tikets/tikets-add/',
+                    type: 'post',
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: (res) => {
+
+                        // if(ticketText=='' && tiketTitle == '' || tiketTitle == '' || ticketText==''){
+                        //     // message('error','متن پیام را وارد کنید')
+                        //     return
+                        // }
+
+                        // if(res.message =='با موفقیت اضافه شد'){
+                        //     // message('sucsses',res.message)
+                        // }
+                        // $('#')
+                    },
+                    error: (err) => {
+
+                        // message('error',res.message)
+
+                    }
+                })
+            })
+
+
+
+            function getMainCategorys(mUrl) {
+
+                $.ajax({
+                    url: mUrl,
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+
+                    success: (res) => {
+
+
+                        $('#main-categorys').append(`
+                    <option class="services-inp" > ${res.results[0].name}</option>
+                    `)
+                        mainCateId = res.results[0].id
+
+                        if (res.next) {
+                            let nextUrl = res.next
+                            getMainCategorys(nextUrl)
+                        }
+                    },
+                    error: (err) => {
+
+                    }
+                })
+
+            }
+
+
+            getMainCategorys(mUrl)
+
+            function getSubCategory1(subUrl1) {
+                $.ajax({
+                    url: subUrl1,
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+
+                    success: (res) => {
+
+
+                        $('#product-subordinate1').append(`
+                                <option class="services-inp" > ${res.results[0].name}</option>
+                                `)
+                        subCateId1 = res.results[0].id
+                        if (res.next) {
+                            let nextUrl = res.next
+                            getSubCategory1(nextUrl)
+                        }
+                    },
+                    error: (err) => {
+
+                    }
+                })
+            }
+
+
+            getSubCategory1(subUrl1)
+
+            function getSubCategory2(subUrl2) {
+
+                $.ajax({
+                    url: subUrl2,
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+
+                    success: (res) => {
+
+                        $('#product-subordinate2').append(`
+                                <option class="services-inp" > ${res.results[0].name}</option>
+                                `)
+
+                        subCateId2 = res.results[0].id
+                        if (res.next) {
+                            let nextUrl = res.next
+                            getSubCategory2(nextUrl)
+                        }
+                    },
+
+                    error: (err) => {
+
+                    }
+                })
+            }
+            getSubCategory2(subUrl2)
+
+
+
+            function message(type, msg) {
+                var succ = type
+                var messageText = msg
+                var snackbar = document.getElementById('snackbar')
+
+                if (succ == "sucsses") {
+                    snackbar.innerText = messageText
+                    snackbar.className += " sucsses"
+                    setTimeout(function() {
+                        snackbar.innerText = " "
+                        snackbar.classList.remove("sucsses")
+                    }, 3000);
+                }
+
+                if (succ == "error") {
+                    snackbar.innerText = msg
+                    snackbar.className += " error"
+                    setTimeout(function() {
+                        snackbar.innerText = " "
+                        snackbar.classList.remove("error")
+                    }, 3000);
+                }
+
+                // setTimeout(function(){ snackbar.classList.remove("error")}, 3000);
+            }
+
+
+
+            $('#edit-acount-btn').click(function() {
+                let phNum1 = $('#ph-num1').val()
+                let phNum2 = $('#ph-num2').val()
+                let pass = $('#pass').val()
+
+
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/tak-s-panel/user/user-edit-profile/',
+                    type: "put",
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+                    data: {
+                        mobile1: phNum1,
+                        password: pass
+
+                    },
+                    success: (res) => {
+
+                        if (phNum1 == '' && pass == '' || phNum1 == '' || pass == '') {
+                            message('error', 'پرکردن این فیلد اجباری است')
+
+
+                            return
+                        } else {
+                            message('sucsses', res.message)
+                        }
+
+
+                    },
+                    error: (err) => {
+
+                    }
+                })
+
+            })
+
+
+
+            $(function() {
+                $(":file").change(function() {
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = imageIsLoaded;
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            });
+
+            function imageIsLoaded(e) {
+                $('#myImg').attr('src', e.target.result);
+                $('#yourImage').attr('src', e.target.result);
+            };
+            var formData = new FormData()
+
+            $('#upload').change(function(e) {
+                if (e.target.files && e.target.files.length > 0) {
+                    vImg = e.target.files[0]
+                }
+            })
+            $('#add-btn').click(function() {
+
+                let productName = $('#product-name').val()
+                let productDescriptions = $('#product-descriptions').val()
+                let productCompounds = $('#product-compounds').val()
+                let productVolume = $('#product-volume').val()
+                let productPrice = $('#product-price').val()
+                let productLicenseIssuer = $('#product-license-issuer').val()
+                let productSlug = productName.includes('') ? productName.replace(/\s+/g, '-') : productName
+
+                formData.append("image", vImg)
+                formData.append("title", productName)
+                formData.append("descriptions", productDescriptions)
+                formData.append("maincategories", mainCateId)
+                formData.append("subCategories1", subCateId1)
+                formData.append("subCategories2", subCateId2)
+                formData.append("volume", productVolume)
+                formData.append("compounds", productCompounds)
+                formData.append("price", productPrice)
+                formData.append("slug ", productSlug)
+                formData.append("licenseـissuer", productLicenseIssuer)
+
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/admin-panel/products/products-add/',
+                    type: "post",
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: (res) => {
+
+
+                        if (productName == '' && productDescriptions == '' && mainCateId == '' && subCateId1 == '' && subCateId2 == '' &&
+                            productCompounds == '' && productVolume == '' && productLicenseIssuer == '' && productPrice == '' &&
+                            vImg == '' ||
+                            productName == '' || productDescriptions == '' || mainCateId == '' || subCateId1 == '' || subCateId2 == '' ||
+                            productCompounds == '' || productVolume == '' || productLicenseIssuer == '' || productPrice == '' ||
+                            vImg == '') {
+                            message('error', 'لطفا همه فیلد هارا کامل کنید')
+
+                            return
+                        } else {
+
+                            message('sucsses', res.message)
+                        }
+                    },
+                    error: (err) => {
+
+                    }
+                })
+            })
+
+            var listProducturl = "http://127.0.0.1:8000/api/admin-panel/products/products-list/"
+
+            function getListProducts(listProducturl) {
+                $.ajax({
+                    url: listProduct,
+                    type: "get",
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+
+                    success: (res) => {
+
+                        $('#list-mahsol').append(`
+                        <div class="mid-table">
+
+<div class="mid-table-img">
+    <img src="./asset/img/pic-47.png" alt="">
+</div>
+<div>
+    <p>${res.results[0].title}</p>
+</div>
+<div>
+    <p>${res.results[0].id}</p>
+</div>
+<div>
+    <p>${res.results[0].price}</p>
+</div>
+<div>
+    <p>${res.results[0].jdate}</p>
+</div>
+<div>
+    <div class="edit-icons">
+        <div class="edit-icon"></div>
+        <div class="trash-icon" onclick="trash(1)"></div>
+    </div>
+</div>
+                            `)
+
+                        $('#list-mahsol-tablet').append(`
+                                <div class="all-service-card">
+                                    <div class="fc fc-r1">
+                                        <p class="fc-text1">نام </p>
+                                        <img class="fc-img" src="${res.results[0].image}" alt="">
+                                    </div>
+
+                                    <div class="fc fc-r2">
+                                        <p class="fc-text1">حجم</p>
+                                        <p class="fc-text2">${res.results[0].compounds}</p>
+                                    </div>
+                                    <div class="fc fc-r2">
+                                        <p class="fc-text1">قیمت</p>
+                                        <p class="fc-text2">${res.results[0].price}</p>
+                                    </div>
+                                    <div class="fc fc-r4">
+                                        <p class="fc-text1">تاریخ</p>
+                                        <p class="fc-text2">${res.results[0].jdate}</p>
+                                    </div>
+
+                                    <div class="fc fc-r6">
+                                        <div class="trash-forosh-icon"></div>
+                                        <div class="edit-forosh-icon" data-trash=""></div>
+                                    </div>
+                                </div>
+                           `)
+                        var nextUrl;
+                        var backUrl;
+                        if (res.previous == null && res.next == null) {
+                            $('#page1').html(``);
+                            $('#page2').html('1');
+                            $('#page1').html(``);
+                        }
+                        if (res.previous == null && res.next !== null) {
+                            nextUrl = res.next;
+                            $('#page1').html(``);
+                            $('#page2').html('1');
+                            $('#page3').html('2');
+                        }
+                        if (res.previous !== null && res.next !== null) {
+                            nextUrl = res.next;
+                            backUrl = res.previous;
+                            let nUrls = new URL(res.next)
+                            let nUrlNums = nUrls.searchParams.get("page");
+                            let currentpages = Number(nUrlNums) - 1;
+                            let prevPageNums = Number(nUrlNums) - 2;
+                            $('#page1').html(`${prevPageNums}`);
+                            $('#page2').html(`${currentpages}`);
+                            $('#page3').html(`${nUrlNums}`);
+                        }
+                        if (res.previous !== null && res.next == null) {
+                            if (res.previous == "http://127.0.0.1:8000/api/admin-panel/products/products-list/") {
+                                backUrl = res.previous;
+                                $('#page1').html(`1`);
+                                $('#page2').html('2');
+                                $('#page3').html('');
+                            }
+                            if (res.previous !== "http://127.0.0.1:8000/api/admin-panel/products/products-list/") {
+                                backUrl = res.previous;
+                                let nUrlss = new URL(res.previous)
+                                let nUrlNumss = nUrlss.searchParams.get("page");
+                                let currentpagess = Number(nUrlNumss) + 1;
+                                $('#page1').html(`${nUrlNumss}`);
+                                $('#page2').html(`${currentpagess}`);
+                                $('#page3').html(``);
+                            }
+                        }
+                        $('#page1').on(('click'), function() {
+                            getListProducts(backUrl)
+                        })
+                        $('#page3').on(('click'), function() {
+                            getListProducts(nextUrl)
+                        })
+                    },
+                    error: (err) => {
+
+                    }
+                })
+            }
+            getListProducts(listProducturl)
+
+            function getCommentProducts() {
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/admin-panel/products/products-comments-list/',
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+
+                    success: (res) => {
+
+
+                        $('#p-comment').append(`
+                                    <div class="complaint-box">
+                                        <div>
+                                            <div class="top-complaintbox">
+                                                <div class="name-complaintbox">
+                                                    <p>${res.results[0].user_fullname} </p>
+                                                </div>
+                                            </div>  
+                                            <div class="text-user-msg">
+                                                <p>${res.results[0].comment} </p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                `)
+
+                    },
+                    error: (err) => {
+
+                    }
+                })
+            }
+            getCommentProducts()
+
+            var sellUrl = "http://127.0.0.1:8000/api/admin-panel/products/products-purchased/"
+
+            function getSell(sellUrl) {
+                $.ajax({
+                    url: sellUrl,
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+
+                    success: (res) => {
+
+
+                        $('#p-sell1').append(`
+                                <div class="mid-table">
+
+                                    <div class="mid-table-img">
+                                        <img src="${res.results[0].image}" alt="">
+                                    </div>
+                                    <div>
+                                        <p>${res.results[0].title}</p>
+                                    </div>
+
+                                    <div>
+                                        <p>${res.results[0].price}</p>
+                                    </div>
+                                    <div>
+                                        <p>${res.results[0].jdate}</p>
+                                    </div>
+                                    <div>
+                                        <div class="edit-icons">
+                                            <div class="edit-icon"></div>
+                                            <div class="trash-icon" ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `)
+
+                        $('#p-sell2').append(`
+                                <div class="all-service-card">
+                                    <div class="fc fc-r1">
+                                        <p class="fc-text1">نام </p>
+                                        <img class="fc-img" src="${res.results[0].image}" alt="">
+                                    </div>
+
+                                    <div class="fc fc-r2">
+                                        <p class="fc-text1">حجم</p>
+                                        <p class="fc-text2">${res.results[0].compounds}</p>
+                                    </div>
+                                    <div class="fc fc-r2">
+                                        <p class="fc-text1">قیمت</p>
+                                        <p class="fc-text2">${res.results[0].price}</p>
+                                    </div>
+                                    <div class="fc fc-r4">
+                                        <p class="fc-text1">تاریخ</p>
+                                        <p class="fc-text2">${res.results[0].jdate}</p>
+                                    </div>
+
+                                    <div class="fc fc-r6">
+                                        <div class="trash-forosh-icon"></div>
+                                        <div class="edit-forosh-icon" data-trash=""></div>
+                                    </div>
+                                </div>
+                           `)
+                        var nextUrl;
+                        var backUrl;
+                        if (res.previous == null && res.next == null) {
+                            $('#page11').html(``);
+                            $('#page22').html('1');
+                            $('#page11').html(``);
+                        }
+                        if (res.previous == null && res.next !== null) {
+                            nextUrl = res.next;
+                            $('#page11').html(``);
+                            $('#page22').html('1');
+                            $('#page33').html('2');
+                        }
+                        if (res.previous !== null && res.next !== null) {
+                            nextUrl = res.next;
+                            backUrl = res.previous;
+                            let nUrls = new URL(res.next)
+                            let nUrlNums = nUrls.searchParams.get("page");
+                            let currentpages = Number(nUrlNums) - 1;
+                            let prevPageNums = Number(nUrlNums) - 2;
+                            $('#page11').html(`${prevPageNums}`);
+                            $('#page22').html(`${currentpages}`);
+                            $('#page33').html(`${nUrlNums}`);
+                        }
+                        if (res.previous !== null && res.next == null) {
+                            if (res.previous == "http://127.0.0.1:8000/api/admin-panel/products/products-list/") {
+                                backUrl = res.previous;
+                                $('#page11').html(`1`);
+                                $('#page22').html('2');
+                                $('#page33').html('');
+                            }
+                            if (res.previous !== "http://127.0.0.1:8000/api/admin-panel/products/products-list/") {
+                                backUrl = res.previous;
+                                let nUrlss = new URL(res.previous)
+                                let nUrlNumss = nUrlss.searchParams.get("page");
+                                let currentpagess = Number(nUrlNumss) + 1;
+                                $('#page11').html(`${nUrlNumss}`);
+                                $('#page22').html(`${currentpagess}`);
+                                $('#page33').html(``);
+                            }
+                        }
+                        $('#page11').on(('click'), function() {
+                            getSell(backUrl)
+                        })
+                        $('#page33').on(('click'), function() {
+                            getSell(nextUrl)
+                        })
+                    },
+                    error: (err) => {
+
+                    }
+                })
+            }
+            getSell(sellUrl)
+
+            function trashfunc() {
+
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/admin-panel/products/products-comments-list/',
+                    type: "delete",
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+                    data: {
+
+                    },
+                    success: (res) => {
+
+                    },
+                    error: (err) => {
+
+                    }
+                })
+            }
+            var chartDataAry = []
+            $('#daily').click(function() {
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/admin-panel/products/products-orders-day/',
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+
+                    success: (res) => {
+
+
+
+                        chartDataAry.push(res.total_price.map(item => {
+                            return item
+                        }))
+
+
+                        // ============================CHART ==========================
+                        // var xValues =  ["مهر","آبان","آذر","دی","بهمن","اسفند"] ;
+                        // xValues.classList.add('chart-text-style')
+
+
+                        new Chart("myChart", {
+                            type: "line",
+                            data: {
+                                // labels: xValues,
+                                datasets: [{
+                                    lineTension: 0,
+                                    data: res.total_price,
+                                    borderColor: "#EC6666",
+                                    fill: false
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            min: 0,
+                                            max: 50
+                                        }
+                                    }],
+
+                                }
+                            }
+                        });
+
+                    },
+                    error: (err) => {
+
+                    }
+                })
+
+            })
+
+            $('#Weekly').click(function() {
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/admin-panel/products/products-orders-week/',
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+
+                    success: (res) => {
+
+
+
+                        chartDataAry.push(res.total_price.map(item => {
+                            return item
+                        }))
+
+
+                        // ============================CHART ==========================
+                        var xValues = ["1", "2", "3", "4", "5", "6", "7"];
+                        // xValues.classList.add('chart-text-style')
+
+
+                        new Chart("myChart", {
+                            type: "line",
+                            data: {
+                                labels: xValues,
+                                datasets: [{
+                                    lineTension: 0,
+                                    data: res.total_price,
+                                    borderColor: "#EC6666",
+                                    fill: false
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            min: 0,
+                                            max: 50
+                                        }
+                                    }],
+
+                                }
+                            }
+                        });
+
+                    },
+                    error: (err) => {
+
+                    }
+                })
+
+            })
+
+            $('#monthly').click(function() {
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/admin-panel/products/products-orders-month/',
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+
+                    success: (res) => {
+
+
+
+                        chartDataAry.push(res.total_price.map(item => {
+                            return item
+                        }))
+
+
+                        // ============================CHART ==========================
+                        var xValues = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+                        // xValues.classList.add('chart-text-style')
+
+
+                        new Chart("myChart", {
+                            type: "line",
+                            data: {
+                                labels: xValues,
+                                datasets: [{
+                                    lineTension: 0,
+                                    data: res.total_price,
+                                    borderColor: "#EC6666",
+                                    fill: false
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            min: 0,
+                                            max: 50
+                                        }
+                                    }],
+
+                                }
+                            }
+                        });
+
+                    },
+                    error: (err) => {
+
+                    }
+                })
+
+            })
+
+            $('#yearly').click(function() {
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/admin-panel/products/products-orders-year/',
+                    headers: {
+                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
+                    },
+
+                    success: (res) => {
+
+
+
+                        chartDataAry.push(res.total_price.map(item => {
+                            return item
+                        }))
+
+
+                        // ============================CHART ==========================
+                        var xValues = ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"];
+                        // xValues.classList.add('chart-text-style')
+
+
+                        new Chart("myChart", {
+                            type: "line",
+                            data: {
+                                labels: xValues,
+                                datasets: [{
+                                    lineTension: 0,
+                                    data: res.total_price,
+                                    borderColor: "#EC6666",
+                                    fill: false
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            min: 0,
+                                            max: 50
+                                        }
+                                    }],
+
+                                }
+                            }
+                        });
+
+                    },
+                    error: (err) => {
+
+                    }
+                })
+
+            })
+
+
+            //======================= trash alert ==================================
+
+            function trash(n) {
+                var boxOne = document.getElementsByClassName("question-box");
+                var shadowBox = document.getElementsByClassName("background");
+                if (n == 1) {
+                    boxOne[0].classList.remove("qu-off");
+                    boxOne[0].classList.add("qu-on");
+                    shadowBox[0].style.display = "block";
+                }
+                if (n == 2) {
+                    boxOne[0].classList.remove("qu-on");
+                    boxOne[0].classList.add("qu-off");
+                    shadowBox[0].style.display = "none";
+                }
+            }
+
+            // =================================== close ======================
+            function exit(n) {
+
+                var boxOne1 = document.getElementsByClassName("question-box-two");
+                var shadowBox1 = document.getElementsByClassName("background");
+                if (n == 1) {
+                    boxOne1[0].classList.remove("qu-two-off");
+                    boxOne1[0].classList.add("qu-two-on");
+                    shadowBox1[0].style.display = "block";
+                }
+                if (n == 2) {
+                    boxOne1[0].classList.remove("qu-two-on");
+                    boxOne1[0].classList.add("qu-two-off");
+                    shadowBox1[0].style.display = "none";
+                }
+            }
+
+            //============================ panel ==============================
+            var panelpage = 1;
+            panel(1);
+
+
+
+
+            function SelectPanel(n) {
+                panel(panelpage = n);
+            }
+
+            function panel(n) {
+                var i;
+                var page = document.getElementsByClassName("panel-page");
+                var StyPanel = document.getElementsByClassName("panels-details");
+                if (n > page.length) {
+                    panelpage = 1
+                }
+                if (n < 1) {
+                    panelpage = page.length
+                }
+                for (i = 0; i < page.length; i++) {
+                    page[i].style.display = "none";
+                }
+                for (i = 0; i < StyPanel.length; i++) {
+                    StyPanel[i].classList.remove("border");
+                }
+                page[panelpage - 1].style.display = "inline-block";
+                StyPanel[panelpage - 1].classList.add("border");
+            }
+        </script>
+</body>
+
+
+</html>

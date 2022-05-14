@@ -1,0 +1,392 @@
+{% extends 'base/base.html' %} {% load static %} {% block content %}
+
+<!-- ---------------------------------new code-------------------------------- -->
+
+
+<section id="slider" class="main-box">
+
+    <div class="containerdetails">
+
+        <div style="display: flex;" class="main-box-slider">
+            <div class="nxt-btnditails" onclick="plusSlides(1)">
+                <div class="nxt-btnditails-img"></div>
+            </div>
+
+            <div class="carousel-item fade">
+                <img class=" slide-imgditils" src="./asset/img/pic-29.png" alt="...">
+            </div>
+            <div class="carousel-item fade">
+                <img class=" slide-imgditils" src="./asset/img/pic-30.png" alt="...">
+            </div>
+
+            <div class="pre-btnditails" onclick="plusSlides(-1)">
+                <div class="pre-btnditails-img"></div>
+            </div>
+
+        </div>
+        <div class="all-dot-btnditails">
+            <button type="button" class="dot-btndetails slide-activedetails" onclick="currentSlideDetails(1)">
+              <img class="slidedetails" src="./asset/img/pic-29.png" alt="...">
+            </button>
+            <button style="margin-top: 5px" type="button" class="dot-btndetails " onclick="currentSlideDetails(2)">
+            <img class="slidedetails" src="./asset/img/pic-30.png" alt="...">
+            </button>
+        </div>
+
+
+    </div>
+    <div class="form-left-box">
+        <ol>
+            <li class="form-item ">
+                <div class="div-style">
+                    <h2 class="form-item-title"> {{ product.title }}</h2>
+                </div>
+
+            </li>
+            <li style="display: flex; width: 100%;">
+                <p class="form-title">
+                    بانكه هاي چوبي از ان دسته ظروفي است که طرفداران زيادي دارد اين بانكه از چوب روسي تهيه شده و كيفيت خوبي دارد که از آن هم می توان برای پذیرایی و ریختن انواع تنقلات ، شکلات و حتی حبوبات استفاده نمود
+                </p>
+            </li>
+
+            <li class="form-item ">
+                <div class="div-style">
+                    <div class="form-item-cout">
+                        <div class="item-count">
+                            <p id="cunt-plus" class="cunt-div">+</p>
+                        </div>
+                        <div class="item-count">
+                            <p id="counter" class="cunt-div">1</p>
+                        </div>
+                        <div class="item-count">
+                            <p id="cunt-min" class="cunt-div">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="direction: ltr;" class="div-style">
+                    <h2 class="sec-price" class=""> {{ product.price }} تومان </h2>
+
+                </div>
+            </li>
+
+            <li>
+                {% if request.user.is_authenticated %}
+                <div class="pro-btn2">
+                    <button id="add-cart" class="form-btn2" type="button">افزودن به سبد خرید</button>
+                </div>
+                {% endif %}
+            </li>
+        </ol>
+    </div>
+</section>
+
+<!-- ---------- -->
+
+
+<section class="ttttttttttttttt">
+
+
+    <div class="tabs-main">
+        <input type="radio" name="tabs-main" id="tabone" checked="checked">
+        <label class="tabs-main-part" for="tabone">
+            
+            <div class="tabs-main-res-label">          معرفی
+            </div></label>
+        <div class="tab detailstabcontent">
+            <!-- <h1>معرفی</h1> -->
+            <p>
+                {{ product.descriptions }}
+            </p>
+        </div>
+        <input type="radio" name="tabs-main" id="tabtwo">
+        <label class="tabs-main-part" for="tabtwo">
+            <div class="tabs-main-res-label">جزئیات
+            </div>
+        </label>
+        <div class="tab detailstabcontent ">
+            <div class="detailstabdiv">
+                <p class="detailstabp">حجم</p>
+                <p class="detailstabp">{{ product.volume }}</p>
+            </div>
+            <div class="detailstabdiv">
+                <p class="detailstabp">ترکیبات</p>
+                <p class="detailstabp">{{ product.compounds }}</p>
+            </div>
+            <div class="detailstabdiv">
+                <p class="detailstabp">صادرکننده مجوز</p>
+                <p class="detailstabp"> {{ product.licenseـissuer }} </p>
+            </div>
+
+        </div>
+
+        <input type="radio" name="tabs-main" id="tabfour">
+        <label class="tabs-main-part" for="tabfour">
+          <div class="tabs-main-res-label">          نظرات
+    </div>
+
+    </label>
+        <div class="tab detailstabcontent">
+            <div class="detailstabdiv3">
+                <div class="detailstabdiv22">
+                    <p>علی علیزاده</p>
+                    <p>تیر 22</p>
+                </div>
+
+            </div>
+            <p class="detailstabdiv22-p">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+
+
+            <div class="tab-div-m">
+                <h4 style="color: #F26A4F;">ثبت دیدگاه جدید</h4>
+                <p>شما هم درباره این کالا دیدگاه ثب کنید</p>
+                <div class="form-details">
+
+                    <li class="form-item-details  ">
+                        <div style=" width: 100%;">
+                            <textarea class="form-input-textarea2" placeholder="متن پیام" name="textarea-input" rows="5" cols="50"></textarea>
+
+                        </div>
+                    </li>
+
+                    <div class="pro-btn22">
+                        <button onclick="sendData()" class="form-btn" type="button">ارسال نظر</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<div id="snackbar" class=""></div>
+
+<!-- ---------------------------------new code-------------------------------- -->
+
+
+
+<div class="product-slider">
+    <h1 class="title1">محصولات مشابه</h1>
+    <section class="product">
+        <div class="nxt-btn" onclick="plusslides1(1)">
+            <div class="nxt-btn-img"></div>
+        </div>
+
+        <div class="p1-page">
+            <div id="product-container-id" class="product-container">
+
+                {% for p in similars %}
+                <div class="product-box">
+                    <a href="{% url 'Taksathi:products_detail_page' p.id p.slug %}">
+                        <img class="image" src="{{ p.image.url }}" alt="{{ p.title }}">
+                    </a>
+                    <div class="details">
+
+                        <a href="#">
+                            <h2>{{ p.title }}</h2>
+                        </a>
+
+                        <div class="price">{{ p.price }} تومان </div>
+
+
+                    </div>
+
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </section>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script>
+    function message(type, msg) {
+        var succ = type
+        var messageText = msg
+        var snackbar = document.getElementById('snackbar')
+
+        if (succ == "sucsses") {
+            snackbar.innerText = messageText
+            snackbar.className += " sucsses"
+            setTimeout(function() {
+                snackbar.innerText = " "
+                snackbar.classList.remove("sucsses")
+            }, 3000);
+        }
+
+        if (succ == "error") {
+            snackbar.innerText = msg
+            snackbar.className += " error"
+            setTimeout(function() {
+                snackbar.innerText = " "
+                snackbar.classList.remove("error")
+            }, 3000);
+        }
+
+        // setTimeout(function(){ snackbar.classList.remove("error")}, 3000);
+    }
+    var count = 1
+        // var limitLengh = document.getElementById('remainingnumber').innerHTML;
+    var minLengh = 0
+    var limitLengh = 3
+
+    $('#cunt-plus').click(function() {
+        if (count < 3) {
+            document.getElementById('counter').innerHTML = ++count
+                // alert('hhh')
+        } else {
+            alert('jjjjjjj')
+        }
+    })
+    $('#cunt-min').click(function() {
+        if (count > 0) {
+            document.getElementById('counter').innerHTML = --count
+        } else {
+            alert('mmmmm')
+        }
+    })
+
+    //===========================slider=========================
+    // ==========================DETAILS_TAB==================
+
+    var detailstabLinks = document.querySelectorAll(".detailstablinks");
+    var detailstabContent = document.querySelectorAll(".detailstabcontent");
+
+
+    detailstabLinks.forEach(function(el) {
+        el.addEventListener("click", detailsopenTabs);
+    });
+
+
+    function detailsopenTabs(el) {
+        var detailsbtnTarget = el.currentTarget;
+        var detailsvaluetxt = detailsbtnTarget.dataset.valuetxt;
+
+        detailstabContent.forEach(function(el) {
+            el.classList.remove("detailsactive");
+        });
+
+        detailstabLinks.forEach(function(el) {
+            el.classList.remove("detailsactive");
+        });
+
+        document.querySelector("#" + detailsvaluetxt).classList.add("detailsactive");
+
+        detailsbtnTarget.classList.add("detailsactive");
+    }
+
+
+    // ==========================DETAILS_TAB==================
+
+    // ==========================COUNTER=====================
+    var count = 1
+    var limitLengh = 5
+    var minLengh = 0
+
+
+    // var firstPrice = document.getElementById('price-product').innerHTML
+
+
+    // function plus() {
+    //    
+
+    //     if(count < limitLengh){
+    //     document.getElementById('counter').innerHTML = ++count
+    //     }
+    //     else{
+    //         alert('jjjjjjj')
+    //     }
+    // }
+
+    // function minus() {
+    //     if(count > minLengh){
+    //     document.getElementById('counter').innerHTML = --count
+    //     }
+    //     else{
+    //         alert('mmmmm')
+    //     }
+    // }
+
+    function getdata() {
+        $.ajax({
+            url: 'http://127.0.0.1:8000/api/products/products-comments-list/',
+            // url:'{% url "ApiTaksathi:admin_products_comments_list" %}?id={{ product.id  }}',
+            success: (res) => {
+
+                $('#detailstabdiv3').append(`
+                <div class="detailstabdiv22">
+                    <p>علی علیزاده</p>
+                    <p>تیر 22</p>
+                </div>
+                <p class="detailstabdiv22-p">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+            `)
+
+
+            },
+            error: (err) => {
+
+            }
+        })
+    }
+    getdata()
+    $('#add-cart').click(function() {
+        $.ajax({
+            url: '{% url "ApiTaksathi:carts_add" %}',
+            type: 'post',
+            headers: {
+                'Authorization': 'Token {{ user_token }}'
+            },
+            data: {
+                id: 1
+            },
+            success: (res) => {
+
+
+            },
+            error: (err) => {
+
+            }
+        })
+    })
+
+    function sendData() {
+        let txt = $("#form-text").val()
+        $.ajax({
+            url: "{% url 'ApiTaksathi:products_comments_add' %}",
+            type: "post",
+            headers: {
+                'Authorization': 'Token {{ user_token }}'
+            },
+            data: {
+                user: 6,
+                product: 5,
+                comment: txt,
+            },
+            success: (res) => {
+
+
+                if (txt == '') {
+                    message('error', 'متن پیام را وارد کنید')
+                    return
+                } else if (res.message == 'کاربر قبلا برای این محصول دیدگاه ثبت کرده است') {
+                    message('error', 'کاربر قبلا برای این محصول دیدگاه ثبت کرده است')
+
+
+                }
+            },
+            error: (err) => {
+                message('error', 'ارسال نشد')
+
+
+            }
+
+        })
+    }
+    // =================================== send ======================
+</script>
+
+{% endblock %}

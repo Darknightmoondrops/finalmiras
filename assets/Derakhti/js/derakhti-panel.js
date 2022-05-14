@@ -172,30 +172,30 @@ new Chart("myChartTwo", {
     }
 });
 //======================= END chaert part =====================
-var page1 = 1;
+// var page1 = 1;
 
-function SelectPanel(n) {
-    panel(panelpage = n);
-}
+// function SelectPanel(n) {
+//     panel(panelpage = n);
+// }
 
-function panel(n) {
-    var i;
-    var page = document.getElementsByClassName("panel-page");
-    var StyPanel = document.getElementsByClassName("panels-details");
-    var treantChart = document.getElementById('custom-colored');
-    if (n > page.length) { panelpage = 1 }
-    if (n < 1) { panelpage = page.length }
-    for (i = 0; i < page.length; i++) {
-        page[i].style.display = "none";
-    }
-    for (i = 0; i < StyPanel.length; i++) {
-        StyPanel[i].classList.remove("border");
-    }
-    if (n == 4) {
-        treantChart.style.display = "block";
-    } else {
-        treantChart.style.display = "none";
-    }
-    page[panelpage - 1].style.display = "block";
-    StyPanel[panelpage - 1].classList.add("border");
-}
+// function panel(n) {
+//     var i;
+//     var page = document.getElementsByClassName("panel-page");
+//     var StyPanel = document.getElementsByClassName("panels-details");
+//     var treantChart = document.getElementById('custom-colored');
+//     if (n > page.length) { panelpage = 1 }
+//     if (n < 1) { panelpage = page.length }
+//     for (i = 0; i < page.length; i++) {
+//         page[i].style.display = "none";
+//     }
+//     for (i = 0; i < StyPanel.length; i++) {
+//         StyPanel[i].classList.remove("border");
+//     }
+//     if (n == 4) {
+//         treantChart.style.display = "block";
+//     } else {
+//         treantChart.style.display = "none";
+//     }
+//     page[panelpage - 1].style.display = "block";
+//     StyPanel[panelpage - 1].classList.add("border");
+// }

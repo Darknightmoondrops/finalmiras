@@ -1,50 +1,49 @@
-{% extends 'base/base.html' %}
-{% load static %}
-{% block content %}
-    <main>
-        <section id="pic-top-header">
-            <div class="container-fluid parent" style="background-image: url('{% static 'base/assets/images/pictopheader.jpg' %}');">
-                <div class="explore">
-                    <h3>کاوش بیشتر در مورد</h3>
-                    <h1>میراث</h1>
-                    <div class="bottom-link">
-                        <a href="#slider">
-                            <i class="fa fa-arrow-down"></i>
-                        </a>
-                    </div>
+{% extends 'base/base.html' %} {% load static %} {% block content %}
+<main>
+    <section id="pic-top-header">
+        <div class="container-fluid parent" style="background-image: url('{% static 'base/assets/images/pic1.jpg' %}');">
+            <div class="explore">
+                <h3>کاوش بیشتر در مورد</h3>
+                <h1>میراث</h1>
+                <div class="bottom-link">
+                    <a href="#slider">
+                        <i class="fa fa-arrow-down"></i>
+                    </a>
                 </div>
             </div>
-        </section>
-        <section id="slider">
-            <div class="main-carousel w-75 mx-auto mt-5 ">
-                {% for slider in sliders %}
-                    <div class="carousel-cell">
-                        <a href="{{ slider.url }}"><img src="{{ slider.image.url }}" class="w-100" alt=""></a>
-                    </div>
+        </div>
+    </section>
+    <section id="slider">
+        <div class="main-carousel w-75 mx-auto mt-5 ">
+            {% for slider in sliders %}
+            <div class="carousel-cell">
+                <a href="{{ slider.url }}"><img src="{{ slider.image.url }}" class="w-100" alt=""></a>
+                <a href="{{ slider.url }}"><img src="{{ slider.image.url }}" class="w-100" alt=""></a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section id="products" class="text-center mt-5 py-5">
+        <div class="container-fluid">
+            <h2 class="fs-1">
+                محصولات <span>ما</span>
+            </h2>
+            <h4 class="mt-4 fs-3">بهترین محصولات مناسب در تجارت</h4>
+            <div class="row w-75 mx-auto">
+
+                {% for product in products %}
+                <div class="col-6 col-lg-3 product-item">
+                    <a href="{% url 'Taksathi:products_detail_page' product.id product.slug %}">
+                        <img src="{{ product.image.url }}" alt="">
+                        <p class="yellow">{{ product.title }}</p>
+                    </a>
+                </div>
                 {% endfor %}
+
+
             </div>
-        </section>
-        <section id="products" class="text-center mt-5 py-5">
-            <div class="container-fluid">
-                <h2 class="fs-1">
-                    محصولات <span>ما</span>
-                </h2>
-                <h4 class="mt-4 fs-3">بهترین محصولات مناسب در تجارت</h4>
-                <div class="row w-75 mx-auto">
+        </div>
+    </section>
 
-                    {% for product in products %}
-                        <div class="col-6 col-lg-3 product-item">
-                            <a href="{% url 'Taksathi:products_detail_page' product.id product.slug %}">
-                                <img src="{{ product.image.url }}" alt="">
-                                <p class="yellow">{{ product.title }}</p>
-                            </a>
-                        </div>
-                    {% endfor %}
-
-
-                </div>
-            </div>
-        </section>
-
-    </main>
+</main>
 {% endblock %}

@@ -1,0 +1,185 @@
+{% extends 'base/base.html' %} {% load static %} {% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<main>
+
+    <section id="image" class="m-auto">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+
+                {% for slider in sliders %}
+                <div class="carousel-item {% if forloop.counter is 1 %}active{% endif %}">
+                    <a href="{{ slider.url }}" class="text-black text-decoration-none">
+                        <img src="{{ slider.image.url }}" class="d-block w-100 rounded" alt="Slider">
+                    </a>
+                </div>
+                {% endfor %}
+
+
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+        </div>
+    </section>
+    <section id="groping">
+        <h5 class="text-center py-2 fs-5"> دسته بندی ها</h5>
+        <div class="conteiner mx-auto justify-content-center ">
+            <div class="row  py-3">
+
+                {% for mainCategory1 in maincategories1 %}
+                <div class="col-lg-2 col-md-4 col-s-6 text-center">
+                    <div id="category" class="images">
+                        <img src="{{ mainCategory1.image.url }}" class="w-100 " alt="{{ mainCategory1.name }}">
+                        <h6 class="text-center pt-2">
+                            {{ mainCategory1.name }}
+                        </h6>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    <section id="product">
+        <div class="conteiner mx-auto justify-content-around py-3">
+            <div class="row">
+                {% for mainCategory2 in maincategories2 %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="item">
+                        <div class="card text-Secondary">
+                            <a href="" class="text-black text-decoration-none" class="text-black text-decoration-none">
+                                <img src="{{ mainCategory2.image.url }}" class="card-img w-100" alt="{{ mainCategory2.name }}">
+                                <div class="card-img-overlay">
+                                    <h5 class="card-title text-center d-none">{{ mainCategory2.name }}
+                                        <i class="fa fa-angle-left d-none"></i>
+                                    </h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section id="content ">
+        <h5 class="pt-4 pb-2 mx-2 " style="text-align: center">محصولات</h5>
+        <div class="conteiner mx-auto py-2 text-center">
+            <div id="main-product" class="row">
+
+
+                {% for product in products %}
+                <div class="col">
+                    <div id="k" class="card" style="width: 19rem;">
+                        <a href="{% url 'Taksathi:products_detail_page' product.id product.slug %}" class="text-black text-decoration-none" class="text-black text-decoration-none">
+                            <img src="{{ product.image.url }}" class="card-img-top rounded" alt="{{ product.title }}">
+                            <div class="card-body">
+                                <p class="card-text">{{ product.title }} </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="page-slider">
+                    <div class="page-number" dir="ltr">
+                        <span id="page11" class="page1 page"></span>
+                        <span id="page22" class="page2 page"></span>
+                        <span id="page33" class="page2 page"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    // $('#category').click(function() {
+    var categoryUrl = "http://127.0.0.1:8000/api/products/products-filter-maincategory-list/?id=1"
+
+    function category(categoryUrl) {
+        $.ajax({
+            url: categoryUrl,
+            success: (res) => {
+                let id = res.results[0].id
+                let slug = res.results[0].slug
+                    // let id= res.results[0].id
+                $('#main-product').html('')
+                $('#main-product').append(`
+                    
+                        <div class="col">
+                            <div id="k" class="card" style="width: 19rem;">
+                                <a href="http://127.0.0.1:8000/taksathi/products/detail/?id=${id}&slug=${slug}" class="text-black text-decoration-none" class="text-black text-decoration-none" >
+                                    <img src="${res.results[0].image}" class="card-img-top rounded" alt="{{ product.title }}">
+                                    <div class="card-body">
+                                      <p class="card-text">${res.results[0].title} </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                      
+                `)
+                var nextUrl;
+                var backUrl;
+                if (res.previous == null && res.next == null) {
+                    $('#page11').html(``);
+                    $('#page22').html('1');
+                    $('#page11').html(``);
+                }
+                if (res.previous == null && res.next !== null) {
+                    nextUrl = res.next;
+                    $('#page11').html(``);
+                    $('#page22').html('1');
+                    $('#page33').html('2');
+                }
+                if (res.previous !== null && res.next !== null) {
+                    nextUrl = res.next;
+                    backUrl = res.previous;
+                    let nUrls = new URL(res.next)
+                    let nUrlNums = nUrls.searchParams.get("page");
+                    let currentpages = Number(nUrlNums) - 1;
+                    let prevPageNums = Number(nUrlNums) - 2;
+                    $('#page11').html(`${prevPageNums}`);
+                    $('#page22').html(`${currentpages}`);
+                    $('#page33').html(`${nUrlNums}`);
+                }
+                if (res.previous !== null && res.next == null) {
+                    if (res.previous == "http://127.0.0.1:8000/api/products/products-filter-maincategory-list/") {
+                        backUrl = res.previous;
+                        $('#page11').html(`1`);
+                        $('#page22').html('2');
+                        $('#page33').html('');
+                    }
+                    if (res.previous !== "http://127.0.0.1:8000/api/products/products-filter-maincategory-list/") {
+                        backUrl = res.previous;
+                        let nUrlss = new URL(res.previous)
+                        let nUrlNumss = nUrlss.searchParams.get("page");
+                        let currentpagess = Number(nUrlNumss) + 1;
+                        $('#page11').html(`${nUrlNumss}`);
+                        $('#page22').html(`${currentpagess}`);
+                        $('#page33').html(``);
+                    }
+                }
+                $('#page11').on(('click'), function() {
+                    category(backUrl)
+                })
+                $('#page33').on(('click'), function() {
+                    category(nextUrl)
+                })
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+    }
+    category(categoryUrl)
+</script>
+
+{% endblock %}

@@ -1401,3 +1401,9 @@
         scrollbar-width: thin;
         scrollbar-color: #F99687 #C6C6C6;
     }
+    
+    #form-title1 {
+        color: #707070 !important;
+        font-size: 12px !important;
+        margin-top: 25px !important;
+    }

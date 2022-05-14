@@ -1,0 +1,44 @@
+body{
+    direction: rtl;
+    background-color: azure;
+
+    
+}
+.main-div{
+    margin:auto;
+    width: 80%;
+    height: 400px;
+    justify-content: center;
+    display: block;
+}
+
+table {
+    direction: rtl;
+    border-collapse: collapse;
+    width: 80%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: right;
+    padding: 8px;
+    width: 250px !important;
+    height: 50px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  @media screen and (max-width:682px) {
+    .main-div {
+        margin: auto;
+        overflow-y: scroll;
+        overflow-x: scroll;
+        width: 80%;
+        height: 400px;
+        justify-content: center;
+        display: block;
+    }
+}
+  

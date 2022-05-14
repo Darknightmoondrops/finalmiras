@@ -7,9 +7,11 @@
     direction: ltr;
     box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
+
 p {
     color: #707070;
 }
+
 .admin-prof {
     width: 60%;
     display: flex;
@@ -221,7 +223,7 @@ p {
 }
 
 .edit-prof-icon {
-    background-image: url(../icons/icons8-edit-48.png);
+    background-image: url(../../../Derakhti/asset/icons//icons8-edit-48.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60px;
@@ -231,7 +233,7 @@ p {
 }
 
 .product-list-icon {
-    background-image: url(../icons/icons8-list-view-40.png);
+    background-image: url(../../../Derakhti/asset/icons/icons8-list-view-40.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60px;
@@ -241,7 +243,7 @@ p {
 }
 
 .sale-icon {
-    background-image: url(../icons/icons8-sell-50.png);
+    background-image: url(../../../Derakhti/asset/icons/icons8-sell-50.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60px;
@@ -251,7 +253,7 @@ p {
 }
 
 .sale-icon {
-    background-image: url(../icons/icons8-sell-50.png);
+    background-image: url(../../../Derakhti/asset/icons//icons8-sell-50.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60px;
@@ -259,8 +261,9 @@ p {
     display: block;
     margin: 32px 15px;
 }
+
 .product-add-icon {
-    background-image: url(../icons/icons8-add-property-50.png);
+    background-image: url(../../../Derakhti/asset/icons/icons8-add-property-50.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60px;
@@ -280,7 +283,7 @@ p {
 }
 
 .accounting-icon {
-    background-image: url(../icons/icons8-accounting-66.png);
+    background-image: url(../../../Derakhti/asset/icons/icons8-accounting-66.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60px;
@@ -288,14 +291,16 @@ p {
     display: block;
     margin: 32px 15px;
 }
-.ticketing-icon{
-    background-image: url(../icons/icons8-two-tickets-50.png);
+
+.ticketing-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-two-tickets-50.png);
     width: 61px;
     background-repeat: round;
     height: 54px;
     display: block;
     margin: 25px 8px;
 }
+
 .users-icon {
     background-image: url(../icons/icon-48.png);
     background-size: contain;
@@ -307,7 +312,7 @@ p {
 }
 
 .customer-satisfaction-icon {
-    background-image: url(../icons/icons8-customer-review-64.png);
+    background-image: url(../../../Derakhti/asset/icons/icons8-customer-review-64.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60px;
@@ -400,7 +405,8 @@ p {
     display: block;
 }
 
-.acc-inputs input ,select {
+.acc-inputs input,
+select {
     width: 80%;
     font-size: 25px;
     border-radius: 10px;
@@ -518,7 +524,7 @@ p {
 }
 
 .add-btn button {
-    width: 270px;
+    width: 80%;
     height: 60px;
     display: block;
     margin: auto;
@@ -528,6 +534,7 @@ p {
     background-color: #2ACB34;
     font-size: 30px;
     color: white;
+    cursor: pointer;
 }
 
 .list-products {
@@ -558,6 +565,15 @@ p {
     margin-top: 2%;
 }
 
+.top-table2 {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+    border-bottom: 5px solid #707070;
+    margin: auto;
+    margin-top: 2%;
+}
+
 .mid-table {
     display: flex;
     justify-content: space-evenly;
@@ -579,7 +595,7 @@ p {
 }
 
 .edit-icon {
-    background-image: url(../icons/icons8-edit-488.png);
+    background-image: url(../../../Derakhti/asset/icons/icons8-edit-488.png);
     width: 40px;
     height: 39px;
     background-repeat: round;
@@ -588,7 +604,7 @@ p {
 }
 
 .trash-icon {
-    background-image: url(../icons/icons8-delete-24.png);
+    background-image: url(../../../Derakhti/asset/icons/icons8-delete-24.png);
     width: 40px;
     height: 40px;
     display: block;
@@ -916,13 +932,14 @@ p {
 }
 
 .close-icon {
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     display: block;
     background-image: url(../icons/icon-29.png);
     background-repeat: no-repeat;
-    margin-top: 45px;
-    margin-right: 45px;
+    background-size: contain;
+    margin-top: 20px;
+    /* margin-right: 45px; */
     cursor: pointer;
 }
 
@@ -1052,7 +1069,7 @@ p {
 /* ------------------Chart Style------------ */
 
 .chart-icon {
-    background-image: url(../icons/icons8-chart-64.png);
+    background-image: url(../../../Derakhti/asset/icons/icons8-chart-64.png);
     background-size: contain;
     background-repeat: no-repeat;
     width: 60px;
@@ -1121,6 +1138,7 @@ p {
     font-size: 24px;
     color: #707070;
     width: 50%;
+    text-align: center !important;
     display: block;
 }
 
@@ -1233,6 +1251,13 @@ p {
 }
 
 @media screen and (max-width: 768px) {
+    .chart-txt {
+        /* margin: auto !important; */
+        font-size: 11px;
+        color: #707070;
+        width: 75%;
+        display: block;
+    }
     .accounting-page-tablet {
         display: block;
     }
@@ -1410,6 +1435,13 @@ p {
 }
 
 @media (min-width: 300px) and (max-width: 450px) {
+    .chart-txt {
+        /* margin: auto !important; */
+        font-size: 11px;
+        color: #707070;
+        width: 75%;
+        display: block;
+    }
     .name-complaintbox p {
         font-size: 9px;
     }
@@ -1417,16 +1449,14 @@ p {
         width: 65px;
         height: 23px;
     }
-    .teket-div p{
+    .teket-div p {
         direction: rtl;
-    
     }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .teket-div p{
+    .teket-div p {
         direction: rtl;
-    
     }
     .accounting-page-tablet {
         display: block;
@@ -1606,17 +1636,17 @@ p {
     }
 }
 
-.teket-div{
+.teket-div {
     direction: rtl;
-    margin:auto;
+    margin: auto;
     width: 80%;
     height: auto;
     justify-content: center;
     display: block;
     margin-bottom: 100px;
-
 }
-.form-div{
+
+.form-div {
     width: 90%;
     margin: auto !;
     margin-top: 10px;
@@ -1624,13 +1654,13 @@ p {
     direction: rtl;
     align-items: center;
     background-color: azure;
-
 }
-.teket-p{
+
+.teket-p {
     margin-right: 0;
-
 }
-.form-box{
+
+.form-box {
     width: 100%;
     margin: auto !;
     margin-top: 10px;
@@ -1639,7 +1669,7 @@ p {
     align-items: center;
 }
 
-.input{
+.input {
     width: 90%;
     height: 35px;
     border: 1px solid #707070;
@@ -1647,7 +1677,8 @@ p {
     padding-right: 10px;
     margin-top: 10px;
 }
-.textarea-input{
+
+.textarea-input {
     width: 90%;
     height: 150px;
     border: 1px solid #707070;
@@ -1656,7 +1687,7 @@ p {
     margin-top: 10px;
 }
 
-.send-teket{
+.send-teket {
     border-radius: 6px;
     width: 40%;
     cursor: pointer;
@@ -1668,6 +1699,7 @@ p {
     margin: auto;
     margin-top: 10px;
 }
+
 #snackbar {
     width: 20%;
     height: 60px;
@@ -1695,9 +1727,12 @@ p {
     background-color: #f8d7da;
     border-color: #f5c6cb;
 }
-#add-img{
+
+#add-img {
     cursor: pointer;
 }
+
+
 /* *********************** chart filter *************************/
 
 .filter-part2 {
@@ -1710,10 +1745,12 @@ p {
     font-size: 20px;
     cursor: pointer;
 }
+
 .filter-part22 {
     margin: auto !important;
     width: 50% !important;
 }
+
 .filter-part2-dropdown {
     display: none;
     width: 200px;
@@ -1723,19 +1760,275 @@ p {
     z-index: 1;
     padding-top: 29px;
     background-color: #efefef;
-    left: -66%;
+    left: -56%;
     top: 55px;
 }
+
 .filter-dropdown-txt {
     display: block;
     font-size: 22px;
     text-align: center;
     line-height: 46px;
 }
-    
+
 .filter-part2:hover .filter-part2-dropdown {
     display: block;
 }
+
 .filter-dropdown-txt:hover {
     background-color: #afafaf;
+}
+
+.teket-tr :hover {
+    cursor: pointer;
+    background-color: #707070;
+}
+
+
+/* body{
+    direction: rtl;
+    background-color: azure;
+
+    
+} */
+
+#main-div {
+    margin: 10px 0px;
+    width: 100% !important;
+    height: 500px !important;
+    justify-content: center;
+    /* display: none; */
+    border-radius: 10px;
+    overflow-y: scroll;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.top-page {
+    width: 90%;
+    height: auto;
+    display: flex;
+    border-bottom: 1px solid #707070;
+    margin: auto;
+}
+
+.top-page-box {
+    width: 45%;
+    margin: auto;
+    text-align: end;
+}
+
+.ui-received-chat {
+    direction: ltr;
+    /* width: 60%; */
+    display: flex;
+    margin-top: 25px;
+    /* margin-right: auto; */
+}
+
+.chat-profile {
+    width: 65px;
+    height: 60px;
+    border-radius: 40%;
+    background-image: url(../../../Derakhti/asset/icons/icons8-support-64.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.chat-sender-profile {
+    width: 50px;
+    height: 60px;
+    border-radius: 40%;
+    background-image: url(../../../Derakhti/asset/icons/icon-21.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.chat-text-box {
+    background-color: rgba(21, 93, 235, 0.801);
+    width: 80%;
+    /* height: 200px; */
+    margin-left: 15px;
+    border-radius: 52px;
+    margin-top: 25px;
+    margin: auto;
+}
+
+.ui-send-chat {
+    direction: rtl;
+    /* width: 60%; */
+    display: flex;
+    margin-top: 25px;
+}
+
+.chat-send-text-box {
+    margin-top: 25px;
+    background-color: rgba(246, 38, 1, 0.801);
+    width: 80%;
+    height: auto;
+    margin: auto;
+    /* margin-left: 15px; */
+    border-radius: 52px;
+}
+
+.send-text {
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    display: flex;
+    /* width: 80%; */
+    align-items: center;
+    margin: auto;
+    border-radius: 20px;
+}
+
+.send-text-inp {
+    width: 88%;
+    height: 35px;
+    padding-right: 10px;
+    border-radius: 20px;
+}
+
+.send-icon {
+    width: 100%;
+    height: 38px;
+    background-image: url(../icons/icons8-email-send-48.png);
+    background-repeat: no-repeat;
+    transform: rotate(225deg);
+    background-size: contain;
+}
+
+.send-file {
+    visibility: hidden;
+}
+
+.chat-p {
+    color: white;
+    margin: 15px 35px;
+    width: max-content;
+}
+
+.top-page p {
+    font-weight: bold;
+}
+
+.chat-box {
+    margin: auto;
+    margin-bottom: 30px;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.message-date {
+    display: flex;
+    flex-direction: row-reverse;
+    /* margin: auto; */
+    margin: 15px 35px;
+    font-size: 10px;
+    color: black;
+}
+
+.message-date2 {
+    display: flex;
+    flex-direction: row-reverse;
+    /* margin: auto; */
+    margin: 15px 35px;
+    font-size: 10px;
+    color: black;
+}
+
+.link-icon {
+    background-image: url(../../../Derakhti/asset/icons/icons8-link-24.png);
+    background-repeat: no-repeat;
+    width: 40px;
+    margin: auto;
+    margin-right: 7px;
+    height: 40px;
+    margin-top: 10px;
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+.upload-inp {
+    width: 10%;
+    border: none;
+    cursor: pointer;
+    height: 35px;
+    background-color: white;
+    /* margin-top: 20px; */
+}
+
+@media screen and (max-width:682px) {
+    .ui-received-chat {
+        direction: ltr;
+        width: 100%;
+        display: flex;
+        margin-top: 25px;
+        margin-right: auto;
+    }
+    .ui-send-chat {
+        direction: rtl;
+        width: 100%;
+        display: flex;
+        margin-top: 25px;
+    }
+    .chat-box {
+        width: 90%;
+        margin: auto;
+    }
+    .send-text {
+        box-shadow: 0 0 0 2px rgb(255 255 255), 0.3em 0.3em 1em rgb(0 0 0 / 30%);
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin: auto;
+    }
+    .upload-inp {
+        width: 18%;
+        background-color: azure;
+        border: none;
+        cursor: pointer;
+    }
+    .send-text-inp {
+        width: 70%;
+        height: 35px;
+        padding-right: 10px;
+        border-radius: 20px;
+    }
+    .link-icon {
+        /* background-image: url(../icons/icons8-link-24.png); */
+        background-repeat: no-repeat;
+        width: 40px;
+        margin: auto;
+        margin-right: 18px;
+        height: 40px;
+        margin-top: 12px;
+        transform: rotate(90deg);
+        cursor: pointer;
+    }
+}
+
+.single-user {
+    border: 1px solid;
+    width: 300px;
+    height: 50px;
+}
+
+#parent-div {
+    display: none;
+}
+
+.teket-header-div {
+    display: flex;
+    align-items: center;
+}
+
+.teket-header-div p {
+    margin-right: 0px;
+    font-size: 14px;
+}
+
+.teket-header-content {
+    font-size: 12px !important;
+}
+
+.services-panel-title p {
+    direction: rtl !important;
 }

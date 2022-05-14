@@ -13,6 +13,49 @@ body {
 
 /* new css for panel */
 
+.moaref-one-btn {
+    width: 90%;
+    height: 45px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #2ACB34;
+    border: 1px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 17px;
+}
+
+.pv-level {
+    width: 20%;
+    height: 45px;
+    color: #fff;
+    background-color: #2ACB34;
+    border: 1px;
+    border-radius: 20px;
+    font-size: 17px;
+    margin-top: 40px;
+    float: left;
+}
+
+.variz-btn {
+    width: 90%;
+    height: 45px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 25px;
+    border: 1px solid #cfcfcf;
+    background-color: rgb(53, 255, 53);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.variz-btn:hover {
+    background-color: rgb(78, 255, 78);
+}
+
 #custom-colored {
     margin: auto;
 }
@@ -305,12 +348,22 @@ body {
     margin: auto;
 }
 
-.reward-part {
+.rewardbox-off {
     display: flex;
     justify-content: right;
 }
 
-.msg-part {
+.rewardbox-on {
+    display: flex;
+    justify-content: right;
+}
+
+.varizi-off {
+    display: flex;
+    justify-content: right;
+}
+
+.varizi-on {
     display: flex;
     justify-content: right;
 }
@@ -1383,7 +1436,7 @@ body {
 .mid-table-cli {
     display: flex;
     justify-content: space-evenly;
-    width: 96%;
+    width: 84%;
     margin: auto;
     margin-top: 2%;
     margin-right: 85px;

@@ -25,7 +25,7 @@
                 <div class="base-info-icon"></div>
                 <p class="tab-text-derakhti">اطلاعات پایه و ویرایش</p>
             </div>
-            <div class="panels-details" onclick="SelectPanel(3)">
+            <div class="panels-details" id="hesab-panel">
                 <div class="information-acc-icon"></div>
                 <p class="tab-text-derakhti">اطلاعات حساب</p>
             </div>
@@ -41,11 +41,11 @@
                 <div class="order-icon"></div>
                 <p class="tab-text-derakhti">سفارشات من</p>
             </div>
-            <div class="panels-details" onclick="SelectPanel(7)">
+            <div class="panels-details" id="emtiyaz-panel">
                 <div class="point-icon"></div>
                 <p class="tab-text-derakhti">انتخاب امتیاز</p>
             </div>
-            <div class="panels-details" onclick="SelectPanel(8)">
+            <div class="panels-details" id="jaiigah-panel">
                 <div class="position-icon"></div>
                 <p class="tab-text-derakhti">ثبت جایگاه</p>
             </div>
@@ -82,7 +82,7 @@
                         <div class="network-icon1"></div>
                         <div class="profile-line-two-two-all-text">
                             <p class="text-of-panel">تعداد افراد زیر مجموعه شما :</p>
-                            <p class="text-of-panel">2</p>
+                            <p class="text-of-panel"></p>
                         </div>
                     </div>
                     <div class="profile-line-two-three">
@@ -133,19 +133,32 @@
                                 <p class="main-title-rewardbox">پاداش و کسر</p>
                             </div>
                             <div class="reward-part">
-                                <div class="green-circle"></div>
-                                <p class="text-of-panel text-not-reward">در حال حاضر شما پاداشی و کسری ندارید</p>
+                                <div class="rewardbox-off">
+                                    <div class="green-circle"></div>
+                                    <p class="text-of-panel text-not-reward">در حال حاضر شما پاداشی و کسری ندارید</p>
+                                </div>
+                                <div class="rewardbox-on">
+                                    <p class="text-of-panel" id="rewardbox-price"></p>
+                                    <p class="text-of-panel" id="rewardbox-date"></p>
+                                </div>
                             </div>
                         </div>
                         <div class="msg-main-part">
                             <div class="title-rewardbox">
-                                <p class="main-title-rewardbox">پیام های شما</p>
+                                <p class="main-title-rewardbox">لیست درخواست واریز</p>
                             </div>
                             <div class="msg-part">
-                                <div class="red-circle"></div>
-                                <p class="text-of-panel text-not-reward">در حال حاضر شما پیامی ندارید</p>
+                                <div class="varizi-off">
+                                    <div class="red-circle"></div>
+                                    <p class="text-of-panel text-not-reward">در حال حاضر شما پیامی ندارید</p>
+                                </div>
+                                <div class="varizi-on">
+                                    <p class="text-of-panel" id="variz-price"></p>
+                                    <p class="text-of-panel" id="variz-date"></p>
+                                </div>
                             </div>
                         </div>
+                        <button class="variz-btn" id="variz-btn">درخواست واریز</button>
                     </div>
                 </div>
             </div>
@@ -249,23 +262,23 @@
                     </div>
                     <button class="save-info-edit-list-box fix-edit-acc-btn" id="save-info-acc-number">ذخیره اطلاعات</button>
                 </div>
-                <!-- <div class="bank-cart bank-off">
+                <div class="bank-cart bank-off">
                     <div class="bank-name">
                         <p> کارت</p>
-                        <p id="bank-id1"></p>
+                        <p id="bank-id12"></p>
                     </div>
                     <div class="bank-info-one">
                         <p>کارت به نام :</p>
-                        <p id="name-cart"></p>
+                        <p id="name-cart1"></p>
                     </div>
                     <div class="bank-info-one">
                         <p>شماره حساب :</p>
-                        <p id="acc-num-cart"></p>
+                        <p id="acc-num-cart1"></p>
                     </div>
-                    <div class="bank-info-one" id="shaba-cart">
+                    <div class="bank-info-one" id="shaba-cart1">
                         <p> IR </p>
                     </div>
-                </div> -->
+                </div>
             </div>
             <div id="comments" class="comments panel-page">
                 <div class="top-tree-advanced">
@@ -277,19 +290,19 @@
                 <div class="number-place-box">
                     <div class="number-of-place">
                         <p>تعداد جایگاه فعال سمت راست :</p>
-                        <p id="active-right">1</p>
+                        <p id="active-right"></p>
                     </div>
                     <div class="number-of-place">
                         <p>تعداد جایگاه فعال سمت چپ :</p>
-                        <p id="active-left">2</p>
+                        <p id="active-left"></p>
                     </div>
                     <div class="number-of-place">
                         <p>تعداد جایگاه رزرو سمت چپ :</p>
-                        <p id="reserve-left">3</p>
+                        <p id="reserve-left"></p>
                     </div>
                     <div class="number-of-place">
                         <p>تعداد جایگاه رزرو سمت راست :</p>
-                        <p id="reserve-right">5</p>
+                        <p id="reserve-right"></p>
                     </div>
                 </div>
 
@@ -304,7 +317,7 @@
                 </div>
                 <div class="verification-data-contract">
                     <p>تاریخ تایید شما :</p>
-                    <p class="date-contract" id="date-contract">123</p>
+                    <p class="date-contract" id="date-contract"></p>
                 </div>
                 <div class="main-contract">
                     <p class="sub-contract">طرح در آمد زایی هلدینگ تلفیق مینا و خاتم هوشمند</p>
@@ -732,51 +745,24 @@
             </div>
             <div class="panel-page clientele-page">
                 <div class="seller-account-title">
-                    <p>فروش</p>
+                    <p>لیست سفارش محصول</p>
                 </div>
                 <div class="list-products-header">
                 </div>
-                <div class="all-forosh-tablet">
-                    <div class="forosh-card">
-                        <div class="fc fc-r1">
-                            <p class="fc-text1">نام </p>
-                            <p class="fc-text2">لباس خز</p>
-                        </div>
-                        <div class="fc fc-r2">
-                            <p class="fc-text1">کد </p>
-                            <p class="fc-text2">224sdfd4</p>
-                        </div>
-                        <div class="fc fc-r3">
-                            <p class="fc-text1">کد مشتری</p>
-                            <p class="fc-text2">224sdfd4</p>
-                        </div>
-                        <div class="fc fc-r4">
-                            <p class="fc-text1">تاریخ</p>
-                            <p class="fc-text2">1400/12/01</p>
-                        </div>
-                        <div class="fc fc-r5">
-                            <p class="fc-text1">وضعیت </p>
-                            <p class="fc-text2">ارسال فیش</p>
-                        </div>
-                        <div class="fc fc-r6">
-                            <div class="trash-forosh-icon"></div>
-                            <div class="edit-forosh-icon"></div>
-                        </div>
-                    </div>
+                <div class="all-forosh-tablet" id="all-forosh-tablet">
+
                 </div>
-                <div class="all-forosh">
+                <div class="all-forosh" id="all-forosh">
                     <div class="top-table">
-                        <div>
-                            <p>#</p>
-                        </div>
+
                         <div>
                             <p>تصویر</p>
                         </div>
                         <div>
-                            <p>نام مشتری</p>
+                            <p>نام</p>
                         </div>
                         <div>
-                            <p>کد مشتری</p>
+                            <p>قیمت</p>
                         </div>
                         <div>
                             <p>دفعات خرید</p>
@@ -785,37 +771,13 @@
                             <p>ویرایش</p>
                         </div>
                     </div>
-                    <div class="mid-table-cli">
-                        <div>
-                            <p>1</p>
-                        </div>
-                        <div class="mid-table-img">
-                            <img src="./asset/img/pic-47.png" alt="">
-                        </div>
-                        <div>
-                            <p>علی</p>
-                        </div>
-                        <div>
-                            <p>c2-23rq34</p>
-                        </div>
-                        <div>
-                            <p>2</p>
-                        </div>
-                        <div>
-                            <div class="edit-icons">
-                                <div class="edit-icon"></div>
-                                <div class="trash-icon" onclick="trash(1)"></div>
-                            </div>
-                        </div>
-                        <div class="client-icon">
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="panel-page clientele-page save-point">
                 <div class="all-pelans">
                     <div class="all-pelans-part1">
-                        <div class="pelan">
+                        <div class="pelan" onclick="pointSelector(1)">
                             <div class="pelan1-icon"></div>
                             <div class="stars">
                                 <div class="rate" dir="ltr">
@@ -824,12 +786,12 @@
                             </div>
                             <button class="pelan-btn">انتخاب در پلن یک امتیازی</button>
                             <div class="all-price">
-                                <div class="pelan-price">مبلغ : 22,000,000</div>
+                                <div class="pelan-price">مبلغ : 10,500,000</div>
                                 <div class="tik-price-icon"></div>
                             </div>
 
                         </div>
-                        <div class="pelan">
+                        <div class="pelan" onclick="pointSelector(2)">
                             <div class="pelan2-icon"></div>
                             <div class="stars">
                                 <div class="rate" dir="ltr">
@@ -839,11 +801,11 @@
                             </div>
                             <button class="pelan-btn">انتخاب در پلن دو امتیازی</button>
                             <div class="all-price">
-                                <div class="pelan-price">مبلغ : 44,000,000</div>
+                                <div class="pelan-price">مبلغ : 21,000,000</div>
                                 <div class="tik-price-icon"></div>
                             </div>
                         </div>
-                        <div class="pelan">
+                        <div class="pelan" onclick="pointSelector(3)">
                             <div class="pelan3-icon"></div>
                             <div class="stars">
                                 <div class="rate" dir="ltr">
@@ -854,13 +816,13 @@
                             </div>
                             <button class="pelan-btn">انتخاب در پلن سه امتیازی</button>
                             <div class="all-price">
-                                <div class="pelan-price">مبلغ : 66,000,000</div>
+                                <div class="pelan-price">مبلغ : 31,500,000</div>
                                 <div class="tik-price-icon"></div>
                             </div>
                         </div>
                     </div>
                     <div class="all-pelans-part2">
-                        <div class="pelan pelan-four">
+                        <div class="pelan pelan-four" onclick="pointSelector(7)">
                             <div class="pelan4-icon"></div>
                             <div class="stars">
                                 <div class="rate" dir="ltr">
@@ -875,7 +837,7 @@
                             </div>
                             <button class="pelan-btn">انتخاب در پلن هفت امتیازی</button>
                             <div class="all-price">
-                                <div class="pelan-price">مبلغ : 88,000,000</div>
+                                <div class="pelan-price">مبلغ : 73,500,000</div>
                                 <div class="tik-price-icon"></div>
                             </div>
 
@@ -892,18 +854,19 @@
                             <div class="level-one-details">
                                 <div class="reagent-code">
                                     <p class="reagent-code-title">کد معرف</p>
-                                    <input type="text" class="reagent-code-input" placeholder="کد معرف">
+                                    <input type="text" class="reagent-code-input" id="reagent-code-input" placeholder="کد معرف">
                                 </div>
+                                <button class="moaref-one-btn">ثبت کد</button>
                                 <div class="reagent-info-all">
                                     <p class="reagent-info-title"><b> اطلاعات معرف :</b></p>
                                     <p class="text-register-info"></p>
                                     <div class="mobile-info">
                                         <p class="text-register-info">موبایل :</p>
-                                        <p class="text-register-info"></p>
+                                        <p class="text-register-info" id="mobile-moAref"></p>
                                     </div>
                                     <div class="mobile-info">
                                         <p class="text-register-info">نام کاربری :</p>
-                                        <p class="text-register-info"></p>
+                                        <p class="text-register-info" id="name-moAref"></p>
                                     </div>
 
                                 </div>
@@ -912,73 +875,27 @@
                         <div class="level-two">
                             <p class="level-two-title">انتخاب سرگروه</p>
                             <div class="parent-gp">
-                                <p class="parent-detail">arian</p>
+                                <p class="parent-detail" id="name-moAref2"></p>
+                                <p class="parent-detail" id="name-moAref-left"></p>
+                                <p class="parent-detail" id="name-moAref-right"></p>
                             </div>
                         </div>
                         <div class="level-three">
                             <p class="level-two-title"><b>انتخاب جایگاه</b></p>
-                            <input type="text" class="top-parent" name="" id="">
+                            <input type="text" class="top-parent" name="" id="main-moarefi-user" value="">
                             <div class="parent-inp">
-                                <input type="text" id="right-side" value="">
-                                <input type="text" id="left-side" value="">
+                                <input type="text" id="right-side" value="جایگاه راست">
+                                <input type="text" id="left-side" value="جایکاه چپ">
                             </div>
-                            <div class="place-one" onclick="checkPlace(1)"><input type="radio" name="parent" id="parent ">
+                            <div class="place-one"><input type="radio" name="parent" id="parent " value="false">
                                 <label for="parent " class="check-place-all">انتخاب جایگاه چپ</label></div>
-                            <div class="place-two" onclick="checkPlace(2)"><input type="radio" name="parent" id="parent1 ">
+                            <div class="place-two"><input type="radio" name="parent" id="parent1 " value="true">
                                 <label for="parent1 " class="check-place-all">انتخاب جایگاه راست</label></div>
                         </div>
-                        <div class="level-four ">
-                            <div class="req-level-four ">
-                                <div class="question-static-icon "></div>
-                                <div class="all-info ">
 
-                                    <p class="all-info-text ">کد معرف :</p>
-                                    <p class="all-info-text ">1111</p>
-                                    <p class="all-info-text ">اطلاعات سرگروه :</p>
-                                    <p class="all-info-text ">ارین</p>
-                                    <div class="name-info ">
-                                        <p class="all-info-text ">نام کاربری :</p>
-                                        <p class="all-info-text ">Dark</p>
-                                    </div>
-                                    <p class="all-info-text ">جایگاه انتخابی :</p>
-                                    <p class="all-info-text ">جایگاه چپ</p>
-                                    <p class="all-info-text ">آیا از انتخاب خود اطمینان دارید ؟</p>
+                    </div>
+                    <button class="pv-level" id="pv-level">ثبت</button>
 
-                                </div>
-                                <div class="acc-dec-btn ">
-                                    <div class="dec-btn ">
-                                        <div class="dec-icon "></div>
-                                        <p class="dec-text ">خیر</p>
-                                    </div>
-                                    <div class="accept-btn ">
-                                        <div class="acc-icon "></div>
-                                        <p class="acc-text ">بله</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="pv-level ">مرحله قبلی</button>
-                    <div>
-                        <ol class="track-progress ">
-                            <li class="done ">
-                                <em>مرحله ثبت نام اولیه</em>
-                                <span>مرحله ثبت نام اولیه</span>
-                            </li>
-                            <li class="done ">
-                                <em>مرحله احراز هویت</em>
-                                <span>مرحله احراز هویت</span>
-                            </li>
-                            <li class="todo ">
-                                <em>تکمیل فرم ثبت نام</em>
-                                <span>تکمیل فرم ثبت نام</span>
-                            </li>
-                            <li class="todo ">
-                                <em>اطلاعات مکانی</em>
-                                <span>اطلاعات مکانی</span>
-                            </li>
-                        </ol>
-                    </div>
 
                 </div>
             </div>
@@ -1084,6 +1001,22 @@
         
         .light-gray {
             background-color: #e1e1e1;
+            border-radius: 20px;
+        }
+        
+        .light-grays {
+            background-color: #4fff6c;
+            border-radius: 20px;
+        }
+        
+        .light-grayss {
+            background-color: #FFD700;
+            border-radius: 20px;
+        }
+        
+        .light-graysss {
+            background-color: purple;
+            border-radius: 20px;
         }
         
         .blue {
@@ -1097,6 +1030,38 @@
     <script src="http://fperucic.github.io/treant-js/vendor/raphael.js"></script>
     <script src="http://fperucic.github.io/treant-js/Treant.js"></script>
     <script>
+        var page1 = 1;
+
+        function SelectPanel(n) {
+            panel(panelpage = n);
+        }
+
+        function panel(n) {
+            var i;
+            var page = document.getElementsByClassName("panel-page");
+            var StyPanel = document.getElementsByClassName("panels-details");
+            var treantChart = document.getElementById('custom-colored');
+            if (n > page.length) {
+                panelpage = 1
+            }
+            if (n < 1) {
+                panelpage = page.length
+            }
+            for (i = 0; i < page.length; i++) {
+                page[i].style.display = "none";
+            }
+            for (i = 0; i < StyPanel.length; i++) {
+                StyPanel[i].classList.remove("border");
+            }
+            if (n == 4) {
+                treantChart.style.display = "block";
+            } else {
+                treantChart.style.display = "none";
+            }
+            page[panelpage - 1].style.display = "block";
+            StyPanel[panelpage - 1].classList.add("border");
+        }
+
         function message(type, msg) {
             var succ = type
             var messageText = msg
@@ -1122,31 +1087,6 @@
 
             // setTimeout(function(){ snackbar.classList.remove("error")}, 3000);
         }
-
-        // function activeUser() {
-        //     let Name1 = $('#first-name').val()
-
-
-        //     $.ajax({
-        //         url: 'http://127.0.0.1:8000/api/derakhti/places-list/',
-        //         type: "get",
-        //         headers: {
-        //             'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
-        //         },
-        //         // data: {
-        //         //     first_name: Name1
-        //         // },
-        //         success: (res) => {
-        //             console.log(res, "resK");
-        //         },
-        //         error: (err) => {
-        //             console.log(err, 'err');
-        //         }
-        //     })
-
-        // }
-        // activeUser()
-
 
         function bank_data(number) {
             let data = {
@@ -1199,7 +1139,7 @@
                 url: 'http://127.0.0.1:8000/api/derakhti/cards-add/',
                 type: "post",
                 headers: {
-                    'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
                 },
                 data: {
                     first_name: Name1,
@@ -1208,8 +1148,9 @@
                     shaba_number: ShebaNumber
                 },
                 success: (res) => {
+
                     if (Name1 == '' && AccNumber == '' && ShebaNumber == '' && Bigname1 == '' || Name1 == '' || AccNumber == '' || ShebaNumber == '' || Bigname1 == '') {
-                        message('error', 'پرکردن این فیلد اجباری است')
+                        message('error', 'پرکردن فیلد ها اجباری است')
                         return
                     } else {
                         message('sucsses', res.message)
@@ -1241,13 +1182,13 @@
                     url: 'http://127.0.0.1:8000/api/derakhti/contracts-add/',
                     type: "post",
                     headers: {
-                        'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
+                        'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
                     },
                     data: {
                         first_name: valueName,
                     },
                     success: (res) => {
-                        console.log(res, 'res');
+
                         $('#date-contract').html(res.created)
                     },
                     error: (err) => {
@@ -1275,7 +1216,7 @@
                 url: 'http://127.0.0.1:8000/api/derakhti/profile-update/',
                 type: "put",
                 headers: {
-                    'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
                 },
                 data: {
                     first_name: Name2,
@@ -1298,7 +1239,7 @@
                     }
                 },
                 error: (err) => {
-                    console.log(err, 'err');
+
                 }
             })
         })
@@ -1309,11 +1250,75 @@
                 url: 'http://127.0.0.1:8000/api/derakhti/check-accses/',
                 type: "get",
                 headers: {
-                    'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
                 },
 
                 success: (res) => {
-                    console.log(res, "accses");
+
+                    if (res.message == "حساب کاربر فعال است") {
+                        $('#acc-on').html("فعال")
+                        $('#hesab-panel').on('click', function() {
+                            SelectPanel(3)
+                        })
+
+                        $('#jaiigah-panel').on('click', function() {
+                            SelectPanel(8)
+                        })
+                        $.ajax({
+                            url: 'http://127.0.0.1:8000/api/derakhti/user-info/',
+                            type: "get",
+                            headers: {
+                                'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
+                            },
+
+                            success: (res) => {
+
+                                $('#name-cart').html(" " + res.info.first_name + " " + res.info.last_name);
+                                $('#acc-num-cart').html(res.info.accountـnumber);
+                                $('#shaba-cart').html(`<p> IR ${res.info.shaba_number}</p>`);
+                                $('#name-cart1').html(res.info.number);
+                                $('#acc-num-cart1').html(res.info.accountـnumber);
+                                $('#shaba-cart1').html(`<p> IR ${res.info.shaba_number}</p>`);
+                                $('#bank-id12').html("  " + bankSmart(res.info.accountـnumber));
+                                $('#bank-id1').html("  " + bankSmart(res.info.accountـnumber));
+                            },
+                            error: (err) => {
+
+                            }
+                        })
+                    }
+                    if (res.message == "حساب کاربر فعال شد") {
+                        $('#acc-on').html("فعال")
+                        $('#hesab-panel').on('click', function() {
+                            SelectPanel(3)
+                        })
+
+                        $('#jaiigah-panel').on('click', function() {
+                            SelectPanel(8)
+                        })
+                        $.ajax({
+                            url: 'http://127.0.0.1:8000/api/derakhti/user-info/',
+                            type: "get",
+                            headers: {
+                                'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
+                            },
+
+                            success: (res) => {
+
+                                $('#name-cart').html(" " + res.info.first_name + " " + res.info.last_name);
+                                $('#acc-num-cart').html(res.info.accountـnumber);
+                                $('#shaba-cart').html(`<p> IR ${res.info.shaba_number}</p>`);
+                                $('#name-cart1').html(res.info.number);
+                                $('#acc-num-cart1').html(res.info.accountـnumber);
+                                $('#shaba-cart1').html(`<p> IR ${res.info.shaba_number}</p>`);
+                                $('#bank-id12').html("  " + bankSmart(res.info.accountـnumber));
+                                $('#bank-id1').html("  " + bankSmart(res.info.accountـnumber));
+                            },
+                            error: (err) => {
+
+                            }
+                        })
+                    }
                 },
                 error: (err) => {
                     if (err.responseJSON.message == "خطا قرار داد فی ما برو تایید کنید") {
@@ -1321,312 +1326,891 @@
                     }
                     if (err.responseJSON.message == "خطا  اطلاعات حساب را اضافه  کنید") {
                         message('error', err.responseJSON.message)
+                        $('#hesab-panel').on('click', function() {
+                            SelectPanel(3)
+                        })
                     }
                     if (err.responseJSON.message == "خطا  امتیاز خود  را انتخاب  کنید") {
                         message('error', err.responseJSON.message)
+                        $('#hesab-panel').on('click', function() {
+                            SelectPanel(3)
+                        })
+                        $('#emtiyaz-panel').on('click', function() {
+                            SelectPanel(7)
+                        })
                     }
                     if (err.responseJSON.message == "خطا  جایگاه خود را انتخاب  کنید") {
                         message('error', err.responseJSON.message)
+                        $('#hesab-panel').on('click', function() {
+                            SelectPanel(3)
+                        })
+                        $('#emtiyaz-panel').on('click', function() {
+                            SelectPanel(7)
+                        })
+                        $('#jaiigah-panel').on('click', function() {
+                            SelectPanel(8)
+                        })
                     }
-                    if (err.responseJSON.message == "حساب کاربر فعال است") {
-                        $('#acc-on').html("فعال")
+
+                    if (err.responseJSON.message !== "خطا قرار داد فی ما برو تایید کنید" && err.responseJSON.message !== "خطا  اطلاعات حساب را اضافه  کنید") {
+                        $.ajax({
+                            url: 'http://127.0.0.1:8000/api/derakhti/user-info/',
+                            type: "get",
+                            headers: {
+                                'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
+                            },
+
+                            success: (res) => {
+
+                                $('#name-cart').html(" " + res.info.first_name + " " + res.info.last_name);
+                                $('#acc-num-cart').html(res.info.accountـnumber);
+                                $('#shaba-cart').html(`<p> IR ${res.info.shaba_number}</p>`);
+                                $('#name-cart1').html(res.info.number);
+                                $('#acc-num-cart1').html(res.info.accountـnumber);
+                                $('#shaba-cart1').html(`<p> IR ${res.info.shaba_number}</p>`);
+                                $('#bank-id12').html("  " + bankSmart(res.info.accountـnumber));
+                                $('#bank-id1').html("  " + bankSmart(res.info.accountـnumber));
+                            },
+                            error: (err) => {
+
+                            }
+                        })
                     }
+
                 }
             })
             $.ajax({
                 url: 'http://127.0.0.1:8000/api/derakhti/place-active-right-number/',
                 type: "get",
                 headers: {
-                    'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
                 },
 
                 success: (res) => {
-                    console.log(res);
+
                     $('#active-right').html(res.number);
                 },
                 error: (err) => {
-                    console.log(err, 'err');
+
                 }
             })
             $.ajax({
                 url: 'http://127.0.0.1:8000/api/derakhti/place-active-left-number/',
                 type: "get",
                 headers: {
-                    'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
                 },
 
                 success: (res) => {
-                    console.log(res);
+
                     $('#active-left').html(res.number);
                 },
                 error: (err) => {
-                    console.log(err, 'err');
+
                 }
             })
             $.ajax({
                 url: 'http://127.0.0.1:8000/api/derakhti/place-reservation-right-number/',
                 type: "get",
                 headers: {
-                    'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
                 },
 
                 success: (res) => {
-                    console.log(res);
+
                     $('#reserve-right').html(res.number);
                 },
                 error: (err) => {
-                    console.log(err, 'err');
+
                 }
             })
             $.ajax({
-                    url: 'http://127.0.0.1:8000/api/derakhti/place-reservation-left-number/',
-                    type: "get",
-                    headers: {
-                        'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
-                    },
-
-                    success: (res) => {
-                        console.log(res);
-                        $('#reserve-left').html(res.number);
-                    },
-                    error: (err) => {
-                        console.log(err, 'err');
-                    }
-                })
-                // $.ajax({
-                //     url: 'http://127.0.0.1:8000/api/derakhti/places-list/',
-                //     type: "get",
-                //     headers: {
-                //         'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
-                //     },
-
-            //     success: (res) => {
-            //         console.log(res, "vresresresresres");
-            //         var config = {
-            //             container: "#custom-colored",
-
-            //             nodeAlign: "BOTTOM",
-
-            //             connectors: {
-            //                 type: "curve",
-            //             },
-            //             node: {
-            //                 HTMLclass: "nodeExample1",
-            //             },
-            //         };
-            //         ariansol = {
-            //                 HTMLclass: "light-gray",
-            //                 text: {
-            //                     title: "ariansol",
-            //                     name: "",
-            //                 },
-            //             },
-            //             chart_config = [
-            //                 config,
-            //                 ariansol,
-            //             ];
-            //         siblingSeparation: 20;
-            //         subTeeSeparation: 20;
-            //         padding: 10;
-            // var newResulteR = [];
-            // var newResulteL = [];
-
-            // newResulteR.push(res.info.R)
-            // newResulteL.push(res.L)
-            // var response = [];
-            // for (var i = 0; i < newResulteR[0].length; i++) {
-            //     newResulteR[0][i]['parent'] = newResulteR[0][i]['Owner'];
-            //     delete newResulteR[0][i]['Owner'];
-            //     response.push(newResulteR[0][i])
-            // }
-            // for (var k = 0; k < newResulteL[0].length; k++) {
-            //     newResulteL[0][k]['parent'] = newResulteL[0][k]['Owner'];
-            //     delete newResulteL[0][k]['Owner'];
-            //     response.push(newResulteL[0][k]);
-            // }
-            // console.log(response, "response");
-            // var tree = {};
-            // for (let node of response) {
-            //     var user = {
-            //         parent: "",
-            //         HTMLclass: "light-gray",
-            //         text: {
-            //             title: node.user,
-            //         },
-            //     };
-            //     tree[node.user] = user
-            //     var users = tree[node.user]
-            //     user.parent = ariansol;
-            //     console.log(user.parent, "user");
-            //     chart_config.push(users);
-            // }
-            //         new Treant(chart_config);
-            //     },
-            //     error: (err) => {
-            //         console.log(err, 'chart');
-            //     }
-            // })
-            $.ajax({
-                url: 'http://127.0.0.1:8000/api/derakhti/places-list/',
+                url: 'http://127.0.0.1:8000/api/derakhti/place-reservation-left-number/',
                 type: "get",
                 headers: {
-                    'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
                 },
 
                 success: (res) => {
-                    console.log(res, "vresresresresres");
-                    var config = {
-                        container: "#custom-colored",
 
-                        nodeAlign: "BOTTOM",
-
-                        connectors: {
-                            type: "curve",
-                        },
-                        node: {
-                            HTMLclass: "nodeExample1",
-                        },
-                    };
-                    ariansol = {
-                            HTMLclass: "light-gray",
-                            text: {
-                                title: "ariansol",
-                                name: "",
-                            },
-                        },
-                        chart_config = [
-                            config,
-                            ariansol,
-                        ];
-                    siblingSeparation: 20;
-                    subTeeSeparation: 20;
-                    padding: 10;
-                    let newResulteR = [];
-                    let newResulteL = [];
-
-                    newResulteR.push(res.info.R)
-                    newResulteL.push(res.L)
-                    let response = [];
-                    newResulteR[0][0]['parent'] = newResulteR[0][0]['Owner'];
-                    delete newResulteR[0][0]['Owner'];
-                    response.push(newResulteR[0][0])
-                    newResulteL[0][0]['parent'] = newResulteL[0][0]['Owner'];
-                    delete newResulteL[0][0]['Owner'];
-                    response.push(newResulteL[0][0]);
-                    let tree = {};
-                    for (let node of response) {
-                        var user = {
-                            parent: "",
-                            HTMLclass: "light-gray",
-                            text: {
-                                title: node.user,
-                            },
-                        };
-                        tree[node.user] = user
-                        var users = tree[node.user]
-                        user.parent = ariansol;
-                        console.log(user.parent, "user");
-                        chart_config.push(users);
-                    }
-                    for (let node of response) {
-                        $.ajax({
-                            url: 'http://127.0.0.1:8000/api/derakhti/places-list-filter/?username=' + node.user,
-                            type: "get",
-                            headers: {
-                                'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
-                            },
-
-                            success: (res) => {
-                                if (res.length !== 0) {
-                                    let newResulteRj = [];
-                                    let newResulteLj = [];
-
-                                    newResulteRj.push(res.info.R)
-                                    newResulteLj.push(res.L)
-                                    let response = [];
-                                    newResulteRj[0][0]['parent'] = newResulteRj[0][0]['Owner'];
-                                    delete newResulteRj[0][0]['Owner'];
-                                    response.push(newResulteRj[0][0])
-                                    newResulteLj[0][0]['parent'] = newResulteLj[0][0]['Owner'];
-                                    delete newResulteLj[0][0]['Owner'];
-                                    response.push(newResulteLj[0][0]);
-                                    let tree = {};
-                                    for (let nodes of response) {
-                                        var user1 = {
-                                            parent: "",
-                                            HTMLclass: "light-gray",
-                                            text: {
-                                                title: nodes.user,
-                                            },
-                                        };
-                                        tree[nodes.user] = user1
-                                        var userss = tree[nodes.user]
-                                        user1.parent = ariansol;
-                                        console.log(user1.parent, "user");
-                                        chart_config.push(userss);
-                                    }
-                                    for (let nodes of response) {
-                                        $.ajax({
-                                            url: 'http://127.0.0.1:8000/api/derakhti/places-list-filter/?username=' + nodes.user,
-                                            type: "get",
-                                            headers: {
-                                                'Authorization': 'Token c9cec0af088e332caf8092ae888ae0d3858189d9'
-                                            },
-
-                                            success: (res) => {
-                                                if (res.length !== 0) {
-                                                    let newResulteRj = [];
-                                                    let newResulteLj = [];
-
-                                                    newResulteRj.push(res.info.R)
-                                                    newResulteLj.push(res.L)
-                                                    let response = [];
-                                                    newResulteRj[0][0]['parent'] = newResulteRj[0][0]['Owner'];
-                                                    delete newResulteRj[0][0]['Owner'];
-                                                    response.push(newResulteRj[0][0])
-                                                    newResulteLj[0][0]['parent'] = newResulteLj[0][0]['Owner'];
-                                                    delete newResulteLj[0][0]['Owner'];
-                                                    response.push(newResulteLj[0][0]);
-                                                    let tree = {};
-                                                    for (let nodes of response) {
-                                                        var user1 = {
-                                                            parent: "",
-                                                            HTMLclass: "light-gray",
-                                                            text: {
-                                                                title: nodes.user,
-                                                            },
-                                                        };
-                                                        tree[nodes.user] = user1
-                                                        var userss = tree[nodes.user]
-                                                        user1.parent = ariansol;
-                                                        console.log(user1.parent, "user");
-                                                        chart_config.push(userss);
-                                                    }
-
-                                                }
-                                            },
-                                            error: (err) => {
-                                                console.log(err, 'chart');
-                                            }
-                                        })
-
-                                    }
-                                }
-                            },
-                            error: (err) => {
-                                console.log(err, 'chart');
-                            }
-                        })
-                    }
-                    new Treant(chart_config);
+                    $('#reserve-left').html(res.number);
                 },
                 error: (err) => {
-                    console.log(err, 'chart');
+
+                }
+            })
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/derakhti/orders-list/',
+                type: "get",
+                headers: {
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
+                },
+
+                success: (res) => {
+
+
+                    var newResultOrder = []
+                    newResultOrder.push(res.results)
+                    newResultOrder[0].forEach(element => {
+                        $('#all-forosh-tablet').append(`
+                        <div class="forosh-card">
+                        <div class="fc fc-r1">
+                            <p class="fc-text1">نام </p>
+                            <p class="fc-text2">${element.title}</p>
+                        </div>
+                        <div class="fc fc-r2">
+                            <p class="fc-text1">کد </p>
+                            <p class="fc-text2">${element.id}</p>
+                        </div>
+                        <div class="fc fc-r3">
+                            <p class="fc-text1">قیمت</p>
+                            <p class="fc-text2">${element.price}</p>
+                        </div>
+                        <div class="fc fc-r4">
+                            <p class="fc-text1">تاریخ</p>
+                            <p class="fc-text2">${element.payment_date}</p>
+                        </div>
+                        <div class="fc fc-r5">
+                            <p class="fc-text1">دفعات خرید</p>
+                            <p class="fc-text2">${element.product}</p>
+                        </div>
+                        <div class="fc fc-r6">
+                            <div class="trash-forosh-icon" ></div>
+                            <div class="edit-forosh-icon"></div>
+                        </div>
+                    </div>
+                        `)
+                        $('#all-forosh').append(`
+                        <div class="mid-table-cli">
+                        <div class="mid-table-img">
+                            <img src="${element.product_image}" alt="">
+                        </div>
+                        <div>
+                            <p>${element.title}</p>
+                        </div>
+                        <div>
+                            <p>${element.price}</p>
+                        </div>
+                        <div>
+                            <p>${element.product}</p>
+                        </div>
+                        <div>
+                            <div class="trash-forosh-icon" data-product="${element.product}"></div>
+                        </div>
+                    </div>
+                        `)
+                    })
+                },
+                error: (err) => {
+
                 }
             })
 
         }
         activeS();
+        $('.trash-forosh-icon').on(('click'), function() {
+            var dataProduct = $(this).data('product')
+            cancelProduct(dataProduct)
+        })
+
+        function cancelProduct(dataProduct) {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/derakhti/product-canel/?product=' + dataProduct,
+                type: "get",
+                headers: {
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
+                },
+                success: (res) => {
+
+                    message('sucsses', res.message)
+                },
+                error: (err) => {
+
+                }
+            })
+        }
+
+        function varizPrs() {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/derakhti/deposit-request/',
+                type: "get",
+                headers: {
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
+                },
+
+                success: (res) => {
+
+                    message('sucsses', res.message)
+                },
+                error: (err) => {
+
+                }
+            })
+        }
+        $('#variz-btn').on(('click'), function() {
+            varizPrs()
+        })
+
+        function pointSelector(number) {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/derakhti/select-points/',
+                type: "post",
+                headers: {
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
+                },
+                data: {
+                    Book_or_buy_goods: number
+                },
+                success: (res) => {
+                    message('sucsses', res.message)
+                },
+                error: (err) => {
+
+                }
+            })
+        }
+        var linkTree = "http://127.0.0.1:8000/api/derakhti/places-list/"
+
+        function derakht(linkTree) {
+
+            $.ajax({
+                url: linkTree,
+                type: "get",
+                headers: {
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
+                },
+
+                success: (res) => {
+
+                    if (res.result !== null) {
+                        if (res[0].main.places == 1) {
+                            var config = {
+                                    container: "#custom-colored",
+
+                                    nodeAlign: "BOTTOM",
+
+                                    connectors: {
+                                        type: "curve",
+                                    },
+                                    node: {
+                                        HTMLclass: "nodeExample1",
+                                    },
+                                },
+                                usermain = {
+                                    HTMLclass: "light-grayss",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user1 = {
+                                    parent: usermain,
+                                    HTMLclass: ".light-graysss",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user2 = {
+                                    parent: user1,
+                                    HTMLclass: "light-gray user1",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user3 = {
+                                    parent: user1,
+                                    HTMLclass: "light-gray user2",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                chart_config = [
+                                    config,
+                                    usermain, user1, user2, user3
+                                ];
+                            siblingSeparation: 20;
+                            subTeeSeparation: 20;
+                            padding: 10;
+                            var rast = []
+                            var chap = []
+                            res.map(item => {
+                                if (item.r_or_l == true) {
+                                    rast.push(item)
+                                }
+                                if (item.r_or_l == false) {
+                                    chap.push(item)
+                                }
+                            })
+                            usermain['text']['title'] = res[0].main.Owner;
+                            user1['text']['title'] = res[0].main.user;
+                            if (chap[0].user !== undefined) {
+                                user2['text']['title'] = chap[0].user;
+                            }
+                            if (chap[0].user == undefined) {
+                                user2['text']['title'] = res[0].main.user + "-L";
+                            }
+                            if (rast[1].user !== undefined) {
+                                user3['text']['title'] = rast[1].user;
+                            }
+                            if (rast[1].user == undefined) {
+                                user3['text']['title'] = res[0].main.user + "-R";
+                            }
+
+
+                            new Treant(chart_config);
+
+                        }
+                        if (res[0].main.places == 2) {
+                            var config = {
+                                    container: "#custom-colored",
+
+                                    nodeAlign: "BOTTOM",
+
+                                    connectors: {
+                                        type: "curve",
+                                    },
+                                    node: {
+                                        HTMLclass: "nodeExample1",
+                                    },
+                                },
+                                usermain = {
+                                    HTMLclass: "light-grayss",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user1 = {
+                                    parent: usermain,
+                                    HTMLclass: ".light-graysss",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user2 = {
+                                    parent: user1,
+                                    HTMLclass: "light-gray",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user3 = {
+                                    parent: user1,
+                                    HTMLclass: "light-gray user1",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user4 = {
+                                    parent: user2,
+                                    HTMLclass: "light-gray user2",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user5 = {
+                                    parent: user2,
+                                    HTMLclass: "light-gray user3",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+
+                                chart_config = [
+                                    config,
+                                    usermain, user1, user2, user3, user4, user5
+                                ];
+                            siblingSeparation: 20;
+                            subTeeSeparation: 20;
+                            padding: 10;
+                            var rast = []
+                            var chap = []
+                            res.map(item => {
+                                if (item.r_or_l == true) {
+                                    rast.push(item)
+                                }
+                                if (item.r_or_l == false) {
+                                    chap.push(item)
+                                }
+                            })
+                            usermain['text']['title'] = res[0].main.Owner;
+                            user1['text']['title'] = res[0].main.user;
+                            user2['text']['title'] = res[0].main.user + "-L";
+                            if (rast[0].user !== undefined) {
+                                user3['text']['title'] = rast[0].user;
+                            }
+                            if (rast[0].user == undefined) {
+                                user3['text']['title'] = res[0].main.user + "-R";
+                            }
+                            if (chap[0].user !== undefined) {
+                                user4['text']['title'] = chap[0].user;
+                            }
+                            if (chap[0].user == undefined) {
+                                user4['text']['title'] = res[0].main.user + "-L";
+                            }
+                            if (chap[1].user !== undefined) {
+                                user5['text']['title'] = chap[1].user;
+                            }
+                            if (chap[1].user == undefined) {
+                                user5['text']['title'] = res[0].main.user + "-L";
+                            }
+                            new Treant(chart_config);
+
+                        }
+                        if (res[0].main.places == 3) {
+                            var config = {
+                                    container: "#custom-colored",
+
+                                    nodeAlign: "BOTTOM",
+
+                                    connectors: {
+                                        type: "curve",
+                                    },
+                                    node: {
+                                        HTMLclass: "nodeExample1",
+                                    },
+                                },
+                                usermain = {
+                                    HTMLclass: "light-grayss",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user1 = {
+                                    parent: usermain,
+                                    HTMLclass: "light-graysss",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user2 = {
+                                    parent: user1,
+                                    HTMLclass: "light-gray",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user3 = {
+                                    parent: user1,
+                                    HTMLclass: "light-gray",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user4 = {
+                                    parent: user2,
+                                    HTMLclass: "light-gray user1",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user5 = {
+                                    parent: user2,
+                                    HTMLclass: "light-gray user2",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user6 = {
+                                    parent: user3,
+                                    HTMLclass: "light-gray user4",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user7 = {
+                                    parent: user3,
+                                    HTMLclass: "light-gray user5",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+
+                                chart_config = [
+                                    config,
+                                    usermain, user1, user2, user3, user4, user5, user6, user7
+                                ];
+                            siblingSeparation: 20;
+                            subTeeSeparation: 20;
+                            padding: 10;
+                            usermain['text']['title'] = res[0].main.Owner;
+                            user1['text']['title'] = res[0].main.user;
+                            user2['text']['title'] = res[0].main.user + "-L";
+                            user3['text']['title'] = res[0].main.user + "-R";
+                            var rast = []
+                            var chap = []
+                            res.map(item => {
+                                if (item.r_or_l == true) {
+                                    rast.push(item)
+                                }
+                                if (item.r_or_l == false) {
+                                    chap.push(item)
+                                }
+                            })
+                            if (chap[0] == undefined) {
+                                user4['text']['title'] = chap[0].user;
+                            }
+                            if (chap[0] !== undefined) {
+                                user4['text']['title'] = res[0].main.user + "";
+                            }
+                            if (chap[1] == undefined) {
+                                user5['text']['title'] = chap[1].user;
+                            }
+                            if (chap[1] !== undefined) {
+                                user5['text']['title'] = res[0].main.user;
+                            }
+                            if (rast[0] == undefined) {
+                                user6['text']['title'] = rast[0].user;
+                            }
+                            if (rast[0] !== undefined) {
+                                user6['text']['title'] = res[0].main.user;
+                            }
+                            if (rast[1] == undefined) {
+                                user7['text']['title'] = rast[1].user;
+                            }
+                            if (rast[1] !== undefined) {
+                                user7['text']['title'] = res[0].main.user;
+                            }
+
+
+                            new Treant(chart_config);
+
+                        }
+                        if (res[0].main.places == 7) {
+                            var config = {
+                                    container: "#custom-colored",
+
+                                    nodeAlign: "BOTTOM",
+
+                                    connectors: {
+                                        type: "curve",
+                                    },
+                                    node: {
+                                        HTMLclass: "nodeExample1",
+                                    },
+                                },
+                                usermain = {
+                                    HTMLclass: "light-grayss",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user1 = {
+                                    parent: usermain,
+                                    HTMLclass: "light-graysss",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user2 = {
+                                    parent: user1,
+                                    HTMLclass: "light-gray",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user3 = {
+                                    parent: user1,
+                                    HTMLclass: "light-gray",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user4 = {
+                                    parent: user2,
+                                    HTMLclass: "light-grays",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user5 = {
+                                    parent: user2,
+                                    HTMLclass: "light-grays",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user6 = {
+                                    parent: user3,
+                                    HTMLclass: "light-grays",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user7 = {
+                                    parent: user3,
+                                    HTMLclass: "light-grays",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user8 = {
+                                    parent: user4,
+                                    HTMLclass: "light-grays user1",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user9 = {
+                                    parent: user4,
+                                    HTMLclass: "light-grays user2",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user10 = {
+                                    parent: user5,
+                                    HTMLclass: "light-grays user3",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user11 = {
+                                    parent: user5,
+                                    HTMLclass: "light-grays user4",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user12 = {
+                                    parent: user6,
+                                    HTMLclass: "light-grays user5",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user13 = {
+                                    parent: user6,
+                                    HTMLclass: "light-grays user6",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user14 = {
+                                    parent: user7,
+                                    HTMLclass: "light-grays user7",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                user15 = {
+                                    parent: user7,
+                                    HTMLclass: "light-grays user8",
+                                    text: {
+                                        title: "",
+                                    },
+                                },
+                                chart_config = [
+                                    config,
+                                    usermain, user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15
+                                ];
+                            siblingSeparation: 20;
+                            subTeeSeparation: 20;
+                            padding: 10;
+                            if (res[0].main.Owner !== null) {
+                                usermain['text']['title'] = res[0].main.Owner;
+                            }
+                            user1['text']['title'] = res[0].main.user;
+                            user2['text']['title'] = res[0].main.user + "-L";
+                            user4['text']['title'] = res[0].main.user + "-L";
+                            user5['text']['title'] = res[0].main.user + "-L";
+                            user3['text']['title'] = res[0].main.user + "-R";
+                            user6['text']['title'] = res[0].main.user + "-R";
+                            user7['text']['title'] = res[0].main.user + "-R";
+                            var rast = []
+                            var chap = []
+                            res.map(item => {
+                                if (item.r_or_l == true) {
+                                    rast.push(item)
+                                }
+                                if (item.r_or_l == false) {
+                                    chap.push(item)
+                                }
+                            })
+
+                            if (chap[0] !== undefined) {
+                                user8['text']['title'] = chap[0].user;
+                            }
+                            if (chap[0] == undefined) {
+                                user8['text']['title'] = res[0].main.user + "-L";
+                            }
+                            if (chap[1] !== undefined) {
+                                user9['text']['title'] = chap[1].user;
+                            }
+                            if (chap[1] == undefined) {
+                                user9['text']['title'] = res[0].main.user + "-L";
+                            }
+                            if (chap[2] !== undefined) {
+                                user10['text']['title'] = chap[2].user;
+                            }
+                            if (chap[2] == undefined) {
+                                user10['text']['title'] = res[0].main.user + "-L";
+                            }
+                            if (chap[3] !== undefined) {
+                                user11['text']['title'] = chap[3].user;
+                            }
+                            if (chap[3] == undefined) {
+                                user11['text']['title'] = res[0].main.user + "-L";
+                            }
+                            if (rast[0] !== undefined) {
+                                user12['text']['title'] = rast[0].user;
+                            }
+                            if (rast[0] == undefined) {
+
+                                user12['text']['title'] = res[0].main.user + "-R";
+
+                            }
+                            if (rast[1] !== undefined) {
+                                user13['text']['title'] = rast[1].user;
+                            }
+                            if (rast[1] == undefined) {
+
+                                user13['text']['title'] = res[0].main.user + "-R";
+
+                            }
+                            if (rast[2] !== undefined) {
+                                user14['text']['title'] = rast[2].user;
+                            }
+                            if (rast[2] == undefined) {
+
+                                user14['text']['title'] = res[0].main.user + "-R";
+
+                            }
+                            if (rast[3] !== undefined) {
+                                user15['text']['title'] = rast[3].user;
+                            }
+                            if (rast[3] == undefined) {
+
+                                user15['text']['title'] = res[0].main.user + "-R";
+
+                            }
+
+                            new Treant(chart_config);
+
+                        }
+                    }
+                },
+                error: (err) => {
+
+                }
+            })
+
+        }
+        derakht(linkTree);
+        $(".user1").on('click', function() {
+
+            var linkChild = $(this).children('p').text
+            $('.chart').html('')
+            linkTree = "http://127.0.0.1:8000/api/derakhti/places-list-filter/" + "?username=" + linkChild
+            derakht(linkTree)
+        })
+        $(".user2").on('click', function() {
+            var linkChild = $(this).children('p').text
+            $('.chart').html('')
+            var linkTreeE = "http://127.0.0.1:8000/api/derakhti/places-list-filter/" + "?username=" + linkChild
+            derakht(linkTreeE)
+        })
+        $(".user3").on('click', function() {
+            var linkChild = $(this).children('p').text
+            $('.chart').html('')
+            var linkTreeE = "http://127.0.0.1:8000/api/derakhti/places-list-filter/" + "?username=" + linkChild
+            derakht(linkTreeE)
+        })
+        $(".user4").on('click', function() {
+            var linkChild = $(this).children('p').text
+            $('.chart').html('')
+            var linkTreeE = "http://127.0.0.1:8000/api/derakhti/places-list-filter/" + "?username=" + linkChild
+            derakht(linkTreeE)
+        })
+        $(".user5").on('click', function() {
+            var linkChild = $(this).children('p').text
+            $('.chart').html('')
+            var linkTreeE = "http://127.0.0.1:8000/api/derakhti/places-list-filter/" + "?username=" + linkChild
+            derakht(linkTreeE)
+        })
+        $(".user6").on('click', function() {
+            var linkChild = $(this).children('p').text
+            $('.chart').html('')
+            var linkTreeE = "http://127.0.0.1:8000/api/derakhti/places-list-filter/" + "?username=" + linkChild
+            derakht(linkTreeE)
+        })
+        $(".user7").on('click', function() {
+            var linkChild = $(this).children('p').text
+            $('.chart').html('')
+            var linkTreeE = "http://127.0.0.1:8000/api/derakhti/places-list-filter/" + "?username=" + linkChild
+            derakht(linkTreeE)
+
+        })
+        $(".user8").on('click', function() {
+            var linkChild = $(this).children('p').text
+            var linkTreeE = linkTree + "?username=" + linkChild
+            derakht(linkTreeE)
+        })
+
+        function checkCodeUser() {
+            var codeUser = document.getElementById('reagent-code-input').val
+            var nameMoAref = document.getElementById('name-moAref')
+            var nameMoaref2 = document.getElementById('name-moAref2')
+            var nameMoarefLeft = document.getElementById('name-moAref-left')
+            var nameMoarefRight = document.getElementById('name-moAref-right')
+            var mainmoarefiuser = document.getElementById('main-moarefi-user')
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/derakhti/check-identifier-code/',
+                type: "get",
+                headers: {
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
+                },
+                data: {
+                    code: codeUser
+                },
+
+                success: (res) => {
+                    if (res.message == "کاربر وجود ندارد") {
+                        message('sucsses', res.message)
+                    } else {
+                        nameMoAref.innerHTML = res.message
+                        nameMoaref2.innerHTML = res.message
+                        nameMoarefLeft.innerHTML = res.message + " left"
+                        nameMoarefRight.innerHTML = res.message + " right"
+                        mainmoarefiuser.innerHTML = res.message
+
+                    }
+
+
+                },
+                error: (err) => {
+
+                }
+            })
+        }
+
+        function pvlevel() {
+            var pvlevel = document.getElementById('pv-level')
+            var LeftOrRight = document.querySelector('input[name="parent"]:checked').value;
+            if (LeftOrRight == "false") {
+                LeftOrRight = false
+            } else {
+                LeftOrRight = true
+            }
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/derakhti/place-user-reservation/',
+                type: "post",
+                headers: {
+                    'Authorization': 'Token 9be0c72becfe0b5679489299ce2c3290d9b30360'
+                },
+                data: {
+                    r_or_l: LeftOrRight
+                },
+
+                success: (res) => {
+                    message('sucsses', res.message)
+                },
+                error: (err) => {
+
+                }
+            })
+        }
+        $('#pvlevel').on(('click'), function() {
+            pvlevel()
+        })
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 

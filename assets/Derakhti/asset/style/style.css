@@ -1,0 +1,77 @@
+body{
+    direction: rtl;
+    
+}
+.main-div{
+    margin:auto;
+    width: 60%;
+    height: auto;
+    justify-content: center;
+}
+.form-div{
+    width: 100%;
+    margin:auto;
+    margin: 10px;
+    display: flex;
+    direction: rtl;
+    height: 35px;
+}
+.input{
+    width: 89%;
+    border: 1px solid #707070;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-right: 10px;
+}
+.icon{
+    width: 9%;
+    border: 1px solid #707070;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.icon-div{
+    width: 100%;
+    height: 35px;
+    background-repeat: round;
+
+}
+.profile-icon{
+    background-image: url(../icons/icons8-user-30.png);
+}
+.card-icon{
+    background-image: url(../icons/icons8-card-32.png);
+}
+.mobile-icon{
+    background-image: url(../icons/icons8-android-24.png);
+}
+.send-icon{
+    background-image: url(../icons/icons8-email-send-24.png);
+}
+.telefone-icon{
+    background-image: url(../icons/icons8-phone-24.png);
+}
+.keybords-icon{
+    background-image: url(../icons/icons8-keyboard-24.png);
+}
+.send2-icon{
+    background-image: url(../icons/icons8-email-send-48.png);
+}
+
+h2{
+    width: fit-content;
+    color: #707070;
+    border-bottom:3px solid magenta;
+}
+.date{
+    width: 33% !important;
+}
+.full-width{
+    width: 100% !important;
+}
+@media screen and (min-width:682px) {
+    .icon-div{
+        background-repeat: no-repeat;
+        margin-right: -23% !important;
+    }
+    
+}

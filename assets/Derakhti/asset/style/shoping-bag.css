@@ -1,0 +1,484 @@
+.shopping-bag-title {
+    text-align: center;
+    color: #F26A4F;
+    font-size: 45px;
+}
+
+.all-factors {
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+}
+
+.factor {
+    width: 70%;
+    height: 950px;
+    display: block;
+    background-color: white;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    padding-top: 35px;
+}
+
+.factor-title {
+    font-size: 35px;
+    color: #585858;
+    margin-right: -2px;
+    border-right: 7px solid #F26A4F;
+    padding-right: 20px;
+    margin-top: 0;
+}
+
+.factor-product-img {
+    width: 30%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.factor-product {
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+    border-bottom: 2px solid #707070;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.scroll-bar {
+    width: 97%;
+    overflow-y: scroll;
+    scrollbar-color: #F99687 #C6C6C6;
+    scrollbar-width: thin;
+    height: 80%;
+}
+
+.factor-product-detail {
+    width: 70%;
+    display: block;
+}
+
+.size {
+    background-color: #FEDFD4;
+    width: 85px;
+    height: 35px;
+    display: block;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 0 0 0px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    margin-right: 7%;
+}
+
+.size p {
+    margin: 0;
+    margin-top: 5%;
+}
+
+.product-color {
+    width: 35px;
+    height: 35px;
+    display: block;
+    border-radius: 50%;
+}
+
+.color-size {
+    display: flex;
+    width: 100%;
+    margin-top: 27%;
+}
+
+.factor-product-detail a {
+    font-size: 23px;
+}
+
+.price-product {
+    font-size: 25px;
+}
+
+.short-factor {
+    width: 100%;
+    height: 245px;
+    display: block;
+    background-color: white;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    padding-top: 35px;
+}
+
+.short-offer {
+    width: 25%;
+}
+
+.price-detail p {
+    display: inline-block;
+    width: 1%;
+}
+
+.kidd-price {
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
+
+.kidd-price-title {
+    width: 45%;
+    height: 50px;
+    font-size: 20px;
+}
+
+.price-detail {
+    width: 45%;
+    height: 50px;
+    font-size: 20px;
+}
+
+.all-kidd-price {
+    border-bottom: 2px solid #707070;
+    width: 90%;
+    display: block;
+    margin: auto;
+}
+
+.green-color {
+    color: #2ACB34;
+}
+
+.offer-box {
+    width: 100%;
+    height: 300px;
+    display: block;
+    background-color: white;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    padding-top: 35px;
+    margin-top: 80px;
+}
+
+.offer-box-title {
+    font-size: 35px;
+    color: #585858;
+    margin-right: -2px;
+    border-right: 7px solid #F26A4F;
+    padding-right: 20px;
+    margin-top: 0;
+}
+
+.offer-btn {
+    width: 76%;
+    height: 60px;
+    display: block;
+    border-radius: 10px;
+    border: 1px;
+    background-color: #2ACB34;
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.offer-input {
+    width: 70%;
+    display: block;
+    margin: auto;
+    height: 70px;
+    border-radius: 15px;
+    border: 1px solid #707070;
+    padding-right: 16px;
+    font-size: 23px;
+}
+
+.address-info {
+    width: 90%;
+    height: 500px;
+    display: block;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    padding-top: 35px;
+    margin-top: 80px;
+}
+
+.address-info-title {
+    font-size: 35px;
+    color: #585858;
+    margin-right: -2px;
+    border-right: 7px solid #F26A4F;
+    padding-right: 20px;
+    margin-top: 0;
+}
+
+.address-info-p p {
+    display: block;
+    font-size: 25px;
+}
+
+.address-info-checkbox {
+    width: 35px;
+    height: 35px;
+    border-radius: 30%;
+    border: 1px solid #707070;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+.address-info-checkbox:checked {
+    background-color: #F26A4F;
+}
+
+.address-info-p {
+    width: 90%;
+    height: 70px;
+    display: flex;
+    text-align: right;
+    margin-top: -21px;
+    margin-bottom: 5%;
+    color: #585858;
+}
+
+.address-info-detail {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.address-scroll {
+    width: 90%;
+    height: 45%;
+    display: block;
+    margin: auto;
+    overflow-y: scroll;
+    scrollbar-color: #F99687 #C6C6C6;
+    scrollbar-width: thin;
+}
+
+.address-p-one {
+    font-weight: bold;
+}
+
+.add-address {
+    width: 20%;
+    height: 60px;
+    display: block;
+    border-radius: 10px;
+    border: 1px;
+    background-color: #2ACB34;
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+    margin: auto;
+    margin-top: 3%;
+    margin-left: 5%;
+}
+
+.payment-btn {
+    width: 30%;
+    height: 60px;
+    display: block;
+    border-radius: 10px;
+    border: 1px;
+    background-color: #F26A4F;
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 50px;
+
+}
+
+@media (min-width: 300px) and (max-width: 450px) {
+    .shopping-bag-title {
+        font-size: 35px;
+    }
+    .price-product {
+        font-size: 15px;
+    }
+    .factor-product-detail a {
+        font-size: 15px;
+    }
+    .size p {
+        margin-top: 0;
+        margin-right: 6%;
+    }
+    .size {
+        width: 50px;
+        height: 25px;
+        font-size: 13px;
+    }
+    .product-color {
+        width: 25px;
+        height: 25px;
+    }
+    .factor-title {
+        font-size: 20px;
+    }
+    .kidd-price-title {
+        font-size: 15px;
+    }
+    .price-detail p {
+        direction: rtl;
+    }
+    .kidd-price-title {
+        font-size: 12px;
+    }
+    .offer-box-title {
+        font-size: 20px;
+    }
+    .offer-box-title {
+        font-size: 20px;
+    }
+    .address-info-title {
+        font-size: 20px;
+    }
+    .address-info-p p {
+        font-size: 12px !important;
+        margin-top: 11%;
+    }
+    .current-address {
+        width: 60%;
+        direction: rtl;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .all-factors {
+        display: block;
+    }
+    .factor {
+        width: 95%;
+        margin: auto;
+    }
+    .short-offer {
+        width: 95%;
+        display: block;
+        margin: auto;
+        margin-top: 5%;
+    }
+    .factor-title {
+        text-align: right;
+    }
+    .color-size {
+        margin-top: 14%;
+    }
+    .price-detail {
+        width: 46%;
+        height: 50px;
+        font-size: 18px;
+    }
+    .price-detail p {
+        width: 30%;
+    }
+    .kidd-price-title {
+        direction: rtl;
+        text-align: center;
+    }
+    .offer-box-title {
+        direction: rtl;
+    }
+    .address-info-title {
+        direction: rtl;
+    }
+    .payment-btn {
+        width: 70%;
+        margin-bottom: 3%;
+    }
+    .current-address {
+        width: 70%;
+        direction: rtl;
+    }
+    .address-info-p p {
+        font-size: 20px;
+    }
+    .address-p-one {
+        width: 20%;
+    }
+    .address-info-checkbox {
+        width: 25px;
+        height: 25px;
+    }
+    .address-info-detail {
+        margin-bottom: 100px;
+    }
+    .factor-product-detail a {
+        font-size: 20px;
+    }
+    .price-product {
+        font-size: 20px;
+    }
+    .add-address {
+        width: 80%;
+        margin: auto !important;
+        margin-top: 20px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .all-factors {
+        display: block;
+    }
+    .factor {
+        width: 95%;
+        margin: auto;
+    }
+    .factor-title {
+        text-align: right;
+    }
+    .color-size {
+        margin-top: 14%;
+    }
+    .short-offer {
+        width: 95%;
+        display: block;
+        margin: auto;
+        margin-top: 5%;
+    }
+    .price-detail {
+        width: 46%;
+        height: 50px;
+        font-size: 18px;
+    }
+    .price-detail p {
+        width: 26%;
+    }
+    .kidd-price-title {
+        direction: rtl;
+        text-align: center;
+    }
+    .offer-box-title {
+        direction: rtl;
+    }
+    .address-info-title {
+        direction: rtl;
+    }
+    .payment-btn {
+        width: 70%;
+        margin-bottom: 3%;
+    }
+    .current-address {
+        width: 70%;
+        direction: rtl;
+    }
+    .address-info-p p {
+        font-size: 20px;
+    }
+    .address-p-one {
+        width: 20%;
+    }
+    .address-info-detail {
+        margin-bottom: 100px;
+    }
+    .add-address {
+        width: 80%;
+        margin: auto !important;
+        margin-top: 20px !important;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1345px) {
+    .price-detail p {
+        margin-right: 6px;
+    }
+}
