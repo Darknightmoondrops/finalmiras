@@ -249,34 +249,14 @@
 
 
 
-                <div class="all-forosh-tablet" id="list-mahsol-tablet">
+                <div id="listProduct" class="all-forosh-tablet">
 
-                    <!-- <div class="all-service-card">
-                        <div class="fc fc-r1">
-                            <p class="fc-text1">نام </p>
-                            <img class="fc-img" src="./asset/img/pic-26.png" alt="">
-                        </div>
-                        <div class="fc fc-r2">
-                            <p class="fc-text1">کد خدمت </p>
-                            <p class="fc-text2">224sdfd4</p>
-                        </div>
-
-                        <div class="fc fc-r4">
-                            <p class="fc-text1">تاریخ</p>
-                            <p class="fc-text2">1400/12/01</p>
-                        </div>
-
-                        <div class="fc fc-r6">
-                            <div class="trash-forosh-icon"></div>
-                            <div class="edit-forosh-icon"></div>
-                        </div>
-                    </div> -->
 
                 </div>
 
 
-                <div class="all-service-info-tables">
-                    <div class="top-table" id="list-mahsol">
+                <div id="listProduct2" class="all-service-info-tables">
+                    <div class="top-table">
 
                         <div>
                             <p>تصویر</p>
@@ -298,30 +278,6 @@
                         </div>
                     </div>
 
-                    <!-- <div class="mid-table">
-
-                        <div class="mid-table-img">
-                            <img src="./asset/img/pic-47.png" alt="">
-                        </div>
-                        <div>
-                            <p>صندلی چوبی</p>
-                        </div>
-                        <div>
-                            <p>c2-23rq34</p>
-                        </div>
-                        <div>
-                            <p>990,000</p>
-                        </div>
-                        <div>
-                            <p>1400/09/12</p>
-                        </div>
-                        <div>
-                            <div class="edit-icons">
-                                <div class="edit-icon"></div>
-                                <div class="trash-icon" onclick="trash(1)"></div>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div>
                 <div class="page-number" dir="ltr">
@@ -329,7 +285,6 @@
                     <span id="page2" class="page2 page"></span>
                     <span id="page3" class="page2 page"></span>
                 </div>
-
 
             </div>
 
@@ -476,11 +431,11 @@
                         'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
                     },
                     success: (res) => {
-
+                        console.log(res, 'res teket');
                         teketId = res.results[0].id
                             // var mamad = res.results[0].title
                             // mamad
-
+                            // console.log('fff', mamad);
 
 
                         if (res.results[0].status) {
@@ -511,12 +466,12 @@
                                     'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
                                 },
                                 success: (res) => {
-
+                                    console.log(res, 'res upde status');
 
 
                                 },
                                 error: (err) => {
-
+                                    console.log(err, 'err upde status');
                                 }
                             })
                             // ---
@@ -526,7 +481,7 @@
                                 uu = $(this).attr('data-id')
                                 titleTeket = $(this).attr('data-title')
                                 let statusTeket = $(this).attr('data-status')
-
+                                console.log(statusTeket);
 
                                 let teketS = ''
                                 dateTeket = $(this).attr('data-date')
@@ -546,9 +501,10 @@
                                 $('#t-h-p1').text(titleTeket)
                                 $('#t-h-p2').text(teketId)
 
-
+                                console.log('qvq', typeof(teketS), teketS);
                                 var cc = nu.nu
-
+                                console.log(cc, 'sssaaaa');
+                                console.log('qq', nu.nu !== '' ? nu.nu : filterUrl + uu);
                                 $.ajax({
                                     url: cc ? cc : filterUrl + uu,
                                     headers: {
@@ -557,10 +513,10 @@
                                     success: (res) => {
                                         nUrl = res.next
 
-
+                                        console.log('555555', res);
                                         // }
                                         ii.push(res.results[0])
-
+                                        console.log('item', res);
                                         $('#chat-box').html('')
 
                                         ii.map(item => {
@@ -591,13 +547,13 @@
                                     </div>`)
 
                                             }
-
+                                            console.log('item2', item);
 
 
                                         })
                                         $('#parent-div').css("display", "block")
                                         $('#teket-tabel').css("display", "none")
-
+                                        console.log(res, 'res teket filter');
                                         $('#close-iconn').click(function() {
                                             $('#parent-div').css("display", "none")
                                             $('#teket-tabel').css("display", "block")
@@ -609,14 +565,14 @@
 
                                         if (nUrl !== '') {
                                             let nu = nUrl
-
+                                            console.log('nnnn', nu);
                                             tekFilter(nu = {
                                                 nu
                                             })
                                         }
                                     },
                                     error: (err) => {
-
+                                        console.log(err, 'err filter');
                                     }
                                 })
 
@@ -628,13 +584,13 @@
                             getTeket(nextUrl)
                         }
                         // $('tr').click(function() {
-                        //    
+                        //     console.log('aaaa');
                         //     tekFilter(nu)
 
                         // })
                     },
                     error: (err) => {
-
+                        console.log(err, 'err');
                     }
                 })
             }
@@ -648,7 +604,10 @@
             $('#add-teket-file').change(function(e) {
 
                 if (e.target.files && e.target.files.length > 0) {
+                    console.log('m5');
                     tiketFile = e.target.files[0]
+                    console.log('m5', tiketFile);
+
                 }
             })
 
@@ -660,7 +619,9 @@
 
 
                 // var tiketFile  = $('#teket-file').val()
-
+                // console.log(ticketText);
+                // console.log('tiket',
+                //     teketId, userId);
                 let formData = new FormData()
                 formData.append('tiket', teketId)
                 formData.append('user', userId)
@@ -678,7 +639,7 @@
                     processData: false,
                     contentType: false,
                     success: (res) => {
-
+                        console.log(res, 'res adddd');
                         // if(ticketText=='' && tiketTitle == '' || tiketTitle == '' || ticketText==''){
                         //     // message('error','متن پیام را وارد کنید')
                         //     return
@@ -690,7 +651,7 @@
                         // $('#')
                     },
                     error: (err) => {
-
+                        console.log(err, 'aaaaaaaerr');
                         // message('error',res.message)
 
                     }
@@ -708,7 +669,7 @@
                     },
 
                     success: (res) => {
-
+                        // console.log(res, 'res cate');
 
                         $('#main-categorys').append(`
                     <option class="services-inp" > ${res.results[0].name}</option>
@@ -721,7 +682,7 @@
                         }
                     },
                     error: (err) => {
-
+                        // console.log(err, 'err');
                     }
                 })
 
@@ -738,7 +699,7 @@
                     },
 
                     success: (res) => {
-
+                        console.log(res, 'res cate1111');
 
                         $('#product-subordinate1').append(`
                                 <option class="services-inp" > ${res.results[0].name}</option>
@@ -750,7 +711,7 @@
                         }
                     },
                     error: (err) => {
-
+                        // console.log(err, 'err');
                     }
                 })
             }
@@ -767,7 +728,7 @@
                     },
 
                     success: (res) => {
-
+                        console.log(res, 'res cate iii');
                         $('#product-subordinate2').append(`
                                 <option class="services-inp" > ${res.results[0].name}</option>
                                 `)
@@ -780,7 +741,7 @@
                     },
 
                     error: (err) => {
-
+                        console.log(err, 'err sub 2');
                     }
                 })
             }
@@ -814,13 +775,17 @@
                 // setTimeout(function(){ snackbar.classList.remove("error")}, 3000);
             }
 
+            $('#edit-forosh-icon').click(function() {
+                // SelectPanel(3)
 
+
+            })
 
             $('#edit-acount-btn').click(function() {
                 let phNum1 = $('#ph-num1').val()
                 let phNum2 = $('#ph-num2').val()
                 let pass = $('#pass').val()
-
+                    // console.log(fullName,phNum2 , phNum , curentPass,newPass,emil);
 
                 $.ajax({
                     url: 'http://127.0.0.1:8000/api/tak-s-panel/user/user-edit-profile/',
@@ -834,10 +799,10 @@
 
                     },
                     success: (res) => {
-
+                        // console.log(res, 'res');
                         if (phNum1 == '' && pass == '' || phNum1 == '' || pass == '') {
                             message('error', 'پرکردن این فیلد اجباری است')
-
+                                // console.log('xxxxxx');
 
                             return
                         } else {
@@ -847,7 +812,7 @@
 
                     },
                     error: (err) => {
-
+                        // console.log(err, 'err');
                     }
                 })
 
@@ -909,7 +874,7 @@
                     processData: false,
                     contentType: false,
                     success: (res) => {
-
+                        console.log('res add product', res);
 
                         if (productName == '' && productDescriptions == '' && mainCateId == '' && subCateId1 == '' && subCateId2 == '' &&
                             productCompounds == '' && productVolume == '' && productLicenseIssuer == '' && productPrice == '' &&
@@ -926,22 +891,73 @@
                         }
                     },
                     error: (err) => {
-
+                        console.log('add errr', err);
                     }
                 })
             })
-
             var listProducturl = "http://127.0.0.1:8000/api/tak-s-admin-panel/products/products-list/"
 
             function getListProducts(listProducturl) {
                 $.ajax({
-                    url: listProduct,
-                    type: "get",
+                    url: 'http://127.0.0.1:8000/api/tak-s-admin-panel/products/products-list/',
                     headers: {
                         'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
                     },
 
                     success: (res) => {
+                        $('#listProduct').append(`
+                        
+                    <div class="all-service-card">
+                        <div class="fc fc-r1">
+                            <p class="fc-text1">${res.results[0].title} </p>
+                            <img class="fc-img" src="${res.results[0].image}" alt="">
+                        </div>
+                        <div class="fc fc-r2">
+                            <p class="fc-text1">کد محصول </p>
+                            <p class="fc-text2">${res.results[0].id}</p>
+                        </div>
+
+                        <div class="fc fc-r4">
+                            <p class="fc-text1">تاریخ</p>
+                            <p class="fc-text2">${res.results[0].jdate}</p>
+                        </div>
+                        <div class="fc fc-r4">
+                            <p class="fc-text1">قیمت</p>
+                            <p class="fc-text2">${res.results[0].price}</p>
+                        </div>
+
+                        <div class="fc fc-r6">
+                            <div class="trash-icon"></div>
+                            <div class="edit-icon"></div>
+                        </div>
+                    </div>
+                        `)
+                        $('#listProduct2').append(`
+                         <div class="mid-table">
+
+                            <div class="mid-table-img">
+                                <img src="${res.results[0].image}" alt="">
+                            </div>
+                            <div>
+                                <p> ${res.results[0].title}</p>
+                            </div>
+                            <div>
+                                <p>${res.results[0].id}</p>
+                            </div>
+                            <div>
+                                <p>${res.results[0].price}</p>
+                            </div>
+                            <div>
+                                <p>${res.results[0].jdate}</p>
+                            </div>
+                            <div>
+                                <div class="edit-icons">
+                                    <div class="edit-icon"></div>
+                                    <div class="trash-icon" onclick="trash(1)"></div>
+                                </div>
+                            </div>
+                            </div> 
+                        `)
                         var nextUrl;
                         var backUrl;
                         if (res.previous == null && res.next == null) {
@@ -1005,7 +1021,7 @@
                     },
 
                     success: (res) => {
-
+                        console.log(res, 'res getCommentProducts');
 
                         $('#p-comment').append(`
                                     <div class="complaint-box">
@@ -1025,12 +1041,11 @@
 
                     },
                     error: (err) => {
-
+                        console.log(err, 'err getCommentProducts ');
                     }
                 })
             }
             getCommentProducts()
-
             var sellUrl = "http://127.0.0.1:8000/api/tak-s-admin-panel/products/products-purchased/"
 
             function getSell(sellUrl) {
@@ -1057,14 +1072,9 @@
                                         <p>${res.results[0].price}</p>
                                     </div>
                                     <div>
-                                        <p>${res.results[0].jdate}</p>
+                                        <p>${res.results[0].jdate}</p>  
                                     </div>
-                                    <div>
-                                        <div class="edit-icons">
-                                            <div class="edit-icon"></div>
-                                            <div class="trash-icon" ></div>
-                                        </div>
-                                    </div>
+                                  
                                 </div>
                             `)
 
@@ -1072,12 +1082,16 @@
                                 <div class="all-service-card">
                                     <div class="fc fc-r1">
                                         <p class="fc-text1">نام </p>
+                                        <img class="fc-img" src="${res.results[0].title}" alt="">
+                                    </div>
+                                    <div class="fc fc-r1">
+                                        <p class="fc-text1">تصویر </p>
                                         <img class="fc-img" src="${res.results[0].image}" alt="">
                                     </div>
 
                                     <div class="fc fc-r2">
-                                        <p class="fc-text1">حجم</p>
-                                        <p class="fc-text2">${res.results[0].compounds}</p>
+                                        <p class="fc-text1">کد محصول</p>
+                                        <p class="fc-text2">${res.results[0].id}</p>
                                     </div>
                                     <div class="fc fc-r2">
                                         <p class="fc-text1">قیمت</p>
@@ -1088,10 +1102,6 @@
                                         <p class="fc-text2">${res.results[0].jdate}</p>
                                     </div>
 
-                                    <div class="fc fc-r6">
-                                        <div class="trash-forosh-icon"></div>
-                                        <div class="edit-forosh-icon" data-trash=""></div>
-                                    </div>
                                 </div>
                            `)
                         var nextUrl;
@@ -1143,31 +1153,11 @@
                         })
                     },
                     error: (err) => {
-
+                        // console.log(err, 'err');
                     }
                 })
             }
-            getSell(sellUrl)
-
-            function trashfunc() {
-
-                $.ajax({
-                    url: 'http://127.0.0.1:8000/api/tak-s-admin-panel/products/products-comments-list/',
-                    type: "delete",
-                    headers: {
-                        'Authorization': 'Token 5280ea40109f93797594e61ccb8cd1dc4a9c2758'
-                    },
-                    data: {
-
-                    },
-                    success: (res) => {
-
-                    },
-                    error: (err) => {
-
-                    }
-                })
-            }
+            getSell()
             var chartDataAry = []
             $('#daily').click(function() {
                 $.ajax({
@@ -1177,18 +1167,18 @@
                     },
 
                     success: (res) => {
-
+                        // console.log(res.total_price, 'rwwwwwwwwes');
 
 
                         chartDataAry.push(res.total_price.map(item => {
-                            return item
-                        }))
-
+                                return item
+                            }))
+                            // console.log('aaaaa', chartDataAry[0]);
 
                         // ============================CHART ==========================
                         // var xValues =  ["مهر","آبان","آذر","دی","بهمن","اسفند"] ;
                         // xValues.classList.add('chart-text-style')
-
+                        // console.log(chartDataAry);
 
                         new Chart("myChart", {
                             type: "line",
@@ -1219,7 +1209,7 @@
 
                     },
                     error: (err) => {
-
+                        // console.log(err, 'err');
                     }
                 })
 
@@ -1233,18 +1223,18 @@
                     },
 
                     success: (res) => {
-
+                        // console.log(res.total_price, 'rwwwwwwwwes');
 
 
                         chartDataAry.push(res.total_price.map(item => {
-                            return item
-                        }))
-
+                                return item
+                            }))
+                            // console.log('aaaaa', chartDataAry[0]);
 
                         // ============================CHART ==========================
                         var xValues = ["1", "2", "3", "4", "5", "6", "7"];
                         // xValues.classList.add('chart-text-style')
-
+                        // console.log(chartDataAry);
 
                         new Chart("myChart", {
                             type: "line",
@@ -1275,7 +1265,7 @@
 
                     },
                     error: (err) => {
-
+                        // console.log(err, 'err');
                     }
                 })
 
@@ -1289,18 +1279,18 @@
                     },
 
                     success: (res) => {
-
+                        // console.log(res.total_price, 'rwwwwwwwwes');
 
 
                         chartDataAry.push(res.total_price.map(item => {
-                            return item
-                        }))
-
+                                return item
+                            }))
+                            // console.log('aaaaa', chartDataAry[0]);
 
                         // ============================CHART ==========================
                         var xValues = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
                         // xValues.classList.add('chart-text-style')
-
+                        // console.log(chartDataAry);
 
                         new Chart("myChart", {
                             type: "line",
@@ -1331,7 +1321,7 @@
 
                     },
                     error: (err) => {
-
+                        console.log(err, 'err');
                     }
                 })
 
@@ -1345,18 +1335,18 @@
                     },
 
                     success: (res) => {
-
+                        // console.log(res.total_price, 'rwwwwwwwwes');
 
 
                         chartDataAry.push(res.total_price.map(item => {
-                            return item
-                        }))
-
+                                return item
+                            }))
+                            // console.log('aaaaa', chartDataAry[0]);
 
                         // ============================CHART ==========================
                         var xValues = ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"];
                         // xValues.classList.add('chart-text-style')
-
+                        // console.log(chartDataAry);
 
                         new Chart("myChart", {
                             type: "line",
@@ -1387,7 +1377,7 @@
 
                     },
                     error: (err) => {
-
+                        // console.log(err, 'err');
                     }
                 })
 
@@ -1413,7 +1403,7 @@
 
             // =================================== close ======================
             function exit(n) {
-
+                // console.log(1);
                 var boxOne1 = document.getElementsByClassName("question-box-two");
                 var shadowBox1 = document.getElementsByClassName("background");
                 if (n == 1) {
